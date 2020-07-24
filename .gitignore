@@ -1,0 +1,14 @@
+node_modules/
+.vscode/
+yarn-error.log
+npm-debug.log
+package-lock.json
+src/common/config/db.js
+src/common/config/mail.js
+src/common/config/openid.js
+src/common/lib/event-bus
+doc/
+## temporales creados por emacs
+*~
+\#*\#
+.\#*
