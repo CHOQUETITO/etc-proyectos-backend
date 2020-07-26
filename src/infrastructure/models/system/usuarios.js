@@ -60,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'ACTIVO',
       allowNull: false,
       xlabel: lang.t('fields.estado')
+    },
+    direccion: {
+      type: DataTypes.STRING(9),
+      xlabel: lang.t('fields.direccion')
     }
   };
 

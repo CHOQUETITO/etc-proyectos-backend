@@ -40,28 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.JSON,
       xlabel: lang.t('fields.info')
     },
-    subdomain: {
-      type: DataTypes.STRING(30),
-      xlabel: lang.t('fields.subdomain')
-    },
-    codigo_portal: {
-      type: DataTypes.STRING(20),
-      unique: true,
-      xlabel: lang.t('fields.codigo_portal')
-    },
     nit: {
       type: DataTypes.STRING(20),
       unique: true,
       xlabel: lang.t('fields.nit')
-    },
-    usuario: {
-      type: DataTypes.STRING(50),
-      xlabel: lang.t('fields.usuario')
-    },
-    id_usuario: { // No se define como llave foránea para evitar la redundancia cíclicla
-      type: DataTypes.INTEGER,
-      unique: true,
-      xlabel: lang.t('fields.id_usuario')
     },
     estado: {
       type: DataTypes.ENUM,
@@ -75,10 +57,10 @@ module.exports = (sequelize, DataTypes) => {
   // Agregando campos para el log
   fields = util.setTimestamps(fields);
 
-  let Entidades = sequelize.define('entidades', fields, {
+  let Empresas = sequelize.define('empresas', fields, {
     timestamps: false,
-    tableName: 'sys_entidades'
+    tableName: 'empresas'
   });
 
-  return Entidades;
+  return Empresas;
 };

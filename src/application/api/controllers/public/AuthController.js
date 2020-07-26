@@ -86,10 +86,21 @@ module.exports = function setupAuthController (services) {
     }
   }
 
+  async function prueba (req, res, next) {
+    debug('Salir del sistema');
+
+    const { codigo, usuario } = req.body;
+    try {
+      res.status(200).send('Este es mi primer mensaje');
+    } catch (e) {
+      return next(e);
+    }
+  }
   return {
     login,
     logout,
     codigo,
-    autorizar
+    autorizar,
+    prueba
   };
 };

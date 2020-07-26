@@ -15,7 +15,8 @@ let items = [
     cargo: 'Profesional',
     id_persona: 1,
     id_rol: 1,
-    id_entidad: 1
+    id_entidad: 1,
+    direccion:'saavedra'
   },
   {
     usuario: 'ciudadano',
@@ -25,7 +26,8 @@ let items = [
     cargo: '',
     id_persona: 2,
     id_rol: 3,
-    id_entidad: 1
+    id_entidad: 1,
+    direccion:'saavedra'
   }
 ];
 

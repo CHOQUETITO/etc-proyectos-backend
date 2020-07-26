@@ -6,6 +6,7 @@ module.exports = function setupAuth (api, controllers) {
   api.get('/codigo', AuthController.codigo);
   api.get('/autorizar', AuthController.autorizar);
   api.post('/logout', AuthController.logout);
+  api.get('/prueba', AuthController.prueba);
 
   return api;
 };
