@@ -57,10 +57,9 @@ module.exports = (sequelize, DataTypes) => {
   // Agregando campos para el log
   fields = util.setTimestamps(fields);
 
-  let Proyectos = sequelize.define('empresas', fields, {
+  let Proyectos = sequelize.define('proyectos', fields, {
     timestamps: false,
     tableName: 'proyectos'
   });
-
   return Proyectos;
 };

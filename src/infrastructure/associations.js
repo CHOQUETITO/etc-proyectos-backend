@@ -5,7 +5,7 @@ module.exports = function associations (models) {
   const {
     roles,
     usuarios,
-    entidades,
+    empresas,
     modulos,
     permisos,
     personas,
@@ -14,8 +14,8 @@ module.exports = function associations (models) {
 
   // MODULO USUARIOS
   // Asociaciones tabla usuarios
-  usuarios.belongsTo(entidades, { foreignKey: { name: 'id_entidad', allowNull: false }, as: 'entidad' });
-  entidades.hasMany(usuarios, { foreignKey: { name: 'id_entidad', allowNull: false }, as: 'entidad' });
+  usuarios.belongsTo(empresas, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
+  empresas.hasMany(usuarios, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
 
   usuarios.belongsTo(roles, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
   roles.hasMany(usuarios, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
@@ -41,8 +41,8 @@ module.exports = function associations (models) {
   tokens.belongsTo(usuarios, { foreignKey: { name: 'id_usuario' }, as: 'usuario' });
   usuarios.hasMany(tokens, { foreignKey: { name: 'id_usuario' } });
 
-  tokens.belongsTo(entidades, { foreignKey: { name: 'id_entidad' }, as: 'entidad' });
-  entidades.hasMany(tokens, { foreignKey: { name: 'id_entidad' } });
+  //tokens.belongsTo(entidades, { foreignKey: { name: 'id_entidad' }, as: 'entidad' });
+  //entidades.hasMany(tokens, { foreignKey: { name: 'id_entidad' } });
 
   return models;
 };
