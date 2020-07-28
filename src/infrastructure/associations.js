@@ -14,8 +14,6 @@ module.exports = function associations (models) {
 
   // MODULO USUARIOS
   // Asociaciones tabla usuarios
-  usuarios.belongsTo(empresas, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
-  empresas.hasMany(usuarios, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
 
   usuarios.belongsTo(roles, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
   roles.hasMany(usuarios, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });

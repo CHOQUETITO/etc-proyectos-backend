@@ -15,7 +15,6 @@ let items = [
     cargo: 'Profesional',
     id_persona: 1,
     id_rol: 1,
-    id_entidad: 1,
     direccion:'saavedra'
   },
   {
@@ -26,7 +25,6 @@ let items = [
     cargo: '',
     id_persona: 2,
     id_rol: 3,
-    id_entidad: 1,
     direccion:'saavedra'
   }
 ];
@@ -41,7 +39,6 @@ if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'pro
       estado: casual.random_element(['ACTIVO', 'INACTIVO']),
       id_persona: casual.integer(3, 10),
       id_rol: casual.integer(2, 3),
-      id_entidad: casual.integer(1, 10)
     };
 
     return item;

@@ -30,8 +30,7 @@ if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'pro
       direccion: casual.address,
       web: casual.url,
       estado: 'ACTIVO',
-      subdomain: casual.domain
-    };
+       };
 
     return item;
   });
@@ -44,7 +43,7 @@ items = setTimestampsSeeder(items);
 
 module.exports = {
   up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('sys_entidades', items, {});
+    return queryInterface.bulkInsert('empresas', items, {});
   },
 
   down (queryInterface, Sequelize) { }
