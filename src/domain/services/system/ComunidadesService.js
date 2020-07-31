@@ -8,14 +8,14 @@ const { generateToken } = require('../../../application/lib/auth');
 const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
 
-module.exports = function categoriasService (repositories, valueObjects, res) {
+module.exports = function comunidadesService (repositories, valueObjects, res) {
 
-  const {CategoriasRepository} = repositories;
+  const {ComunidadesRepository} = repositories;
   
   async function findAll (params = {}, rol, idEntidad) {
-    debug('Lista de usuarios|filtros');
+    debug('Lista de Comunidades|filtros');
 
-   return CategoriasRepository.findAll();
+    return ComunidadesRepository.findAll();
   }
 
   return {

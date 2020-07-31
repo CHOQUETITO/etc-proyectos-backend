@@ -8,6 +8,5 @@ module.exports = function setupCategorias (api, controllers) {
 
   api.get('', CategoriasController.findAll);
   
-
   return api;
 };
