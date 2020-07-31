@@ -15,9 +15,9 @@ module.exports = function setupApi (controllers) {
   files.forEach(function (file) {
     let pathFile = path.join(__dirname, file);
     if (fs.statSync(pathFile).isDirectory()) {
-      if (file !== 'public') { // Agregando Autenticación excepto a las rutas de la carpeta public
-        api.use(`/${file}/*`, auth(config.auth));
-      }
+      //if (file !== 'public') { // Agregando Autenticación excepto a las rutas de la carpeta public
+       // api.use(`/${file}/*`, auth(config.auth));
+      //}
       let router = express.Router();
       let doc = loadRoutes(pathFile, null, controllers, router);
       api.use(`/${file}`, router);

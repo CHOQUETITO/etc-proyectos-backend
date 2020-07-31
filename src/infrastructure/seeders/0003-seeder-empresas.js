@@ -6,15 +6,26 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Agencia de gobierno electrónico y tecnologías de la información y comunicación',
-    descripcion: 'La AGETIC está acá para desarrollar tecnología, que permita modernizar el Estado, transformar la gestión pública y reducir la burocracia. Estas tareas son desarrolladas por bolivianas y bolivianos que trabajan investigando, innovando e implementando nuevas técnicas y tecnologías que permitan el desarrollo soberano de nuestra patria. Para esto, la AGETIC busca a los mejores profesionales, gente joven comprometida con su gente y el destino de su país.',
-    sigla: 'AGETIC',
-    email: 'contacto@agetic.gob.bo',
-    telefonos: '(+591 -2) 2128706 - (+591 -2) 2128707',
-    direccion: 'Sopocachi, Calle Pedro Salazar Nº 631, esq. Andrés Muñoz. Edificio del Fondo Nacional de Desarrollo Regional(FNDR).Pisos 4 y 5',
+    nombre: 'Econotec',
+    descripcion: 'Desarrollo de Software',
+    sigla: 'Econotec',
+    email: 'econotec.gob.bo',
+    telefonos: '2234857',
+    direccion: 'Plaza Alonzo de Mendoza N15804',
+    web: 'econotec.gob.bo',
+    estado: 'ACTIVO',
+    nit: '1233243'
+  },
+  {
+    nombre: 'Tesicon',
+    descripcion: 'Construcción de Caminos',
+    sigla: 'Tes',
+    email: 'tesicon.gob.bo',
+    telefonos: '223434546',
+    direccion: 'Plaza el Minero Nº 234',
     web: 'agetic.gob.bo',
     estado: 'ACTIVO',
-    nit: '1022579028'
+    nit: '123324345'
   }
 ];
 
@@ -30,7 +41,7 @@ if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'pro
       direccion: casual.address,
       web: casual.url,
       estado: 'ACTIVO',
-       };
+    };
 
     return item;
   });

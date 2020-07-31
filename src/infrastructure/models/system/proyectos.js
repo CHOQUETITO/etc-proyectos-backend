@@ -16,34 +16,35 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.descripcion')
     },
-    sigla: {
-      type: DataTypes.STRING(20),
-      xlabel: lang.t('fields.sigla')
+    idComunidad: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idComunidad'),
+      field: 'id_comunidad'
     },
-    email: {
-      type: DataTypes.STRING(100),
-      xlabel: lang.t('fields.email')
+    idPoa: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idPoa'),
+      field: 'id_poa'
     },
-    telefonos: {
-      type: DataTypes.STRING(100),
-      xlabel: lang.t('fields.telefonos')
+    idEmpresa: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idEmpresa'),
+      field: 'id_empresa'
     },
-    direccion: {
-      type: DataTypes.TEXT,
-      xlabel: lang.t('fields.direccion')
+    idCategoria: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idCategoria'),
+      field: 'id_categoria'
     },
-    web: {
-      type: DataTypes.STRING(100),
-      xlabel: lang.t('fields.web')
+    fechaInicio: {
+      type: DataTypes.DATE,
+      xlabel: lang.t('fields.fechaInicio'),
+      field: 'fecha_inicio'
     },
-    info: {
-      type: DataTypes.JSON,
-      xlabel: lang.t('fields.info')
-    },
-    nit: {
-      type: DataTypes.STRING(20),
-      unique: true,
-      xlabel: lang.t('fields.nit')
+    fechaFinal: {
+      type: DataTypes.DATE,
+      xlabel: lang.t('fields.fechaFinal'),
+      field: 'fecha_final'
     },
     estado: {
       type: DataTypes.ENUM,
