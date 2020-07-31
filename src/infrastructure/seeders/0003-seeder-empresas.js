@@ -30,24 +30,6 @@ let items = [
 ];
 
 // Agregando datos aleatorios para desarrollo
-if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let personas = Array(9).fill().map((_, i) => {
-    let item = {
-      nombre: casual.company_name,
-      descripcion: casual.text,
-      sigla: casual.company_suffix,
-      email: casual.email,
-      telefonos: `${casual.phone},${casual.phone}`,
-      direccion: casual.address,
-      web: casual.url,
-      estado: 'ACTIVO',
-    };
-
-    return item;
-  });
-
-  items = items.concat(personas);
-}
 
 // Asignando datos de log y timestamps a los datos
 items = setTimestampsSeeder(items);

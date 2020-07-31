@@ -1,5 +1,7 @@
 'use strict';
 
+const cronogramas = require("./models/system/cronogramas");
+
 // Definiendo asociaciones de las tablas
 module.exports = function associations (models) {
   const {
@@ -13,7 +15,8 @@ module.exports = function associations (models) {
     poas,
     categorias,
     proyectos,
-    comunidades
+    comunidades,
+    cronogramas
   } = models;
 
   // MODULO USUARIOS
@@ -26,6 +29,12 @@ module.exports = function associations (models) {
 
   proyectos.belongsTo(poas, { foreignKey: { name: 'id_poa', allowNull: false }, as: 'poa' });
   poas.hasMany(proyectos, { foreignKey: { name: 'id_poa', allowNull: false }, as: 'poa' });
+
+  proyectos.belongsTo(empresas, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
+  empresas.hasMany(proyectos, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresas' });
+
+  proyectos.belongsTo(cronogramas, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'cronograma' });
+  cronogramas.hasMany(proyectos, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'cronograma' });
 
   usuarios.belongsTo(roles, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
   roles.hasMany(usuarios, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
