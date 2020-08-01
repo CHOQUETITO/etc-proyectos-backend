@@ -6,26 +6,26 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Econotec',
-    descripcion: 'Desarrollo de Software',
-    sigla: 'Econotec',
-    email: 'econotec.gob.bo',
+    nombre: 'EMPRESA CONSTRUCTORA Y CONSULTORA',
+    descripcion: 'Empresa que realiza actividades profesionales cientificas y técnicas, construcción, medio ambiente y demas',
+    sigla: 'ECC',
+    email: 'ecc.gob.bo',
     telefonos: '2234857',
-    direccion: 'Plaza Alonzo de Mendoza N15804',
-    web: 'econotec.gob.bo',
-    estado: 'ACTIVO',
-    nit: '1233243'
+    direccion: 'Psje Peatonal Río Orthon # 216, Barrio 1ro de Diciembre RIBERALTA - BENI',
+    web: 'ecc.gob.bo',
+    nit: '5151694010',
+    estado: 'ACTIVO'
   },
   {
-    nombre: 'Tesicon',
-    descripcion: 'Construcción de Caminos',
-    sigla: 'Tes',
-    email: 'tesicon.gob.bo',
+    nombre: 'ROYAL ARROW LIGHTING BOLIVIA S.R.L.',
+    descripcion: 'Venta e instalación de material de iluminación led de ultima generación, alumbrado industrial público',
+    sigla: 'RALB.SRL',
+    email: 'royalalb.gob.bo',
     telefonos: '223434546',
-    direccion: 'Plaza el Minero Nº 234',
-    web: 'agetic.gob.bo',
-    estado: 'ACTIVO',
-    nit: '123324345'
+    direccion: 'La Paz, calle loayza nº233 edif. Mcal de ayacucho piso7 of 714',
+    web: 'www.royalarrowbolivialed.com',
+    nit: '233038028',
+    estado: 'ACTIVO'
   }
 ];
 

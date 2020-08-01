@@ -8,11 +8,32 @@ module.exports = function setupCategoriasController (services) {
   const {CategoriasService} = services;
 
   async function findAll (req, res, next){
-    const  respuestaCategorias = await CategoriasService.findAll();
+    const  respuestaCategorias = await CategoriasService.findAll(req.query);
+    console.log('--->', req.params, req.query);
     return res.status(200).send ({respuestaCategorias});
-    
+       
   };
+
+  async function findById (req, res, next){
+    
+    try {
+      console.log('--->', req.params, req.query);
+      const {id} = req.params;
+      const  respuestaCategoria = await CategoriasService.findById(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaCategoria
+      });
+
+    } catch (error) {
+
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+
   return {
-    findAll
+    findAll,
+    findById
   };
 };

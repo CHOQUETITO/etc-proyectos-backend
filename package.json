@@ -5,8 +5,8 @@
   "main": "src/application/index.js",
   "scripts": {
     "instalar": "npm install",
-    "start-dev": "nodemon src/application/server",
-    "startdev": "nodemon src/application/server",
+    "start-dev": "DEBUG=app:* nodemon src/application/server",
+    "startdev": "DEBUG=app:* nodemon src/application/server",
     "dev": "DEBUG=app:* nodemon src/application/server",
     "secure": "NODE_ENV=secure DEBUG=app:* nodemon src/application/server",
     "test": "npm run setup && npm run seeders && npm run test-db && npm run test-domain",

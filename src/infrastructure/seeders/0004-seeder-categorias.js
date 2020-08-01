@@ -6,16 +6,16 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Viales',
-    descripcion: 'Comunidad Fronteriza',
+    nombre: 'Vivienda y Urbanización',
+    descripcion: 'Proyectos de construcciones habitacionales y de urbanización en diferentes comunidades',
   },
   {
-    nombre: 'Infraestructura',
-    descripcion: 'Comunidad Fronteriza 2',
+    nombre: 'Educación',
+    descripcion: 'Proyectos de construcciones de aulas en diferentes comunidades',
   },
   {
     nombre: 'Salud',
-    descripcion: 'Comunidad Fronteriza 2',
+    descripcion: 'Proyectos de construcciones de establecimientos de salud en diferentes comunidades',
   }
 ];
 

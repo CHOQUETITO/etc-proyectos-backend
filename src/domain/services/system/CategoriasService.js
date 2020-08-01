@@ -12,13 +12,30 @@ module.exports = function categoriasService (repositories, valueObjects, res) {
 
   const {CategoriasRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Categorias|filtros');
 
-   return CategoriasRepository.findAll();
+   return CategoriasRepository.findAll(params);
+  }
+
+  async function  findById  (id = null) {
+    debug('Lista de Categorias|filtros');
+    try {
+      let respuestaCategoria = await CategoriasRepository.findById(id);
+      console.log('--->', respuestaCategoria);
+      if (!respuestaCategoria){
+        throw new Error ('No hay Valor');
+      }
+      return respuestaCategoria;
+      
+    } catch (error) {
+      throw new Error (error.message);
+    }
+    
   }
 
   return {
-    findAll
+    findAll,
+    findById
   };
 };
