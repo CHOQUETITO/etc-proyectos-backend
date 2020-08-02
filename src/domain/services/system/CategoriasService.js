@@ -18,7 +18,7 @@ module.exports = function categoriasService (repositories, valueObjects, res) {
    return CategoriasRepository.findAll(params);
   }
 
-  async function  findById  (id = null) {
+  async function findById (id = null) {
     debug('Lista de Categorias|filtros');
     try {
       let respuestaCategoria = await CategoriasRepository.findById(id);
@@ -31,7 +31,6 @@ module.exports = function categoriasService (repositories, valueObjects, res) {
     } catch (error) {
       throw new Error (error.message);
     }
-    
   }
 
   return {

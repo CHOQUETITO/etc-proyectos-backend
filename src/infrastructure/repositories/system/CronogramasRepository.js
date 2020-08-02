@@ -11,11 +11,20 @@ module.exports = function cronogramasRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
+
+    query.where.estado = 'ACTIVO'
+
     const result = await cronogramas.findAndCountAll(query);
     return toJSON(result);
   }
 
+  async function findById (id = null) {
+    const result = await cronogramas.findByPk(id);
+    return result;
+  }
+  
   return {
-    findAll
+    findAll,
+    findById
   };
 };

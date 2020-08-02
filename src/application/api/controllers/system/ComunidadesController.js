@@ -8,7 +8,8 @@ module.exports = function setupComunidadesController (services) {
   const { ComunidadesService } = services;
 
   async function findAll (req, res, next){
-    const  respuestaComunidades = await ComunidadesService.findAll();
+    const  respuestaComunidades = await ComunidadesService.findAll(req.query);
+    console.log('--->', req.params, req.query);
     return res.status(200).send ({respuestaComunidades});
     
   };

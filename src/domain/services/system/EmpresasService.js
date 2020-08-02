@@ -12,13 +12,29 @@ module.exports = function empresasService (repositories, valueObjects, res) {
 
   const {EmpresasRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Empresas|filtros');
 
-    return EmpresasRepository.findAll();
+    return EmpresasRepository.findAll(params);
+  }
+
+  async function findById (id = null) {
+    debug('Lista de Empresa|filtros');
+    try {
+      let respuestaEmpresa = await EmpresasRepository.findById(id);
+      console.log('--->', respuestaEmpresa);
+      if (!respuestaEmpresa){
+        throw new Error ('No hay Valor');
+      }
+      return respuestaEmpresa;
+      
+    } catch (error) {
+      throw new Error (error.message);
+    }
   }
 
   return {
-    findAll
+    findAll,
+    findById
   };
 };

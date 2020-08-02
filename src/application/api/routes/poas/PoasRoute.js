@@ -7,6 +7,7 @@ module.exports = function setupPoas (api, controllers) {
   console.log(PoasController);
 
   api.get('', PoasController.findAll);
+  api.get('/:id', PoasController.findById);
 
   return api;
 };

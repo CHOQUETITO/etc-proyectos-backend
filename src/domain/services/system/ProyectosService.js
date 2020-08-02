@@ -12,13 +12,29 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
 
   const {ProyectosRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Proyectos|filtros');
 
-   return ProyectosRepository.findAll();
+   return ProyectosRepository.findAll(params);
+  }
+
+  async function findById (id = null) {
+    debug('Lista de Proyecto|filtros');
+    try {
+      let respuestaProyecto = await ProyectosRepository.findById(id);
+      console.log('--->', respuestaProyecto);
+      if (!respuestaProyecto){
+        throw new Error ('No hay Valor');
+      }
+      return respuestaProyecto;
+      
+    } catch (error) {
+      throw new Error (error.message);
+    }
   }
 
   return {
-    findAll
+    findAll,
+    findById
   };
 };

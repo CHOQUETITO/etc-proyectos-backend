@@ -12,13 +12,29 @@ module.exports = function poasService (repositories, valueObjects, res) {
 
   const {PoasRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Poas|filtros');
 
-    return PoasRepository.findAll();
+    return PoasRepository.findAll(params);
+  }
+
+  async function findById (id = null) {
+    debug('Lista de Poa|filtros');
+    try {
+      let respuestaPoa = await PoasRepository.findById(id);
+      console.log('--->', respuestaPoa);
+      if (!respuestaPoa){
+        throw new Error ('No hay Valor');
+      }
+      return respuestaPoa;
+      
+    } catch (error) {
+      throw new Error (error.message);
+    }
   }
 
   return {
-    findAll
+    findAll,
+    findById
   };
 };

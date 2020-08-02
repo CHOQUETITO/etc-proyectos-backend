@@ -12,10 +12,10 @@ module.exports = function comunidadesService (repositories, valueObjects, res) {
 
   const {ComunidadesRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Comunidades|filtros');
 
-    return ComunidadesRepository.findAll();
+    return ComunidadesRepository.findAll(params);
   }
 
   return {

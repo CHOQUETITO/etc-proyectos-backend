@@ -11,11 +11,20 @@ module.exports = function poasRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
+
+    query.where.estado = 'INACTIVO'
+
     const result = await poas.findAndCountAll(query);
     return toJSON(result);
   }
 
+  async function findById (id = null) {
+    const result = await poas.findByPk(id);
+    return result;
+  }
+
   return {
-    findAll
+    findAll,
+    findById
   };
 };

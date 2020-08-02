@@ -7,6 +7,7 @@ module.exports = function setupProyectos (api, controllers) {
   console.log(ProyectosController);
 
   api.get('', ProyectosController.findAll);
+  api.get('/:id', ProyectosController.findById);
   
   return api;
 };

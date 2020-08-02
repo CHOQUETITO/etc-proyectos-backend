@@ -12,13 +12,29 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
 
   const {CronogramasRepository} = repositories;
   
-  async function findAll (params = {}, rol, idEntidad) {
+  async function findAll (params = {}) {
     debug('Lista de Cronogramas|filtros');
 
-   return CronogramasRepository.findAll();
+   return CronogramasRepository.findAll(params);
+  }
+
+  async function findById (id = null) {
+    debug('Lista de Cronogramas|filtros');
+    try {
+      let respuestaCronograma = await CronogramasRepository.findById(id);
+      console.log('--->', respuestaCronograma);
+      if (!respuestaCronograma){
+        throw new Error ('No hay Valor');
+      }
+      return respuestaCronograma;
+      
+    } catch (error) {
+      throw new Error (error.message);
+    }
   }
 
   return {
-    findAll
+    findAll,
+    findById
   };
 };

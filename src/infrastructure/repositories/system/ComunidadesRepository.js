@@ -11,6 +11,9 @@ module.exports = function comunidadesRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
+
+    query.where.estado = 'ACTIVO'
+    
     const result = await comunidades.findAndCountAll(query);
     return toJSON(result);
   }

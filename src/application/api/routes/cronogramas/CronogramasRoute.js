@@ -7,6 +7,7 @@ module.exports = function setupCronogramas (api, controllers) {
   console.log(CronogramasController);
 
   api.get('', CronogramasController.findAll);
-  
+  api.get('/:id', CronogramasController.findById);
+
   return api;
 };

@@ -16,6 +16,7 @@ module.exports = function categoriasRepository (models, Sequelize) {
           [Op.iLike] : `%${params.nombre}%`
         };
       }
+      
       query.where.estado = 'ACTIVO'
       
     const result = await categorias.findAndCountAll(query);
@@ -23,8 +24,6 @@ module.exports = function categoriasRepository (models, Sequelize) {
   }
 
   async function findById (id = null) {
-    
-    
     const result = await categorias.findByPk(id);
     return result;
   }

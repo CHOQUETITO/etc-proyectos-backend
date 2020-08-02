@@ -11,11 +11,25 @@ module.exports = function empresasRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
+
+    if (params.nombre){
+      query.where.nombre = {
+        [Op.iLike] : `%${params.nombre}%`
+      };
+    }
+    
+    query.where.estado = 'ACTIVO'
+
     const result = await empresas.findAndCountAll(query);
     return toJSON(result);
   }
-
+  
+  async function findById (id = null) {
+    const result = await empresas.findByPk(id);
+    return result;
+  }
   return {
-    findAll
+    findAll,
+    findById
   };
 };

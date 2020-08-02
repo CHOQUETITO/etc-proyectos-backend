@@ -7,6 +7,7 @@ module.exports = function setupEmpresas (api, controllers) {
   console.log(EmpresasController);
 
   api.get('', EmpresasController.findAll);
-  
+  api.get('/:id', EmpresasController.findById);
+
   return api;
 };

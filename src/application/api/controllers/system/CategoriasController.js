@@ -15,7 +15,6 @@ module.exports = function setupCategoriasController (services) {
   };
 
   async function findById (req, res, next){
-    
     try {
       console.log('--->', req.params, req.query);
       const {id} = req.params;
@@ -23,9 +22,7 @@ module.exports = function setupCategoriasController (services) {
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaCategoria
       });
-
     } catch (error) {
-
       return res.status(400).send ({
         finalizado : false, mensaje: error.message, datos: null
       });
