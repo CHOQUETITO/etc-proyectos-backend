@@ -11,7 +11,6 @@ const Service = require('../Service');
 module.exports = function empresasService (repositories, valueObjects, res) {
 
   const {EmpresasRepository} = repositories;
-  
   async function findAll (params = {}) {
     debug('Lista de Empresas|filtros');
 
@@ -22,19 +21,47 @@ module.exports = function empresasService (repositories, valueObjects, res) {
     debug('Lista de Empresa|filtros');
     try {
       let respuestaEmpresa = await EmpresasRepository.findById(id);
-      console.log('--->', respuestaEmpresa);
       if (!respuestaEmpresa){
         throw new Error ('No hay Valor');
       }
+      if(respuestaEmpresa.estado === 'INACTIVO') {
+        throw new Error('La empresa ya fue desactivada');
+      }
       return respuestaEmpresa;
-      
     } catch (error) {
       throw new Error (error.message);
+    }
+  }
+  async function guardarEmpresa (dataEmpresa) {
+    try {
+      dataEmpresa._user_created = 1;
+      const respuesta = await EmpresasRepository.createOrUpdate(dataEmpresa);
+      if (!respuesta) {
+        throw new Error('No se guardo exitosamente en la base de datos.');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  async function desactivarEmpresa (id) {
+    try {
+      const respuesta = await EmpresasRepository.deleteItem(id);
+      if (!respuesta) {
+        throw new Error('No se guardo exitosamente en la base de datos.');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   }
 
   return {
     findAll,
-    findById
+    findById,
+    guardarEmpresa,
+    desactivarEmpresa
   };
 };

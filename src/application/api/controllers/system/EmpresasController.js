@@ -9,14 +9,12 @@ module.exports = function setupEmpresasController (services) {
 
   async function findAll (req, res, next){
     const  respuestaEmpresas = await EmpresasService.findAll(req.query);
-    console.log('--->', req.params, req.query);
     return res.status(200).send ({respuestaEmpresas});
     
   };
 
   async function findById (req, res, next){
     try {
-      console.log('--->', req.params, req.query);
       const {id} = req.params;
       const  respuestaEmpresa = await EmpresasService.findById(id);
       return res.status(200).send ({
@@ -29,8 +27,37 @@ module.exports = function setupEmpresasController (services) {
     }  
   };
 
+  async function guardarEmpresa (req, res, next) {
+    try {
+      const respuesta = await EmpresasService.guardarEmpresa(req.body);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
+  async function desactivarEmpresa (req, res, next) {
+    try {
+      const { id } = req.params;
+      const respuesta = await EmpresasService.desactivarEmpresa(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
   return {
     findAll,
-    findById
+    findById,
+    guardarEmpresa,
+    desactivarEmpresa
   };
 };

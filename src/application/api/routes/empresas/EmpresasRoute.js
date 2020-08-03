@@ -8,6 +8,10 @@ module.exports = function setupEmpresas (api, controllers) {
 
   api.get('', EmpresasController.findAll);
   api.get('/:id', EmpresasController.findById);
+  api.post('', EmpresasController.guardarEmpresa);
+  api.put('', EmpresasController.guardarEmpresa);
+  api.delete('/:id', EmpresasController.desactivarEmpresa);
 
   return api;
 };
+

@@ -17,19 +17,19 @@ module.exports = function empresasRepository (models, Sequelize) {
         [Op.iLike] : `%${params.nombre}%`
       };
     }
-    
     query.where.estado = 'ACTIVO'
 
     const result = await empresas.findAndCountAll(query);
     return toJSON(result);
   }
-  
   async function findById (id = null) {
     const result = await empresas.findByPk(id);
     return result;
   }
   return {
     findAll,
-    findById
+    findById,
+    createOrUpdate: (item, t) => Repository.createOrUpdate(item, empresas, t),
+    deleteItem: (id, t) => Repository.deleteItem(id, empresas, t)
   };
 };
