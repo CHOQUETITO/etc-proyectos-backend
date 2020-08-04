@@ -26,15 +26,49 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
       if (!respuestaCronograma){
         throw new Error ('No hay Valor');
       }
+      if(respuestaCronograma.estado === 'INACTIVO') {
+        throw new Error('El Cronograma ya fue desactivado');
+      }
       return respuestaCronograma;
-      
     } catch (error) {
       throw new Error (error.message);
     }
   }
 
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN CRONOGRAMA
+  async function guardarCronograma (dataCronograma) {
+    try {
+      dataCronograma._user_created = 1;
+      const respuesta = await CronogramasRepository.createOrUpdate(dataCronograma);
+      if (!respuesta) {
+        throw new Error('No se guardo exitosamente en la base de datos.');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  //METODO DELETE PARA ELIMINAR UN CRONOGRAMA DE LA VISTA 
+  async function desactivarCronograma (id) {
+    try {
+      const respuesta = await CronogramasRepository.deleteItem(id);
+      if (!respuesta) {
+        throw new Error('No se Eliminio de la vista Correctamente');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+
   return {
     findAll,
-    findById
+    findById,
+    guardarCronograma,
+    desactivarCronograma
   };
 };

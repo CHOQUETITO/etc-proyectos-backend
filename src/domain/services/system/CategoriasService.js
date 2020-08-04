@@ -26,8 +26,10 @@ module.exports = function categoriasService (repositories, valueObjects, res) {
       if (!respuestaCategoria){
         throw new Error ('No hay Valor');
       }
+      if(respuestaCategoria.estado === 'INACTIVO') {
+        throw new Error('La Categoria ya fue desactivada');
+      }
       return respuestaCategoria;
-      
     } catch (error) {
       throw new Error (error.message);
     }

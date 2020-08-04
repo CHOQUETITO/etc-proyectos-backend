@@ -17,7 +17,6 @@ module.exports = function proyectosRepository (models, Sequelize) {
         [Op.iLike] : `%${params.nombre}%`
       };
     }
-    
     query.where.estado = 'ACTIVO'
 
     const result = await proyectos.findAndCountAll(query);
@@ -32,6 +31,8 @@ module.exports = function proyectosRepository (models, Sequelize) {
 
   return {
     findAll,
-    findById
+    findById,
+    createOrUpdate: (item, t) => Repository.createOrUpdate(item, proyectos, t),
+    deleteItem: (id, t) => Repository.deleteItem(id, proyectos, t)
   };
 };

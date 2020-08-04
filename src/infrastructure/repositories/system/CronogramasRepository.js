@@ -25,6 +25,8 @@ module.exports = function cronogramasRepository (models, Sequelize) {
   
   return {
     findAll,
-    findById
+    findById,
+    createOrUpdate: (item, t) => Repository.createOrUpdate(item, cronogramas, t),
+    deleteItem: (id, t) => Repository.deleteItem(id, cronogramas, t)
   };
 };

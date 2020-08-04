@@ -25,7 +25,7 @@ module.exports = function empresasService (repositories, valueObjects, res) {
         throw new Error ('No hay Valor');
       }
       if(respuestaEmpresa.estado === 'INACTIVO') {
-        throw new Error('La empresa ya fue desactivada');
+        throw new Error('La Empresa ya fue desactivada');
       }
       return respuestaEmpresa;
     } catch (error) {

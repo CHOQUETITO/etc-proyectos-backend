@@ -11,8 +11,8 @@ module.exports = function poasRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
-
-    query.where.estado = 'INACTIVO'
+    
+    query.where.estado = 'ACTIVO'
 
     const result = await poas.findAndCountAll(query);
     return toJSON(result);
@@ -25,6 +25,8 @@ module.exports = function poasRepository (models, Sequelize) {
 
   return {
     findAll,
-    findById
+    findById,
+    createOrUpdate: (item, t) => Repository.createOrUpdate(item, poas, t),
+    deleteItem: (id, t) => Repository.deleteItem(id, poas, t)
   };
 };

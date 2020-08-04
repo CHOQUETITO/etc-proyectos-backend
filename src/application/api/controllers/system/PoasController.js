@@ -29,8 +29,37 @@ module.exports = function setupPoasController (services) {
     }  
   };
 
+  async function guardarPoa (req, res, next){
+    try {
+      const respuesta = await PoasService.guardarPoa(req.body);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }
+  };
+
+  async function desactivarPoa (req, res, next) {
+    try {
+      const { id } = req.params;
+      const respuesta = await PoasService.desactivarPoa(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se Elimino en la vista Correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
   return {
     findAll,
-    findById
+    findById,
+    guardarPoa,
+    desactivarPoa
   };
 };
