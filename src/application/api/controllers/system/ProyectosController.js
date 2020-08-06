@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupProyectosController (services) {
   const {ProyectosService} = services;
 
+  //METODO GET PARA LISTAR PROYECTOS
   async function findAll (req, res, next){
     const  respuestaProyectos = await ProyectosService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupProyectosController (services) {
     
   };
 
+  //METODO GET PARA BUSCAR UNA PROYECTO POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);
@@ -29,6 +31,7 @@ module.exports = function setupProyectosController (services) {
     }  
   };
 
+  //METODO POST PARA GUARDAR Y MODIFICAR UN PROYECTO
   async function guardarProyecto (req, res, next){
     try {
       const respuesta = await ProyectosService.guardarProyecto(req.body);
@@ -42,6 +45,7 @@ module.exports = function setupProyectosController (services) {
     }
   };
 
+  //METODO DELETE PARA DESACTIVAR UN PROYECTO
   async function desactivarProyecto (req, res, next) {
     try {
       const { id } = req.params;

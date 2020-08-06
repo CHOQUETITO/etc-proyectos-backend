@@ -12,12 +12,14 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
 
   const {ProyectosRepository} = repositories;
   
+  //METODO PARA LISTAR PROYECTOS
   async function findAll (params = {}) {
     debug('Lista de Proyectos|filtros');
 
    return ProyectosRepository.findAll(params);
   }
 
+  //METODO PARA BUSCAR UN PROYECTO POR ID
   async function findById (id = null) {
     debug('Lista de Proyecto|filtros');
     try {
@@ -34,6 +36,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
       throw new Error (error.message);
     }
   }
+  
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN PROYECTO
   async function guardarProyecto (dataProyecto) {
     try {

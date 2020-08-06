@@ -8,6 +8,7 @@ module.exports = function comunidadesRepository (models, Sequelize) {
   const { usuarios, roles, personas, comunidades } = models;
   const Op = Sequelize.Op;
 
+  //METODO GET PARA LISTAR UNA COMUNIDAD
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};

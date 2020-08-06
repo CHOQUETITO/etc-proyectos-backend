@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupCategoriasController (services) {
   const {CategoriasService} = services;
 
+  //METODO GET PARA LISTAR CATEGORIAS
   async function findAll (req, res, next){
     const  respuestaCategorias = await CategoriasService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupCategoriasController (services) {
        
   };
 
+  //METODO GET PARA BUSCAR POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);

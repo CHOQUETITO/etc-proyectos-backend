@@ -7,12 +7,14 @@ const moment = require('moment');
 module.exports = function setupEmpresasController (services) {
   const { EmpresasService } = services;
 
+  //METODO GET PARA LISTAR EMPRESAS
   async function findAll (req, res, next){
     const  respuestaEmpresas = await EmpresasService.findAll(req.query);
     return res.status(200).send ({respuestaEmpresas});
     
   };
 
+  //METODO GET PARA BUSCAR UNA EMPRESA POR ID
   async function findById (req, res, next){
     try {
       const {id} = req.params;
@@ -27,6 +29,7 @@ module.exports = function setupEmpresasController (services) {
     }  
   };
 
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA EMPRESA
   async function guardarEmpresa (req, res, next) {
     try {
       const respuesta = await EmpresasService.guardarEmpresa(req.body);
@@ -40,6 +43,7 @@ module.exports = function setupEmpresasController (services) {
     }
   }
 
+  //METODO DELETE PARA DESACTIVAR UNA EMPRESA
   async function desactivarEmpresa (req, res, next) {
     try {
       const { id } = req.params;

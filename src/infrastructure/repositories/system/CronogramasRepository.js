@@ -8,6 +8,7 @@ module.exports = function cronogramasRepository (models, Sequelize) {
   const { usuarios, roles, personas, cronogramas } = models;
   const Op = Sequelize.Op;
 
+  //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
@@ -18,6 +19,7 @@ module.exports = function cronogramasRepository (models, Sequelize) {
     return toJSON(result);
   }
 
+  //METODO GET PARA BUSCAR UN CRONOGRAMA POR ID
   async function findById (id = null) {
     const result = await cronogramas.findByPk(id);
     return result;

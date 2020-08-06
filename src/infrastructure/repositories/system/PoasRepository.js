@@ -8,6 +8,7 @@ module.exports = function poasRepository (models, Sequelize) {
   const { usuarios, roles, personas, poas } = models;
   const Op = Sequelize.Op;
 
+  //METODO GET PARA LISTAR POAS
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
@@ -18,6 +19,7 @@ module.exports = function poasRepository (models, Sequelize) {
     return toJSON(result);
   }
 
+  //METODO GET PARA BUSCAR UNA POA POR ID
   async function findById (id = null) {
     const result = await poas.findByPk(id);
     return result;

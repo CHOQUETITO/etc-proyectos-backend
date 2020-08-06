@@ -12,12 +12,14 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
 
   const {CronogramasRepository} = repositories;
   
+  //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (params = {}) {
     debug('Lista de Cronogramas|filtros');
 
    return CronogramasRepository.findAll(params);
   }
 
+  //METODO GET PARA BUSCAR UN CRONOGRAMA POR ID
   async function findById (id = null) {
     debug('Lista de Cronogramas|filtros');
     try {
@@ -63,7 +65,6 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
       throw error;
     }
   }
-
 
   return {
     findAll,

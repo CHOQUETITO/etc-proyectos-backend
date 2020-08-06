@@ -12,7 +12,7 @@ module.exports = function poasService (repositories, valueObjects, res) {
 
   const {PoasRepository} = repositories;
   
-  //METODO PARA LISTAR TODAS LAS POAS ACTIVAS
+  //METODO PARA LISTAR POAS ACTIVAS
   async function findAll (params = {}) {
     debug('Lista de Poas|filtros');
 
@@ -62,6 +62,7 @@ module.exports = function poasService (repositories, valueObjects, res) {
       return respuesta;
     } catch (error) {
       console.error(error);
+      // LogsService.log(error)
       throw error;
     }
   }

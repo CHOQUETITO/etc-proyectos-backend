@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupPoasController (services) {
   const { PoasService } = services;
 
+  //METODO GET PARA LISTAR POAS
   async function findAll (req, res, next){
     const  respuestaPoas = await PoasService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupPoasController (services) {
     
   };
 
+  //METODO GET PARA BUSCAR UN POA POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);
@@ -29,6 +31,7 @@ module.exports = function setupPoasController (services) {
     }  
   };
 
+  //METODO POST PARA GUARDAR Y MODIFICAR UN POA
   async function guardarPoa (req, res, next){
     try {
       const respuesta = await PoasService.guardarPoa(req.body);
@@ -42,6 +45,7 @@ module.exports = function setupPoasController (services) {
     }
   };
 
+  //METODO DELETE PARA DESACTIVAR UN POA
   async function desactivarPoa (req, res, next) {
     try {
       const { id } = req.params;

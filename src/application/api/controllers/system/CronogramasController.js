@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupCronogramasController (services) {
   const {CronogramasService} = services;
 
+  //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (req, res, next){
     const  respuestaCronogramas = await CronogramasService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupCronogramasController (services) {
     
   };
 
+  //METODO GET PARA BUSCAR POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);
@@ -29,6 +31,7 @@ module.exports = function setupCronogramasController (services) {
     }  
   };
 
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN GRONOGRAMA
   async function guardarCronograma (req, res, next){
     try {
       const respuesta = await CronogramasService.guardarCronograma(req.body);
@@ -42,6 +45,7 @@ module.exports = function setupCronogramasController (services) {
     }
   };
 
+  //METODO DELETE PARA DESACTIVAR UN CRONOGRAMA
   async function desactivarCronograma (req, res, next) {
     try {
       const { id } = req.params;

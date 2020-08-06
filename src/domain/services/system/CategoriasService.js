@@ -12,12 +12,14 @@ module.exports = function categoriasService (repositories, valueObjects, res) {
 
   const {CategoriasRepository} = repositories;
   
+  //METODO GET PARA LISTAR CATEGORIAS
   async function findAll (params = {}) {
     debug('Lista de Categorias|filtros');
 
    return CategoriasRepository.findAll(params);
   }
 
+  //METODO GET PARA BUSCAR UNA CATEGORIA POR ID
   async function findById (id = null) {
     debug('Lista de Categorias|filtros');
     try {
