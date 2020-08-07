@@ -8,10 +8,10 @@ const { generateToken } = require('../../../application/lib/auth');
 const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
 
-module.exports = function userService (repositories, valueObjects, res) {
-  const ModuloService = require('./ModuloService')(repositories, valueObjects, res);
+module.exports = function userService (repositories, valueObjects) {
+  const ModuloService = require('./ModuloService')(repositories, valueObjects);
 
-  const { transaction, Iop, UsuarioRepository, PersonaRepository, EntidadRepository, Parametro, Log } = repositories;
+  const { transaction, Iop, UsuarioRepository, PersonaRepository, Parametro, Log } = repositories;
   const {
     UsuarioUsuario,
     UsuarioContrasena,
@@ -114,11 +114,11 @@ module.exports = function userService (repositories, valueObjects, res) {
 
       user = await UsuarioRepository.createOrUpdate(usuario);
     } catch (e) {
-      return res.error(e);
+      return e;
     }
 
     if (!user) {
-      return res.warning(new Error(`El usuario no pudo ser creado`));
+      throw new Error(`El usuario no pudo ser creado`);
     }
 
     return res.success(user);
@@ -128,7 +128,7 @@ module.exports = function userService (repositories, valueObjects, res) {
     debug('Actualizar usuario');
 
     if (!data.id) {
-      return res.error(new Error(`Se necesita el ID del usuario para actualizar el registro`));
+      throw new Error(`Se necesita el ID del usuario para actualizar el registro`);
     }
 
     let user;
@@ -136,14 +136,14 @@ module.exports = function userService (repositories, valueObjects, res) {
       validateUser(data);
       user = await UsuarioRepository.createOrUpdate(data);
     } catch (e) {
-      return res.error(e);
+      return e;
     }
 
     if (!user) {
-      return res.warning(new Error(`El usuario no pudo ser actualizado`));
+      return new Error(`El usuario no pudo ser actualizado`);
     }
 
-    return res.success(user);
+    return user;
   }
 
   async function deleteItem (id) {
@@ -152,98 +152,68 @@ module.exports = function userService (repositories, valueObjects, res) {
     return Service.deleteItem(id, UsuarioRepository, res, 'Usuario');
   }
 
-  async function userExist (usuario, contrasena, nit) {
+  async function userExist (usuario, contrasena) {
     debug(`Comprobando si el usuario ${usuario} existe`);
 
     let result;
     let t;
     try {
-      result = nit ? await EntidadRepository.findByNit(nit) : await UsuarioRepository.findByUsername(usuario);
-      if (!nit && !result) {
+      result = await UsuarioRepository.findByUsername(usuario);
+      if (!result) {
         return res.error(new Error(`No existe el usuario ${usuario}`));
       }
-      if (nit && !result) {
-        return res.error(new Error(`La entidad con el NIT ${nit} no esta registrada.`));
-      }
-      if (nit && result) {
-        await verifySIN(usuario, contrasena, nit);
+      if (result) {
         if (result.id_usuario) {
           result = await UsuarioRepository.findById(result.id_usuario);
         } else {
-          debug('Creando usuario administrador para la entidad', result.sigla);
-          t = await transaction.create();
-          const idEntidad = result.id;
-          const sigla = result.sigla;
-
-          // Creando usuario administrador de la entidad
-          const dataUser = {
-            usuario: sigla + '-' + Math.random().toString(36).slice(2),
-            contrasena: sigla + '-' + Math.random().toString(36).slice(2),
-            id_entidad: idEntidad,
-            id_rol: 2,
-            _user_created: 1
-          };
-          result = await UsuarioRepository.createOrUpdate(dataUser, t);
-
-          await transaction.commit(t); // Creando usuario
-
-          // Actualizando nuevo usuario administrador de la entidad
-          const dataEntidad = {
-            id: idEntidad,
-            id_usuario: result.id,
-            usuario
-          };
-          await EntidadRepository.createOrUpdate(dataEntidad, t);
-
-          result = await UsuarioRepository.findByUsername(dataUser.usuario);
+          result = await UsuarioRepository.findByUsername(result.usuario);
         }
       }
 
-      let minutos = await Parametro.getParam('TIEMPO_BLOQUEO');
-      minutos = minutos.valor && !isNaN(minutos.valor) ? parseInt(minutos.valor) : 0;
+      // let minutos = await Parametro.getParam('TIEMPO_BLOQUEO');
+      // minutos = minutos.valor && !isNaN(minutos.valor) ? parseInt(minutos.valor) : 0;
+      //
+      // let nroMaxIntentos = await Parametro.getParam('NRO_MAX_INTENTOS');
+      // nroMaxIntentos = nroMaxIntentos.valor && !isNaN(nroMaxIntentos.valor) ? parseInt(nroMaxIntentos.valor) : 3;
+      //
+      // if (result.fecha_bloqueo) {
+      //   let tiempo = moment(result.fecha_bloqueo).valueOf();
+      //   let now = moment().valueOf();
+      //   debug('FECHA BLOQUEO', moment(tiempo).format('YYYY-MM-DD HH:mm:ss'), 'FECHA ACTUAL', moment(now).format('YYYY-MM-DD HH:mm:ss'));
+      //   if (now < tiempo) {
+      //     return res.error(new Error(`El usuario <strong>${usuario}</strong> se encuentra bloqueado por <strong>${minutos} minutos</strong> por demasiados intentos fallidos.`));
+      //   } else {
+      //     await update({ id: result.id, nro_intentos: 0, fecha_bloqueo: null });
+      //   }
+      // }
 
-      let nroMaxIntentos = await Parametro.getParam('NRO_MAX_INTENTOS');
-      nroMaxIntentos = nroMaxIntentos.valor && !isNaN(nroMaxIntentos.valor) ? parseInt(nroMaxIntentos.valor) : 3;
-
-      if (result.fecha_bloqueo) {
-        let tiempo = moment(result.fecha_bloqueo).valueOf();
-        let now = moment().valueOf();
-        debug('FECHA BLOQUEO', moment(tiempo).format('YYYY-MM-DD HH:mm:ss'), 'FECHA ACTUAL', moment(now).format('YYYY-MM-DD HH:mm:ss'));
-        if (now < tiempo) {
-          return res.error(new Error(`El usuario <strong>${usuario}</strong> se encuentra bloqueado por <strong>${minutos} minutos</strong> por demasiados intentos fallidos.`));
-        } else {
-          await update({ id: result.id, nro_intentos: 0, fecha_bloqueo: null });
-        }
-      }
-
-      if (!nit && result.contrasena !== text.encrypt(contrasena)) {
-        if (result.nro_intentos !== undefined && !isNaN(result.nro_intentos)) {
-          let intentos = parseInt(result.nro_intentos) + 1;
-          debug('NRO. INTENTO', intentos, 'MAX. NRO. INTENTOS', nroMaxIntentos);
-          if (intentos >= nroMaxIntentos) {
-            await update({
-              id: result.id,
-              nro_intentos: intentos,
-              fecha_bloqueo: moment().add(minutos, 'minutes').format('YYYY-MM-DD HH:mm:ss')
-            });
-          } else {
-            await update({ id: result.id, nro_intentos: intentos });
-          }
-        }
-        return res.error(new Error(`La contraseña del usuario ${usuario} es incorrecta`));
+      if (result.contrasena !== text.encrypt(contrasena)) {
+        // if (result.nro_intentos !== undefined && !isNaN(result.nro_intentos)) {
+        //   let intentos = parseInt(result.nro_intentos) + 1;
+        //   debug('NRO. INTENTO', intentos, 'MAX. NRO. INTENTOS', nroMaxIntentos);
+        //   if (intentos >= nroMaxIntentos) {
+        //     await update({
+        //       id: result.id,
+        //       nro_intentos: intentos,
+        //       fecha_bloqueo: moment().add(minutos, 'minutes').format('YYYY-MM-DD HH:mm:ss')
+        //     });
+        //   } else {
+        //     await update({ id: result.id, nro_intentos: intentos });
+        //   }
+        // }
+        throw new Error(`La contraseña del usuario ${usuario} es incorrecta`);
       }
 
       if (result.estado === 'INACTIVO') {
-        return res.error(new Error(`El usuario ${usuario} se encuentra deshabilitado. Consulte con el administrador del sistema.`));
+        throw new Error(`El usuario ${usuario} se encuentra deshabilitado. Consulte con el administrador del sistema.`);
       }
-
-      return res.success(result);
+      return result;
     } catch (e) {
+      console.log(e);
       if (t) {
         await transaction.rollback(t);
       }
-
-      return res.error(e);
+      throw e;
     }
   }
 
@@ -278,7 +248,6 @@ module.exports = function userService (repositories, valueObjects, res) {
 
   async function getResponse (user, info = {}) {
     let respuesta;
-
     try {
       const usuario = user.usuario;
       // Actualizando el último login
@@ -298,8 +267,8 @@ module.exports = function userService (repositories, valueObjects, res) {
 
       // Obteniendo menu
       let menu = await ModuloService.getMenu(user.id_rol);
-      let permissions = menu.data.permissions;
-      menu = menu.data.menu;
+      let permissions = menu.permissions;
+      menu = menu.menu;
 
       // Generando token
       let token = await generateToken(Parametro, usuario, permissions);
@@ -318,8 +287,6 @@ module.exports = function userService (repositories, valueObjects, res) {
           'primer_apellido': user.persona.primer_apellido,
           'segundo_apellido': user.persona.segundo_apellido,
           'email': user.email,
-          'id_entidad': user.id_entidad,
-          'entidad': user.entidad.nombre,
           'rol': user.rol.nombre,
           'lang': 'es'
         },
@@ -327,6 +294,7 @@ module.exports = function userService (repositories, valueObjects, res) {
       };
       return respuesta;
     } catch (e) {
+      console.error('aaaaaaaaaaaaaaa', e);
       throw new Error(e.message);
     }
   }
