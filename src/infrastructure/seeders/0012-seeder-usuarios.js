@@ -10,9 +10,9 @@ let items = [
   {
     usuario: 'admin',
     contrasena,
-    email: 'admin@agetic.gob.bo',
+    email: 'admin@catacora.gob.bo',
     estado: 'ACTIVO',
-    cargo: 'Profesional',
+    cargo: 'Catacora comunidad x',
     id_persona: 1,
     id_rol: 1,
     direccion:'saavedra'
@@ -20,7 +20,7 @@ let items = [
   {
     usuario: 'ciudadano',
     contrasena,
-    email: 'agepic-3837143@yopmail.com',
+    email: 'catacora@catacora.gob.bo',
     estado: 'ACTIVO',
     cargo: '',
     id_persona: 2,

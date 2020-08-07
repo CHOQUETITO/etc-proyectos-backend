@@ -83,7 +83,31 @@ let items = [
     estado: 'ACTIVO',
     visible: false,
     id_modulo: 1
-  }
+  },
+  {
+    label: 'Proyectos',
+    ruta: 'proyectos',
+    orden: 11,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'assignment'
+  },
+  {
+    label: 'Empresas',
+    ruta: 'empresas',
+    orden: 12,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'home_work'
+  },
+  {
+    label: 'Dashboard',
+    ruta: 'dashboard',
+    orden: 13,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'ballot'
+  },
 ];
 
 // Asignando datos de log y timestamps a los datos
