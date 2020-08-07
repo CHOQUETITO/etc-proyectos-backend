@@ -8,25 +8,30 @@ module.exports = function setupAuthController (services) {
   async function login (req, res, next) {
     debug('Autenticación de usuario');
 
-    const { contrasena, nit } = req.body;
-    let { usuario } = req.body;
+    const { password, usuario } = req.body;
     let respuesta;
 
     try {
-      if (!usuario || !contrasena) {
+      if (!usuario || !password) {
         return res.status(403).send({ error: 'El usuario y la contraseña son obligatorios' });
       }
       // Verificando que exista el usuario/contraseña
-      let user = await UsuarioService.userExist(usuario, contrasena, nit);
+      let user = await UsuarioService.userExist(usuario, password);
+      console.log(user);
       if (user.code === -1) {
         return res.status(403).send({ error: user.message });
       }
-      user = user.data;
+      // user = user.data;
       respuesta = await UsuarioService.getResponse(user, req.ipInfo);
     } catch (e) {
+      console.log(e);
       return next(e);
     }
-    res.send(respuesta);
+    res.send({
+      finalizado: true,
+      mensaje: 'Correctamente Logueado',
+      datos: respuesta
+    });
   }
 
   async function codigo (req, res, next) {

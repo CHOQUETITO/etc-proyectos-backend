@@ -3,9 +3,9 @@
 const debug = require('debug')('app:service:modulo');
 const Service = require('../Service');
 
-module.exports = function moduloService (repositories, valueObjects, res) {
+module.exports = function moduloService (repositories, valueObjects) {
   const { ModuloRepository, PermisoRepository, RolRepository } = repositories;
-  const PermisoService = require('./PermisoService')(repositories, valueObjects, res);
+  const PermisoService = require('./PermisoService')(repositories, valueObjects);
   const {
     ModuloRuta,
     ModuloLabel,
@@ -112,7 +112,7 @@ module.exports = function moduloService (repositories, valueObjects, res) {
         }
       }
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
 
     // si la opción de un menu tiene un solo submenu entonces se lo asigna ese submenu a esa opción
@@ -122,10 +122,10 @@ module.exports = function moduloService (repositories, valueObjects, res) {
       }
     }
 
-    return res.success({
+    return {
       permissions,
       menu
-    });
+    };
   }
 
   async function findAll (params = {}) {
