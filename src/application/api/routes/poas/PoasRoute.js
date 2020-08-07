@@ -8,6 +8,9 @@ module.exports = function setupPoas (api, controllers) {
 
   api.get('', PoasController.findAll);
   api.get('/:id', PoasController.findById);
+  api.post('', PoasController.guardarPoa);
+  api.put('', PoasController.guardarPoa);
+  api.delete('/:id', PoasController.desactivarPoa);
 
   return api;
 };

@@ -8,6 +8,7 @@ module.exports = function empresasRepository (models, Sequelize) {
   const { usuarios, roles, personas, empresas } = models;
   const Op = Sequelize.Op;
 
+  //METODO GET PARA LISTAR EMPRESAS
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
@@ -22,6 +23,8 @@ module.exports = function empresasRepository (models, Sequelize) {
     const result = await empresas.findAndCountAll(query);
     return toJSON(result);
   }
+
+  //METODO GET PARA BUSCAR UNA EMPRESA POR ID
   async function findById (id = null) {
     const result = await empresas.findByPk(id);
     return result;

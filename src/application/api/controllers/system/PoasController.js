@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupPoasController (services) {
   const { PoasService } = services;
 
+  //METODO GET PARA LISTAR POAS
   async function findAll (req, res, next){
     const  respuestaPoas = await PoasService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupPoasController (services) {
     
   };
 
+  //METODO GET PARA BUSCAR UN POA POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);
@@ -29,8 +31,39 @@ module.exports = function setupPoasController (services) {
     }  
   };
 
+  //METODO POST PARA GUARDAR Y MODIFICAR UN POA
+  async function guardarPoa (req, res, next){
+    try {
+      const respuesta = await PoasService.guardarPoa(req.body);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }
+  };
+
+  //METODO DELETE PARA DESACTIVAR UN POA
+  async function desactivarPoa (req, res, next) {
+    try {
+      const { id } = req.params;
+      const respuesta = await PoasService.desactivarPoa(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se Elimino en la vista Correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
   return {
     findAll,
-    findById
+    findById,
+    guardarPoa,
+    desactivarPoa
   };
 };

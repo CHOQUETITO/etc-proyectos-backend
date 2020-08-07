@@ -12,6 +12,7 @@ module.exports = function comunidadesService (repositories, valueObjects, res) {
 
   const {ComunidadesRepository} = repositories;
   
+  //METODO GET PARA LISTAR COMUNIDADES
   async function findAll (params = {}) {
     debug('Lista de Comunidades|filtros');
 

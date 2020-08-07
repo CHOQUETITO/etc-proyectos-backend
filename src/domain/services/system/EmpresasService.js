@@ -11,12 +11,15 @@ const Service = require('../Service');
 module.exports = function empresasService (repositories, valueObjects, res) {
 
   const {EmpresasRepository} = repositories;
+  
+  //METODO GET PARA LISTAR EMPRESAS
   async function findAll (params = {}) {
     debug('Lista de Empresas|filtros');
 
     return EmpresasRepository.findAll(params);
   }
 
+  //METODO GET PARA BUSCAR UNA EMPRESA POR ID
   async function findById (id = null) {
     debug('Lista de Empresa|filtros');
     try {
@@ -25,13 +28,15 @@ module.exports = function empresasService (repositories, valueObjects, res) {
         throw new Error ('No hay Valor');
       }
       if(respuestaEmpresa.estado === 'INACTIVO') {
-        throw new Error('La empresa ya fue desactivada');
+        throw new Error('La Empresa ya fue desactivada');
       }
       return respuestaEmpresa;
     } catch (error) {
       throw new Error (error.message);
     }
   }
+
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA EMPRESA
   async function guardarEmpresa (dataEmpresa) {
     try {
       dataEmpresa._user_created = 1;
@@ -45,6 +50,8 @@ module.exports = function empresasService (repositories, valueObjects, res) {
       throw error;
     }
   }
+
+  //METODO DELETE PARA DESACTIVAR UNA EMPRESA
   async function desactivarEmpresa (id) {
     try {
       const respuesta = await EmpresasRepository.deleteItem(id);

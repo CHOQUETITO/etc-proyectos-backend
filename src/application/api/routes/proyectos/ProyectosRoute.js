@@ -8,6 +8,9 @@ module.exports = function setupProyectos (api, controllers) {
 
   api.get('', ProyectosController.findAll);
   api.get('/:id', ProyectosController.findById);
-  
+  api.post('', ProyectosController.guardarProyecto);
+  api.put('', ProyectosController.guardarProyecto);
+  api.delete('/:id', ProyectosController.desactivarProyecto);
+
   return api;
 };

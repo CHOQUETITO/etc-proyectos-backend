@@ -7,6 +7,7 @@ const moment = require('moment');
 module.exports = function setupCronogramasController (services) {
   const {CronogramasService} = services;
 
+  //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (req, res, next){
     const  respuestaCronogramas = await CronogramasService.findAll(req.query);
     console.log('--->', req.params, req.query);
@@ -14,6 +15,7 @@ module.exports = function setupCronogramasController (services) {
     
   };
 
+  //METODO GET PARA BUSCAR POR ID
   async function findById (req, res, next){
     try {
       console.log('--->', req.params, req.query);
@@ -29,8 +31,39 @@ module.exports = function setupCronogramasController (services) {
     }  
   };
 
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN GRONOGRAMA
+  async function guardarCronograma (req, res, next){
+    try {
+      const respuesta = await CronogramasService.guardarCronograma(req.body);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }
+  };
+
+  //METODO DELETE PARA DESACTIVAR UN CRONOGRAMA
+  async function desactivarCronograma (req, res, next) {
+    try {
+      const { id } = req.params;
+      const respuesta = await CronogramasService.desactivarCronograma(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se Elimino en la vista Correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
   return {
     findAll,
-    findById
+    findById,
+    guardarCronograma,
+    desactivarCronograma
   };
 };

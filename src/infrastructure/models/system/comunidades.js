@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     descripcion: {
       type: DataTypes.TEXT,
+      allowNull: true,
       xlabel: lang.t('fields.descripcion')
     },
     estado: {

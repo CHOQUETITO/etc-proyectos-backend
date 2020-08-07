@@ -8,6 +8,7 @@ module.exports = function categoriasRepository (models, Sequelize) {
   const { usuarios, roles, personas, categorias } = models;
   const Op = Sequelize.Op;
 
+  //METODO GET PARA LISTAR UNA CATEGORIA
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
@@ -23,6 +24,7 @@ module.exports = function categoriasRepository (models, Sequelize) {
     return toJSON(result);
   }
 
+  //METODO GET PARA BUSCAR UNA CATEGORIA POR ID
   async function findById (id = null) {
     const result = await categorias.findByPk(id);
     return result;
