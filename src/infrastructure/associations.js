@@ -34,7 +34,7 @@ module.exports = function associations (models) {
   empresas.hasMany(proyectos, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresas' });
 
   proyectos.belongsTo(cronogramas, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'cronograma' });
-  cronogramas.hasMany(proyectos, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'cronograma' });
+  cronogramas.hasMany(proyectos, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'proyecto' });
 
   usuarios.belongsTo(roles, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
   roles.hasMany(usuarios, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
