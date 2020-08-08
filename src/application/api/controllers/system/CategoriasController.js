@@ -11,7 +11,9 @@ module.exports = function setupCategoriasController (services) {
   async function findAll (req, res, next){
     const  respuestaCategorias = await CategoriasService.findAll(req.query);
     console.log('--->', req.params, req.query);
-    return res.status(200).send ({respuestaCategorias});
+    return res.status(200).send ({
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaCategorias
+    });
        
   };
 

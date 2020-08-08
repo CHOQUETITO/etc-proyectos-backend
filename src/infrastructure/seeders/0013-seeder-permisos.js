@@ -6,7 +6,7 @@ let items = [];
 
 // Este bloque se debe reemplazar cuando se tengan los permisos definidos para cada módulo por rol
 const iniModules = 1;
-const nroModules = 13;
+const nroModules = 14;
 const nroRoles = 3;
 
 for (let rol = 1; rol <= nroRoles; rol++) {

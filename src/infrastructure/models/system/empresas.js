@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     descripcion: {
       type: DataTypes.TEXT,
-      allowNull: false,
       xlabel: lang.t('fields.descripcion')
     },
     sigla: {
@@ -35,10 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     web: {
       type: DataTypes.STRING(100),
       xlabel: lang.t('fields.web')
-    },
-    info: {
-      type: DataTypes.JSON,
-      xlabel: lang.t('fields.info')
     },
     nit: {
       type: DataTypes.STRING(20),

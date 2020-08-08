@@ -101,9 +101,17 @@ let items = [
     icono: 'home_work'
   },
   {
+    label: 'Poas',
+    ruta: 'poas',
+    orden: 13,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'home_work'
+  },
+  {
     label: 'Dashboard',
     ruta: 'dashboard',
-    orden: 13,
+    orden: 14,
     estado: 'ACTIVO',
     visible: true,
     icono: 'ballot'

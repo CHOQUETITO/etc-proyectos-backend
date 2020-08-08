@@ -11,7 +11,9 @@ module.exports = function setupPoasController (services) {
   async function findAll (req, res, next){
     const  respuestaPoas = await PoasService.findAll(req.query);
     console.log('--->', req.params, req.query);
-    return res.status(200).send ({respuestaPoas});
+    return res.status(200).send ({
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaPoas
+    });
     
   };
 

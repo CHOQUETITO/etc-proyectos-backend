@@ -11,7 +11,9 @@ module.exports = function setupProyectosController (services) {
   async function findAll (req, res, next){
     const  respuestaProyectos = await ProyectosService.findAll(req.query);
     console.log('--->', req.params, req.query);
-    return res.status(200).send ({respuestaProyectos});
+    return res.status(200).send ({
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaProyectos
+    });
     
   };
 

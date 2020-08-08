@@ -10,7 +10,9 @@ module.exports = function setupEmpresasController (services) {
   //METODO GET PARA LISTAR EMPRESAS
   async function findAll (req, res, next){
     const  respuestaEmpresas = await EmpresasService.findAll(req.query);
-    return res.status(200).send ({respuestaEmpresas});
+    return res.status(200).send ({
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaEmpresas
+    });
     
   };
 

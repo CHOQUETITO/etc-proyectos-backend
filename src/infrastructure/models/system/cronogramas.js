@@ -11,10 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.nombre')
     },
-    archivoCronograma: {
-      type: DataTypes.BLOB,
-      allowNull: false,
-      xlabel: lang.t('fields.archivoCronograma')
+    descripcion: {
+      type: DataTypes.TEXT,
+      xlabel: lang.t('fields.descripcion')
     },
     estado: {
       type: DataTypes.ENUM,

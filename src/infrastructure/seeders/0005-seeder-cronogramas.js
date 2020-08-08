@@ -7,15 +7,15 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   {
     nombre: 'Cronograma Primera Fase',
-    archivoCronograma: 'jpg',
+    descripcion: 'Elaborado por C&C',
   },
   {
     nombre: 'Cronograma Segunda Fase',
-    archivoCronograma: 'bmp',
+    descripcion: 'Elaborado por M&M',
   },
   {
     nombre: 'Cronograma Tercera Fase',
-    archivoCronograma: 'jpg',
+    descripcion: 'Elaborado por J&J',
   }
 ];
 

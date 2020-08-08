@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     descripcion: {
       type: DataTypes.TEXT,
-      allowNull: false,
       xlabel: lang.t('fields.descripcion')
     },
     idComunidad: {
@@ -43,12 +42,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     fechaInicio: {
       type: DataTypes.DATE,
-      xlabel: lang.t('fields.fechaInicio'),
+      allowNull: false,
+      xlabel: lang.t('fields.fecha_inicio'),
       field: 'fecha_inicio'
     },
     fechaFinal: {
       type: DataTypes.DATE,
-      xlabel: lang.t('fields.fechaFinal'),
+      allowNull: false,
+      xlabel: lang.t('fields.fecha_final'),
       field: 'fecha_final'
     },
     estado: {

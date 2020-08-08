@@ -11,7 +11,9 @@ module.exports = function setupCronogramasController (services) {
   async function findAll (req, res, next){
     const  respuestaCronogramas = await CronogramasService.findAll(req.query);
     console.log('--->', req.params, req.query);
-    return res.status(200).send ({respuestaCronogramas});
+    return res.status(200).send ({
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaCronogramas
+    });
     
   };
 
