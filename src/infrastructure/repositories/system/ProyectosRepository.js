@@ -5,7 +5,7 @@ const Repository = require('../Repository');
 const { text } = require('../../../common');
 
 module.exports = function proyectosRepository (models, Sequelize) {
-  const { usuarios, roles, personas, proyectos, poas, empresas } = models;
+  const { usuarios, roles, personas, proyectos, poas, empresas, comunidades, categorias, cronogramas } = models;
   const Op = Sequelize.Op;
 
   //METODO GET PARA LISTAR PROYECTOS
@@ -14,14 +14,29 @@ module.exports = function proyectosRepository (models, Sequelize) {
     query.where = {};
     query.include = [
       {
-        model : empresas,
-        as : 'empresa',
-        attributes : ['id', 'nombre', 'descripcion', 'sigla']
+        model : comunidades,
+        as : 'comunidad',
+        attributes : ['id', 'nombre']
       },
       {
         model : poas,
         as : 'poa',
         attributes : ['id', 'nombre', 'descripcion']
+      },
+      {
+        model : empresas,
+        as : 'empresa',
+        attributes : ['id', 'nombre', 'descripcion', 'sigla']
+      },
+      {
+        model : categorias,
+        as : 'categoria',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : cronogramas,
+        as : 'cronograma',
+        attributes : ['id', 'nombre']
       }
     ]
     if (params.nombre){

@@ -106,12 +106,20 @@ let items = [
     orden: 13,
     estado: 'ACTIVO',
     visible: true,
-    icono: 'home_work'
+    icono: 'dns'
+  },
+  {
+    label: 'Cronogramas',
+    ruta: 'cronogramas',
+    orden: 14,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'calendar_today'
   },
   {
     label: 'Dashboard',
     ruta: 'dashboard',
-    orden: 14,
+    orden: 15,
     estado: 'ACTIVO',
     visible: true,
     icono: 'ballot'
