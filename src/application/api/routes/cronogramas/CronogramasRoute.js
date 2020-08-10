@@ -9,7 +9,7 @@ module.exports = function setupCronogramas (api, controllers) {
   api.get('', CronogramasController.findAll);
   api.get('/:id', CronogramasController.findById);
   api.post('', CronogramasController.guardarCronograma);
-  api.put('', CronogramasController.guardarCronograma);
+  api.put('/:id', CronogramasController.guardarCronograma);
   api.delete('/:id', CronogramasController.desactivarCronograma);
 
   return api;

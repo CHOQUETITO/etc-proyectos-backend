@@ -21,20 +21,20 @@ module.exports = function associations (models) {
 
   // MODULO USUARIOS
   // Asociaciones tabla usuarios
-  proyectos.belongsTo(comunidades, { foreignKey: { name: 'id_comunidad', allowNull: false }, as: 'comunidad' });
-  comunidades.hasMany(proyectos, { foreignKey: { name: 'id_comunidad', allowNull: false }, as: 'comunidad' });
+  proyectos.belongsTo(comunidades, { foreignKey: { name: 'id_comunidad'}, as: 'comunidad' });
+  comunidades.hasMany(proyectos, { foreignKey: { name: 'id_comunidad'}, as: 'comunidad' });
 
-  proyectos.belongsTo(categorias, { foreignKey: { name: 'id_categoria', allowNull: false }, as: 'categoria' });
-  categorias.hasMany(proyectos, { foreignKey: { name: 'id_categoria', allowNull: false }, as: 'categoria' });
+  proyectos.belongsTo(categorias, { foreignKey: { name: 'id_categoria' }, as: 'categoria' });
+  categorias.hasMany(proyectos, { foreignKey: { name: 'id_categoria' }, as: 'categoria' });
 
-  proyectos.belongsTo(poas, { foreignKey: { name: 'id_poa', allowNull: false }, as: 'poa' });
-  poas.hasMany(proyectos, { foreignKey: { name: 'id_poa', allowNull: false }, as: 'poa' });
+  proyectos.belongsTo(poas, { foreignKey: { name: 'id_poa' }, as: 'poa' });
+  poas.hasMany(proyectos, { foreignKey: { name: 'id_poa' }, as: 'poa' });
 
-  proyectos.belongsTo(empresas, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresa' });
-  empresas.hasMany(proyectos, { foreignKey: { name: 'id_empresa', allowNull: false }, as: 'empresas' });
+  proyectos.belongsTo(empresas, { foreignKey: { name: 'id_empresa' }, as: 'empresa' });
+  empresas.hasMany(proyectos, { foreignKey: { name: 'id_empresa' }, as: 'empresas' });
 
-  proyectos.belongsTo(cronogramas, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'cronograma' });
-  cronogramas.hasMany(proyectos, { foreignKey: { name: 'id_cronograma', allowNull: false }, as: 'proyecto' });
+  proyectos.belongsTo(cronogramas, { foreignKey: { name: 'id_cronograma' }, as: 'cronograma' });
+  cronogramas.hasMany(proyectos, { foreignKey: { name: 'id_cronograma' }, as: 'proyecto' });
 
   usuarios.belongsTo(roles, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });
   roles.hasMany(usuarios, { foreignKey: { name: 'id_rol', allowNull: false }, as: 'rol' });

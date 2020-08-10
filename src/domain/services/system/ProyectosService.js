@@ -39,6 +39,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
   
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN PROYECTO
   async function guardarProyecto (dataProyecto) {
+    console.log('dataProyecto-->', dataProyecto);
     try {
       dataProyecto._user_created = 1;
       const respuesta = await ProyectosRepository.createOrUpdate(dataProyecto);

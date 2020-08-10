@@ -35,6 +35,9 @@ module.exports = function setupCronogramasController (services) {
 
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN GRONOGRAMA
   async function guardarCronograma (req, res, next){
+    if (req.params && req.params.id){
+      req.body.id = req.params.id;
+    }
     try {
       const respuesta = await CronogramasService.guardarCronograma(req.body);
       return res.status(200).send ({

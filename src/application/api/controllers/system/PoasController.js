@@ -35,6 +35,9 @@ module.exports = function setupPoasController (services) {
 
   //METODO POST PARA GUARDAR Y MODIFICAR UN POA
   async function guardarPoa (req, res, next){
+    if (req.params && req.params.id){
+      req.body.id = req.params.id;
+    }
     try {
       const respuesta = await PoasService.guardarPoa(req.body);
       return res.status(200).send ({

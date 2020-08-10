@@ -35,21 +35,16 @@ module.exports = (sequelize, DataTypes) => {
       xlabel: lang.t('fields.idCategoria'),
       field: 'id_categoria'
     },
-    idCronograma: {
-      type: DataTypes.INTEGER,
-      xlabel: lang.t('fields.idCronograma'),
-      field: 'id_cronograma'
-    },
     fechaInicio: {
       type: DataTypes.DATE,
       allowNull: false,
-      xlabel: lang.t('fields.fecha_inicio'),
+      xlabel: lang.t('fields.fechaInicio'),
       field: 'fecha_inicio'
     },
     fechaFinal: {
       type: DataTypes.DATE,
       allowNull: false,
-      xlabel: lang.t('fields.fecha_final'),
+      xlabel: lang.t('fields.fechaFinal'),
       field: 'fecha_final'
     },
     estado: {

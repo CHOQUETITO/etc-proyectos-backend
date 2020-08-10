@@ -33,6 +33,9 @@ module.exports = function setupEmpresasController (services) {
 
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA EMPRESA
   async function guardarEmpresa (req, res, next) {
+    if (req.params && req.params.id){
+      req.body.id = req.params.id;
+    }
     try {
       const respuesta = await EmpresasService.guardarEmpresa(req.body);
       return res.status(200).send ({

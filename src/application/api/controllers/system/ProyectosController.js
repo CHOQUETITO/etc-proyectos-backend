@@ -35,7 +35,10 @@ module.exports = function setupProyectosController (services) {
 
   //METODO POST PARA GUARDAR Y MODIFICAR UN PROYECTO
   async function guardarProyecto (req, res, next){
-    try {
+    try { 
+      if (req.params && req.params.id){
+        req.body.id = req.params.id;
+      }
       const respuesta = await ProyectosService.guardarProyecto(req.body);
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuesta
