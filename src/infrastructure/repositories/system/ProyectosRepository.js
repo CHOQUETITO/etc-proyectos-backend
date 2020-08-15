@@ -11,6 +11,17 @@ module.exports = function proyectosRepository (models, Sequelize) {
   //METODO GET PARA LISTAR PROYECTOS
   async function findAll (params = {}) {
     let query = getQuery(params);
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'idComunidad','idCategoria',
+      'idPoa',
+      'idEmpresa',
+      [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
+      [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estado'
+    ]
     query.where = {};
     query.include = [
       {

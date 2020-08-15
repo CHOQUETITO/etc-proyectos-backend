@@ -13,8 +13,8 @@ let items = [
     id_empresa: 1,
     id_categoria: 1,
     id_cronograma: 1,
-    fecha_inicio: '12-03-2015',
-    fecha_final: '25-11-2018'
+    fecha_inicio: '2015-01-02',
+    fecha_final: '2018-01-01'
   },
   {
     nombre: 'Construccion casa cultural marka pajchiri',
@@ -24,8 +24,8 @@ let items = [
     id_empresa: 2,
     id_categoria: 2,
     id_cronograma: 2,
-    fecha_inicio: '12-03-2019',
-    fecha_final: '25-11-2020'
+    fecha_inicio: '2019-09-09',
+    fecha_final: '2020-01-01'
   }
 ];
 
