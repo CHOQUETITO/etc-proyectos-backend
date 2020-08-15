@@ -11,6 +11,18 @@ module.exports = function empresasRepository (models, Sequelize) {
   //METODO GET PARA LISTAR EMPRESAS
   async function findAll (params = {}) {
     let query = getQuery(params);
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'sigla',
+      'email',
+      'telefonos',
+      'direccion',
+      'web',
+      'nit',
+      'estado'
+    ]
     query.where = {};
 
     if (params.nombre){

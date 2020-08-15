@@ -11,7 +11,19 @@ module.exports = function comunidadesRepository (models, Sequelize) {
   //METODO GET PARA LISTAR UNA COMUNIDAD
   async function findAll (params = {}) {
     let query = getQuery(params);
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'estado'
+    ]
+    //query.where = {};
     query.where = {};
+    if (params.nombre){
+      query.where.nombre = {
+        [Op.iLike] : `%${params.nombre}%`
+      };
+    }
 
     query.where.estado = 'ACTIVO'
     
@@ -19,7 +31,14 @@ module.exports = function comunidadesRepository (models, Sequelize) {
     return toJSON(result);
   }
 
+  //METODO GET PARA BUSCAR UNA CATEGORIA POR ID
+  async function findById (id = null) {
+    const result = await comunidades.findByPk(id);
+    return result;
+  }
+
   return {
-    findAll
+    findAll,
+    findById
   };
 };

@@ -7,6 +7,7 @@ module.exports = function setupComunidades (api, controllers) {
   console.log(ComunidadesController);
 
   api.get('', ComunidadesController.findAll);
+  api.get('/:id', ComunidadesController.findById);
 
   return api;
 };

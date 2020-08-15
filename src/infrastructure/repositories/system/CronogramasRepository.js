@@ -11,6 +11,12 @@ module.exports = function cronogramasRepository (models, Sequelize) {
   //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (params = {}) {
     let query = getQuery(params);
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'estado'
+    ]
     query.where = {};
     query.include = [
       {

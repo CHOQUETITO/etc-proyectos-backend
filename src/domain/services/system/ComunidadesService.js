@@ -19,7 +19,26 @@ module.exports = function comunidadesService (repositories, valueObjects, res) {
     return ComunidadesRepository.findAll(params);
   }
 
+    //METODO GET PARA BUSCAR UNA CATEGORIA POR ID
+    async function findById (id = null) {
+      debug('Lista de Comunidades|filtros');
+      try {
+        let respuestaComunidad = await ComunidadesRepository.findById(id);
+        console.log('--->', respuestaComunidad);
+        if (!respuestaComunidad){
+          throw new Error ('No hay Valor');
+        }
+        if(respuestaComunidad.estado === 'INACTIVO') {
+          throw new Error('La Comunidad ya fue desactivada');
+        }
+        return respuestaComunidad;
+      } catch (error) {
+        throw new Error (error.message);
+      }
+    }
+
   return {
-    findAll
+    findAll,
+    findById
   };
 };

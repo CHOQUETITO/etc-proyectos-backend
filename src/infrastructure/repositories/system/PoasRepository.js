@@ -11,6 +11,14 @@ module.exports = function poasRepository (models, Sequelize) {
   //METODO GET PARA LISTAR POAS
   async function findAll (params = {}) {
     let query = getQuery(params);
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'gestion',
+      'monto',
+      'estado'
+    ]
     query.where = {};
     
     query.where.estado = 'ACTIVO'
