@@ -65,10 +65,41 @@ module.exports = function setupProyectosController (services) {
     }
   }
 
+  //METODO DELETE PARA DESACTIVAR UN PROYECTO
+  async function cantidadProyectos (req, res, next) {
+    try {
+      const params = req.query;
+      const respuesta = await ProyectosService.cantidadProyectos(params);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+  async function generarReporte (req, res) {
+      try {
+        const { id } = req.params;
+        const respuesta = await ProyectosService.generarReporte(id);
+        return res.status(200).send ({
+          finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+        });
+      } catch (error) {
+        return res.status(400).send ({
+          finalizado : false, mensaje: error.message, datos: null
+        });
+
+      }
+  }
+
   return {
     findAll,
     findById,
     guardarProyecto,
-    desactivarProyecto
+    desactivarProyecto,
+    cantidadProyectos,
+    generarReporte // pdf
   };
 };

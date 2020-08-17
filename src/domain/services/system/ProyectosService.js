@@ -7,11 +7,16 @@ const { text } = require('../../../common');
 const { generateToken } = require('../../../application/lib/auth');
 const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
+const path = require('path');
+const ejs = require('ejs');
+const pdf = require('html-pdf');
+const fs = require('fs');
+const { config } = require('../../../common');
 
 module.exports = function proyectosService (repositories, valueObjects, res) {
 
-  const {ProyectosRepository} = repositories;
-  
+  const { ProyectosRepository } = repositories;
+  const { app } = config;
   //METODO PARA LISTAR PROYECTOS
   async function findAll (params = {}) {
     debug('Lista de Proyectos|filtros');
@@ -65,11 +70,62 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
       throw error;
     }
   }
+  //METODO DELETE PARA ELIMINAR UN PROYECTO DE LA VISTA 
+  async function cantidadProyectos (params) {
+    try {
+      const respuesta = await ProyectosRepository.cantidadProyectos(params);
+      if (!respuesta) {
+        throw new Error('No se reporto ningun proyecto');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+
+  async function generarReporte (id) {
+    try {
+      const datosProyecto = await ProyectosRepository.findOne(id);
+      const rootPath = app.host.path;
+      console.log('root path', rootPath);
+      const params = {
+        host: app.host.server,
+        datos: datosProyecto
+      };
+      const html = await ejs.renderFile(`${rootPath}../../views/proyecto.ejs`, params);
+      const pathFile = `${rootPath}reportes/reporte-proyecto-${datosProyecto.id}.pdf`;
+      await generatePDF(html, pathFile);
+      const response = fs.readFileSync(pathFile, { encoding: 'base64' });
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+  async function generatePDF (html, pathFile) {
+    return new Promise((resolve, reject) => {
+      try {
+        const options = {
+          format: 'Letter'
+        };
+        pdf.create(html, options).toFile(pathFile, (err, res) => {
+          if (err) reject(err);
+          resolve(res);
+        });
+      } catch (error) {
+        reject(error.message);
+      }
+    });
+  }
 
   return {
     findAll,
     findById,
     guardarProyecto,
-    desactivarProyecto
+    desactivarProyecto,
+    cantidadProyectos,
+    generarReporte
   };
 };

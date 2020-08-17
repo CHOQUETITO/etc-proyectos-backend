@@ -8,6 +8,7 @@ const config = require('./config');
 const errors = require('./lib/errors');
 const object = require('./lib/object');
 const sequelizeCrud = require('./lib/sequelize-crud');
+const app = require('./config');
 
 module.exports = {
   i18n,
@@ -17,5 +18,6 @@ module.exports = {
   mail,
   text,
   array,
-  object
+  object,
+  app
 };
