@@ -16,7 +16,24 @@ module.exports = function setupComunidadesController (services) {
     });
     
   };
+
+  //METODO GET PARA BUSCAR POR ID
+  async function findById (req, res, next){
+    try {
+      console.log('--->', req.params, req.query);
+      const {id} = req.params;
+      const  respuestaComunidades = await ComunidadesService.findById(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaComunidades
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
   return {
-    findAll
+    findAll,
+    findById
   };
 };
