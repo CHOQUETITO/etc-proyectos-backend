@@ -36,13 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       field: 'id_categoria'
     },
     fechaInicio: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       xlabel: lang.t('fields.fechaInicio'),
       field: 'fecha_inicio'
     },
     fechaFinal: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
       xlabel: lang.t('fields.fechaFinal'),
       field: 'fecha_final'

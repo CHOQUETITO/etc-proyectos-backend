@@ -14,8 +14,9 @@ module.exports = function cronogramasRepository (models, Sequelize) {
     query.attributes = [
       'id',
       'nombre',
-      'descripcion',
-      'estado'
+      'actividad',
+      [ Sequelize.literal('fec_ini_cronograma::date'), 'fecIniCronograma' ],
+      [ Sequelize.literal('fec_fin_cronograma::date'), 'fecFinCronograma' ],
     ]
     query.where = {};
     query.include = [

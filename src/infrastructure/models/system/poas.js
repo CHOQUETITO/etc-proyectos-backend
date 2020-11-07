@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       xlabel: lang.t('fields.gestion')
     },
     monto: {
-      type: DataTypes.NUMERIC(10),
+      type: DataTypes.NUMERIC(20,2),
       allowNull: false,
       xlabel: lang.t('fields.monto')
     },

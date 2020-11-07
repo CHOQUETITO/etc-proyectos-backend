@@ -17,7 +17,7 @@ let items = [
     ruta: 'entidades',
     orden: 2,
     estado: 'ACTIVO',
-    visible: true,
+    visible: false,
     id_modulo: 1
   },
   {
@@ -49,7 +49,7 @@ let items = [
     ruta: 'parametros',
     orden: 6,
     estado: 'ACTIVO',
-    visible: true,
+    visible: false,
     id_modulo: 1
   },
   {
@@ -73,7 +73,7 @@ let items = [
     ruta: 'logs',
     orden: 9,
     estado: 'ACTIVO',
-    visible: true,
+    visible: false,
     id_modulo: 1
   },
   {
@@ -85,7 +85,7 @@ let items = [
     id_modulo: 1
   },
   {
-    label: 'Proyectos',
+    label: 'Gestión de Proyectos',
     ruta: 'proyectos',
     orden: 11,
     estado: 'ACTIVO',
@@ -93,7 +93,7 @@ let items = [
     icono: 'assignment'
   },
   {
-    label: 'Empresas',
+    label: 'Catálogo de Empresas',
     ruta: 'empresas',
     orden: 12,
     estado: 'ACTIVO',
@@ -101,7 +101,7 @@ let items = [
     icono: 'home_work'
   },
   {
-    label: 'Poas',
+    label: 'Gestión de Poas',
     ruta: 'poas',
     orden: 13,
     estado: 'ACTIVO',
@@ -109,7 +109,7 @@ let items = [
     icono: 'dns'
   },
   {
-    label: 'Cronogramas',
+    label: 'Cronograma de Actividades',
     ruta: 'cronogramas',
     orden: 14,
     estado: 'ACTIVO',

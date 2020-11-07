@@ -7,15 +7,21 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   {
     nombre: 'Poa 1',
-    descripcion: 'Mi agua 1',
-    gestion:'2018',
-    monto:'5435345'
+    descripcion: 'Recursos propios municipales',
+    gestion:'2019',
+    monto:'80000'
   },
   {
-    nombre: 'Poa2',
-    descripcion: 'Mi Agua 2',
-    gestion:'2015',
-    monto:'543534445'
+    nombre: 'Poa 2',
+    descripcion: 'Recursos de Coparticipación tributaria - Participación popular',
+    gestion:'2019',
+    monto:'31926'
+  },
+  {
+    nombre: 'Poa 3',
+    descripcion: 'Recursos regalia minera',
+    gestion:'2019',
+    monto:'105897'
   }
 ];
 

@@ -65,7 +65,7 @@ module.exports = function setupProyectosController (services) {
     }
   }
 
-  //METODO DELETE PARA DESACTIVAR UN PROYECTO
+  //METODO DELETE PARA CANTIDAD DE PROYECTOS
   async function cantidadProyectos (req, res, next) {
     try {
       const params = req.query;

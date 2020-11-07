@@ -32,7 +32,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
       {
         model : poas,
         as : 'poa',
-        attributes : ['id', 'nombre', 'descripcion']
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
       },
       {
         model : empresas,
@@ -90,12 +90,12 @@ module.exports = function proyectosRepository (models, Sequelize) {
       {
         model : poas,
         as : 'poa',
-        attributes : ['id', 'nombre', 'descripcion']
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
       },
       {
         model : empresas,
         as : 'empresa',
-        attributes : ['id', 'nombre', 'descripcion', 'sigla']
+        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit']
       },
       {
         model : categorias,

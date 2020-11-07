@@ -11,9 +11,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.nombre')
     },
-    descripcion: {
-      type: DataTypes.TEXT,
-      xlabel: lang.t('fields.descripcion')
+    actividad: {
+      type: DataTypes.STRING(250),
+      allowNull: false,
+      xlabel: lang.t('fields.actividad')
+    },
+    fecIniCronograma: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      xlabel: lang.t('fields.fecIniCronograma'),
+      field: 'fec_ini_cronograma'
+    },
+    fecFinCronograma: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      xlabel: lang.t('fields.fecFinCronograma'),
+      field: 'fec_fin_cronograma'
     },
     estado: {
       type: DataTypes.ENUM,

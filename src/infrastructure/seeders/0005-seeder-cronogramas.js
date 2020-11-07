@@ -6,16 +6,22 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Cronograma Primera Fase',
-    descripcion: 'Elaborado por C&C',
+    nombre: 'Primera Fase',
+    actividad: 'Elaboración de bases para la ejecución de la obra de infraestructura',
+    fec_ini_cronograma: '2020-01-01',
+    fec_fin_cronograma: '2020-01-10'
   },
   {
-    nombre: 'Cronograma Segunda Fase',
-    descripcion: 'Elaborado por M&M',
+    nombre: 'Primera Fase',
+    actividad: 'Obras provisionales',
+    fec_ini_cronograma: '2020-01-10',
+    fec_fin_cronograma: '2020-01-20'
   },
   {
-    nombre: 'Cronograma Tercera Fase',
-    descripcion: 'Elaborado por J&J',
+    nombre: 'Primera Fase',
+    actividad: 'Señalizacion y seguridad vial',
+    fec_ini_cronograma: '2020-01-20',
+    fec_fin_cronograma: '2020-01-30'
   }
 ];
 

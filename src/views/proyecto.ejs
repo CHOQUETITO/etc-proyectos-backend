@@ -4,30 +4,137 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="<%= host %>css/unipersonal.css">
-  <title>Proyecto</title>
+  <link rel="stylesheet" href="../estilos.css">
 </head>
 <body>
-  <div class="container">
-    <div class="esquina esquina-top"></div>
-    <div class="esquina esquina-right"></div>
-    <div class="esquina esquina-bottom"></div>
-    <div class="esquina esquina-left"></div>
-    <div class="border-certificado"></div>
-    <div class="certificado">
-      <header class="fs-1 mt-2">Proyecto X</header>
-      <section class="fs-1 text-center mt-1"><%= datos.objetoSocial %></section>
-      <section class="text-center"><strong class="fs-1">proyecto a:</strong><%= datos.nombre %></section>
-      <hr>
-      <div class="decreto fs1_2em text-justify">
-        Mediante el Codigo de Comercio por Resolucion Suprema Nº 167823 de 7 de mayo de 1973 y Decreto Supremo Nº 11007 de 31 de julio 1973, se
-        dispuso que con caracter previo y antes de su vigencia sea coordinado y revisado con el fin de evitar contradicciones e interpretacion que desnaturalicen el espiritu del
-        mismo, trabajo que fue encomendado a una Comision designada para tal efecto.
-      </div>
-      <section class="text-center primary--color ma-3"><strong>NIT: <%= datos.nit %></strong></section>
-      <section class="text-left"><strong class="fs-1">Nombres:</strong> <%= datos.nombre %></section>
-      <section class="text-center fecha--certificado fs-1">La Paz - Bolivia, <%= datos.now %></section>       
-    </div>
+  <!-- TABLA PARA LA CONTENIDO-->
+  <table border="1" style="width:100%">
+    <colgroup>
+      <col style = "width: 15%"/>
+      <col style = "width: 70%"/>
+      <col style = "width: 15%"/>
+      <col style = "width: 100%"/>
+    </colgroup>
+    <tr>
+      <th>LOGO</th>
+      <th>GOBIERNO AUTÓNOMO MUNICIPAL DE CATACORA</th>
+      <th>LOGO</th>
+    </tr>
+    <tr>
+      <th colspan="3">DATOS TÉCNICOS DEL PROYECTO</th>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Nombre del Proyecto:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.nombre %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1"> Comunidad:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.comunidad.nombre %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1"> Poa:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.poa.nombre %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1"> Costo del Proyecto:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.poa.monto %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Empresa Ejecutora:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.empresa.nombre %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Fecha de Inicio:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.fechaInicio %></section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Fecha Final:</strong></section>
+      </td>
+      <td colspan="2">
+        <section class="text-left"> <%= datos.fechaFinal %></section>
+      </td>
+    </tr>
+  </table>
+  <br><br><br>
+  <table border="1" style="width:100%">
+    <colgroup>
+      <col style = "width: 15%"/>
+      <col style = "width: 70%"/>
+      <col style = "width: 15%"/>
+      <col style = "width: 100%"/>
+    </colgroup>
+    <tr>
+      <th>LOGO</th>
+      <th>GOBIERNO AUTÓNOMO MUNICIPAL DE CATACORA</th>
+      <th>LOGO</th>
+    </tr>
+  </table>
+  <h3 style="text-align: center;">DATOS TÉCNICOS DEL PROYECTO</h3>
+  <div>
+  <table border="1" style="width:100%">
+    <colgroup>
+      <col style = "width: 50%"/>
+      <col style = "width: 50%"/>
+    </colgroup>
+    <tr>
+      <td colspan="2">
+        <section class="text-center"><strong class="fs-1">Nombre del Proyecto:</strong> <%= datos.nombre %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Empresa Ejecutora:</strong> <%= datos.empresa.nombre %> </section>
+      </td>
+      <td>
+        <section class="text-left"><strong class="fs-1">Comunidad Beneficiada:</strong> <%= datos.comunidad.nombre %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Poa:</strong> <%= datos.poa.nombre %> </section>
+      </td>
+      <td>
+        <section class="text-left"><strong class="fs-1">Bs:</strong> <%= datos.poa.monto %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section class="text-left"><strong class="fs-1">Inicio del Proyecto:</strong> <%= datos.fechaInicio %> </section>
+      </td>
+      <td>
+        <section class="text-left"><strong class="fs-1">Fin del Proyecto:</strong> <%= datos.fechaFinal %> </section>
+      </td>
+    </tr>
+  </table>
   </div>
+  <br>
+  <section style="text-align: center;">Catacora - La Paz - Bolivia <%= datos.now %></section>       
+
+
 </body>
 </html>
