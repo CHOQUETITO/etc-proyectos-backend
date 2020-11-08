@@ -65,7 +65,7 @@ module.exports = function setupProyectosController (services) {
     }
   }
 
-  //METODO DELETE PARA CANTIDAD DE PROYECTOS
+  //METODO GET PARA LISTAR CANTIDAD DE PROYECTOS POR COMUNIDAD
   async function cantidadProyectos (req, res, next) {
     try {
       const params = req.query;
@@ -79,6 +79,22 @@ module.exports = function setupProyectosController (services) {
       });
     }
   }
+
+  //METODO GET PARA LISTAR CANTIDAD DE PROYECTOS POR CATEGORIA
+  async function cantidadProyectosCategorias (req, res, next) {
+    try {
+      const params = req.query;
+      const respuesta = await ProyectosService.cantidadProyectosCategorias(params);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
+
   async function generarReporte (req, res) {
       try {
         const { id } = req.params;
@@ -100,6 +116,7 @@ module.exports = function setupProyectosController (services) {
     guardarProyecto,
     desactivarProyecto,
     cantidadProyectos,
+    cantidadProyectosCategorias,
     generarReporte // pdf
   };
 };

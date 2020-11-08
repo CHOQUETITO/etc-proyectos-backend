@@ -70,10 +70,24 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
       throw error;
     }
   }
-  //METODO DELETE PARA ELIMINAR UN PROYECTO DE LA VISTA 
+  //METODO PARA LISTAR CANTIDAD DE PROYECTOS POR COMUNIDAD 
   async function cantidadProyectos (params) {
     try {
       const respuesta = await ProyectosRepository.cantidadProyectos(params);
+      if (!respuesta) {
+        throw new Error('No se reporto ningun proyecto');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  //METODO PARA LISTAR CANTIDAD DE PROYECTOS POR CATEGORIA 
+  async function cantidadProyectosCategorias (params) {
+    try {
+      const respuesta = await ProyectosRepository.cantidadProyectosCategorias(params);
       if (!respuesta) {
         throw new Error('No se reporto ningun proyecto');
       }
@@ -126,6 +140,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     guardarProyecto,
     desactivarProyecto,
     cantidadProyectos,
+    cantidadProyectosCategorias,
     generarReporte
   };
 };

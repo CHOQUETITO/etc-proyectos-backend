@@ -66,6 +66,46 @@ module.exports = function proyectosRepository (models, Sequelize) {
     const result = await proyectos.findByPk(id);
     return result;
   }
+  
+  //METODO GET PARA AGRUPAR PROYECTOS POR COMUNIDAD
+  async function cantidadProyectos (params) {
+    // aqui jugar con params 
+    const query = `
+      select c.nombre, count(*) cantidad
+      from
+      proyectos p
+      inner join comunidades c on c.id = p.id_comunidad
+      where p.estado = 'ACTIVO'
+      group by c.nombre
+    `;
+    try {
+      const resultado = await proyectos.options.sequelize.query(query);
+      return resultado[0];
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  //METODO GET PARA AGRUPAR PROYECTOS POR CATEGORIAS
+  async function cantidadProyectosCategorias (params) {
+    // aqui jugar con params 
+    const query = `
+      select c.nombre, count(*) cantidad
+      from proyectos p
+      inner join categorias c on c.id=p.id_categoria
+      where p.estado = 'ACTIVO'
+      group by c.nombre;
+    `;
+    try {
+      const resultado = await proyectos.options.sequelize.query(query);
+      return resultado[0];
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
   async function findOne (id = null) {
     const query = {};
     query.where = {};
@@ -113,32 +153,13 @@ module.exports = function proyectosRepository (models, Sequelize) {
     return result;
   }
 
-  async function cantidadProyectos (params) {
-    // aqui jugar con params 
-    const query = `
-      select c.nombre, count(*) cantidad
-      from
-      proyectos p
-      inner join comunidades c on c.id = p.id_comunidad
-      where p.estado = 'ACTIVO'
-      group by c.nombre
-    `;
-    try {
-      const resultado = await proyectos.options.sequelize.query(query);
-      return resultado[0];
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
-
-
   return {
     findAll,
     findById,
     createOrUpdate: (item, t) => Repository.createOrUpdate(item, proyectos, t),
     deleteItem: (id, t) => Repository.deleteItem(id, proyectos, t),
     cantidadProyectos,
+    cantidadProyectosCategorias,
     findOne
   };
 };

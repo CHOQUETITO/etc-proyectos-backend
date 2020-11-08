@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       xlabel: lang.t('fields.descripcion')
     },
     gestion: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.NUMERIC(4),
       allowNull: false,
       xlabel: lang.t('fields.gestion')
     },
