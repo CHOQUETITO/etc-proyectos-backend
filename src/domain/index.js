@@ -16,11 +16,11 @@ module.exports = async function initDomain (settings = { iop: true }) {
   // Cargando Parámetros
   repositories.Parametro = await Params(config.db);
 
-  if (global.IOP) {
-    const Iop = require('app-iop');
-    // Agregando servicio Iop a los repositorios
-    repositories.Iop = await Iop(config.db);
-  }
+  // if (global.IOP) {
+  //   const Iop = require('app-iop');
+  //   // Agregando servicio Iop a los repositorios
+  //   repositories.Iop = await Iop(config.db);
+  // }
 
   // Iniciando el módulo de logs
   const logs = await Logs(config.db).catch(errors.handleFatalError);

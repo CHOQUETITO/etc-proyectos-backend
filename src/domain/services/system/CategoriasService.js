@@ -5,7 +5,6 @@ const moment = require('moment');
 const crypto = require('crypto');
 const { text } = require('../../../common');
 const { generateToken } = require('../../../application/lib/auth');
-const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
 
 module.exports = function categoriasService (repositories, valueObjects, res) {

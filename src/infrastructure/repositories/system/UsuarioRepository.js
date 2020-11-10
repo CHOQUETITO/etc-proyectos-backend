@@ -19,11 +19,6 @@ module.exports = function usuariosRepository (models, Sequelize) {
         as: 'rol'
       },
       {
-        attributes: ['nombre'],
-        model: entidades,
-        as: 'entidad'
-      },
-      {
         attributes: [
           'nombres',
           'primer_apellido',

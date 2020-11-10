@@ -29,15 +29,15 @@ module.exports = async function setupModule (settings = { iop: true }) {
     // Uniendo Graphql de usuarios con Graphql de Logs
     mergeGraphql(graphql, services.Log.graphql, ['DateL']);
 
-    if (global.IOP) {
-      // Agregando Iop a los servicios
-      const Iop = require('app-iop');
-      services.Iop = await Iop(config.db);
-
-      // Uniendo Graphql de usuarios con Graphql de Iop
-      mergeGraphql(graphql, services.Iop.graphql, ['DateI']);
-    }
-
+ /*    if (global.IOP) { */
+    //   // Agregando Iop a los servicios
+    //   const Iop = require('app-iop');
+    //   services.Iop = await Iop(config.db);
+    //
+    //   // Uniendo Graphql de usuarios con Graphql de Iop
+    //   mergeGraphql(graphql, services.Iop.graphql, ['DateI']);
+    // }
+/*  */
     return {
       services,
       graphql,

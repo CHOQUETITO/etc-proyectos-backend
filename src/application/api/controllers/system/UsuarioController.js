@@ -162,12 +162,27 @@ module.exports = function setupUsuarioController (services) {
       return next(e);
     }
   }
+  async function findAll (req, res, next){
+    try {
+      console.log('--->', req.params, req.query);
+      const  respuestaPoa = await UsuarioService.findAll();
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaPoa
+      });
+    } catch (error) {
+      console.error(error)
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
 
   return {
     personaSegip,
     cambiarPass,
     desactivarCuenta,
     obtenerMenu,
-    regenerarPassword
+    regenerarPassword,
+    findAll
   };
 };

@@ -5,7 +5,6 @@ const moment = require('moment');
 const crypto = require('crypto');
 const { text } = require('../../../common');
 const { generateToken } = require('../../../application/lib/auth');
-const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
 
 module.exports = function userService (repositories, valueObjects) {
@@ -37,17 +36,17 @@ module.exports = function userService (repositories, valueObjects) {
   async function findAll (params = {}, rol, idEntidad) {
     debug('Lista de usuarios|filtros');
 
-    switch (rol) {
-      case 'ADMIN':
-        params.id_entidad = idEntidad;
-        params.roles = ['ADMIN', 'USUARIO'];
-        break;
-      case 'USUARIO':
-        params.id_entidad = idEntidad;
-        params.roles = ['USUARIO'];
-        break;
-    }
-    return Service.findAll(params, UsuarioRepository, res, 'Usuarios');
+   /*  switch (rol) { */
+      // case 'ADMIN':
+      //   params.id_entidad = idEntidad;
+      //   params.roles = ['ADMIN', 'USUARIO'];
+      //   break;
+      // case 'USUARIO':
+      //   params.id_entidad = idEntidad;
+      //   params.roles = ['USUARIO'];
+      //   break;
+    /* } */
+    return UsuarioRepository.findAll();
   }
 
   async function findById (id) {
@@ -318,8 +317,8 @@ module.exports = function userService (repositories, valueObjects) {
       };
       await UsuarioRepository.createOrUpdate(data);
 
-      let pne = await Iop.findByCode('PNE-01');
-      let cli = new ClienteNotificaciones(pne.token, pne.url);
+      // let pne = await Iop.findByCode('PNE-01');
+      // let cli = new ClienteNotificaciones(pne.token, pne.url);
       const email = {
         para: [datos.email],
         asunto: 'Nueva contraseña - APP',

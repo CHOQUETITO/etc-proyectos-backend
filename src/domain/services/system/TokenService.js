@@ -1,7 +1,6 @@
 'use strict';
 
 const debug = require('debug')('app:service:token');
-const ClienteNotificaciones = require('app-notificaciones');
 const Service = require('../Service');
 
 module.exports = function tokenService (repositories, valueObjects, res) {
@@ -52,8 +51,8 @@ module.exports = function tokenService (repositories, valueObjects, res) {
       result = await TokenRepository.createOrUpdate(data);
 
       if (result && datos.email) {
-        let pne = await Iop.findByCode('PNE-01');
-        let cli = new ClienteNotificaciones(pne.token, pne.url);
+        // let pne = await Iop.findByCode('PNE-01');
+        // let cli = new ClienteNotificaciones(pne.token, pne.url);
 
         const parametros = {
           para: [datos.email],
@@ -62,11 +61,12 @@ module.exports = function tokenService (repositories, valueObjects, res) {
           adjuntoBase64: `data:text/plain;base64,${Buffer.from(data.token).toString('base64')}`
         };
 
-        let correo = await cli.correo(parametros);
-        debug('Respuesta envio correo', correo);
-        if (correo && !correo.finalizado) {
-          return res.warning(new Error('No se pudo enviar el correo'));
-        }
+        // let correo = await cli.correo(parametros);
+        // debug('Respuesta envio correo', correo);
+        // if (correo && !correo.finalizado) {
+        //   return res.warning(new Error('No se pudo enviar el correo'));
+        // }
+        return 1;
       }
     } catch (e) {
       return res.error(e);
