@@ -2,7 +2,6 @@
 
 const Sequelize = require('sequelize');
 const Params = require('app-params');
-const Iop = require('app-iop');
 const minimist = require('minimist');
 const inquirer = require('inquirer');
 const { errors, config } = require('../common');
@@ -36,7 +35,7 @@ async function setup () {
   await Params(configDB);
 
   // Cargando Servicios Iop
-  await Iop(configDB);
+  // await Iop(configDB);
 
   let sequelize = new Sequelize(configDB);
   // Verificando conexión con la BD
