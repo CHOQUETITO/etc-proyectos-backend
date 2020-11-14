@@ -1,28 +1,28 @@
 'use strict';
 
-const debug = require('debug')('app:controller:empresas');
+const debug = require('debug')('app:controller:personas');
 const { userData, generateToken } = require('../../../lib/auth');
 const moment = require('moment');
 
-module.exports = function setupEmpresasController (services) {
-  const { EmpresasService } = services;
+module.exports = function setupPersonasController (services) {
+  const { PersonasService } = services;
 
-  //METODO GET PARA LISTAR EMPRESAS
+  //METODO GET PARA LISTAR PERSONAS
   async function findAll (req, res, next){
-    const  respuestaEmpresas = await EmpresasService.findAll(req.query);
+    const  respuestaPersonas = await PersonasService.findAll(req.query);
     return res.status(200).send ({
-      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaEmpresas
+      finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaPersonas
     });
     
   };
 
-  //METODO GET PARA BUSCAR UNA EMPRESA POR ID
+  //METODO GET PARA BUSCAR UNA PERSONA POR ID
   async function findById (req, res, next){
     try {
       const {id} = req.params;
-      const  respuestaEmpresa = await EmpresasService.findById(id);
+      const  respuestaPersona = await PersonasService.findById(id);
       return res.status(200).send ({
-        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaEmpresa
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaPersona
       });
     } catch (error) {
       return res.status(400).send ({
@@ -31,13 +31,13 @@ module.exports = function setupEmpresasController (services) {
     }  
   };
 
-  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA EMPRESA
-  async function guardarEmpresa (req, res, next) {
+  //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA PERSONA
+  async function guardarPersona (req, res, next) {
     if (req.params && req.params.id){
       req.body.id = req.params.id;
     }
     try {
-      const respuesta = await EmpresasService.guardarEmpresa(req.body);
+      const respuesta = await PersonasService.guardarPersona(req.body);
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se guardo correctamente', datos: respuesta
       });
@@ -48,13 +48,13 @@ module.exports = function setupEmpresasController (services) {
     }
   }
 
-  //METODO DELETE PARA DESACTIVAR UNA EMPRESA
-  async function desactivarEmpresa (req, res, next) {
+  //METODO DELETE PARA DESACTIVAR UNA PERSONA
+  async function desactivarPersona (req, res, next) {
     try {
       const { id } = req.params;
-      const respuesta = await EmpresasService.desactivarEmpresa(id);
+      const respuesta = await PersonasService.desactivarPersona(id);
       return res.status(200).send ({
-        finalizado : true, mensaje: 'Se guardo correctamente', datos: respuesta
+        finalizado : true, mensaje: 'Se desactivo correctamente', datos: respuesta
       });
     } catch (err) {
       return res.status(400).send ({
@@ -66,7 +66,7 @@ module.exports = function setupEmpresasController (services) {
   return {
     findAll,
     findById,
-    guardarEmpresa,
-    desactivarEmpresa
+    guardarPersona,
+    desactivarPersona
   };
 };

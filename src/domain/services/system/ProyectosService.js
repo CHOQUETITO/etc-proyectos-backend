@@ -97,6 +97,23 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     }
   }
 
+  // METODOS PARA FILTROS POR COMUNIDAD, CATEGORIA Y ENTRE FECHAS 
+  async function fitroComunidad (idComunidad) {
+    debug('Lista de Proyecto por Comunidad|filtros');
+    try {
+      let respuestaComunidad = await ProyectosRepository.fitroComunidad(idComunidad);
+      if (!respuestaComunidad){
+        throw new Error ('No existe proyectos por Comunidad');
+      }
+      if(respuestaComunidad.estado === 'INACTIVO') {
+        throw new Error('La Comunidad ya fue desactivado');
+      }
+      return respuestaComunidad;
+    } catch (error) {
+      throw new Error (error.message);
+    }
+  }
+
 
   async function generarReporte (id) {
     try {
@@ -140,6 +157,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     desactivarProyecto,
     cantidadProyectos,
     cantidadProyectosCategorias,
-    generarReporte
+    generarReporte,
+    fitroComunidad
   };
 };

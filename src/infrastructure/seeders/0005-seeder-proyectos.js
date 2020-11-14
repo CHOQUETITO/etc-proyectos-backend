@@ -12,7 +12,7 @@ let items = [
     id_poa: 1,
     id_empresa: 1,
     id_categoria: 1,
-    id_cronograma: 1,
+    // id_cronograma: 1,
     fecha_inicio: '2015-01-02',
     fecha_final: '2018-01-01'
   },
@@ -23,7 +23,7 @@ let items = [
     id_poa: 2,
     id_empresa: 2,
     id_categoria: 2,
-    id_cronograma: 2,
+    // id_cronograma: 2,
     fecha_inicio: '2019-09-09',
     fecha_final: '2020-01-01'
   },
@@ -34,7 +34,7 @@ let items = [
     id_poa: 1,
     id_empresa: 3,
     id_categoria: 2,
-    id_cronograma: 3,
+    // id_cronograma: 3,
     fecha_inicio: '2020-01-10',
     fecha_final: '2021-06-20'
   },
@@ -45,7 +45,7 @@ let items = [
     id_poa: 3,
     id_empresa: 5,
     id_categoria: 3,
-    id_cronograma: 1,
+    // id_cronograma: 1,
     fecha_inicio: '2020-06-05',
     fecha_final: '2021-06-05'
   },
@@ -56,7 +56,7 @@ let items = [
     id_poa: 3,
     id_empresa: 4,
     id_categoria: 3,
-    id_cronograma: 1,
+    // id_cronograma: 1,
     fecha_inicio: '2019-02-20',
     fecha_final: '2020-06-20'
   }

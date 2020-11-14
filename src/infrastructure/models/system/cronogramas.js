@@ -6,6 +6,11 @@ const util = require('../../lib/util');
 module.exports = (sequelize, DataTypes) => {
   let fields = {
     id: util.pk,
+    idProyecto: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idProyecto'),
+      field: 'id_proyecto'
+    },
     nombre: {
       type: DataTypes.STRING(150),
       allowNull: false,
@@ -27,6 +32,19 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.fecFinCronograma'),
       field: 'fec_fin_cronograma'
+    },
+    estadoActividad: {
+      type: DataTypes.ENUM,
+      values: ['PENDIENTE', 'DESARROLLO', 'CONCLUIDO'],
+      defaultValue: 'PENDIENTE',
+      allowNull: false,
+      xlabel: lang.t('fields.estadoActividad'),
+      field: 'estado_actividad'
+    },
+    observacion: {
+      type: DataTypes.STRING(250),
+      allowNull: false,
+      xlabel: lang.t('fields.observacion')
     },
     estado: {
       type: DataTypes.ENUM,

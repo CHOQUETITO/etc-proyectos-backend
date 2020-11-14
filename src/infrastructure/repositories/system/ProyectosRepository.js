@@ -15,7 +15,8 @@ module.exports = function proyectosRepository (models, Sequelize) {
       'id',
       'nombre',
       'descripcion',
-      'idComunidad','idCategoria',
+      'idComunidad',
+      'idCategoria',
       'idPoa',
       'idEmpresa',
       [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
@@ -46,15 +47,28 @@ module.exports = function proyectosRepository (models, Sequelize) {
       },
       {
         model : cronogramas,
-        as : 'cronograma',
-        attributes : ['id', 'nombre']
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
       }
     ]
+    // Querys para filtros del crud-table
     if (params.nombre){
       query.where.nombre = {
         [Op.iLike] : `%${params.nombre}%`
       };
     }
+    //if (params.fechaInicio != '' && params.fechaFinal != ''){
+      //  [Op.between] : [params.fechaInicio, params.fechaFinal];
+    //}
+    // Filtro para buscar por comunidad
+    if (params.idComunidad && params.idComunidad != 'undefined'){
+      query.where.idComunidad = params.idComunidad;
+    }
+    // Filtro para buscar por categoria
+    if (params.idCategoria && params.idCategoria != 'undefined'){
+      query.where.idCategoria = params.idCategoria;
+    }
+
     query.where.estado = 'ACTIVO'
 
     const result = await proyectos.findAndCountAll(query);
@@ -63,7 +77,52 @@ module.exports = function proyectosRepository (models, Sequelize) {
 
   //METODO GET PARA BUSCAR UN PROYECTO POR ID
   async function findById (id = null) {
-    const result = await proyectos.findByPk(id);
+    let query = {};
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'idComunidad',
+      'idCategoria',
+      'idPoa',
+      'idEmpresa',
+      [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
+      [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estado'
+    ]
+    query.where = {};
+    query.where.id = id;
+    query.include = [
+      {
+        model : comunidades,
+        as : 'comunidad',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : poas,
+        as : 'poa',
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
+      },
+      {
+        model : empresas,
+        as : 'empresa',
+        attributes : ['id', 'nombre', 'descripcion', 'sigla']
+      },
+      {
+        model : categorias,
+        as : 'categoria',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : cronogramas,
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
+      }
+    ]
+
+    query.where.estado = 'ACTIVO'
+
+    const result = await proyectos.findOne(query);
     return result;
   }
   
@@ -87,7 +146,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
     }
   }
 
-  //METODO GET PARA AGRUPAR PROYECTOS POR CATEGORIAS
+  // METODO GET PARA AGRUPAR PROYECTOS POR CATEGORIAS
   async function cantidadProyectosCategorias (params) {
     // aqui jugar con params 
     const query = `
@@ -104,6 +163,54 @@ module.exports = function proyectosRepository (models, Sequelize) {
       console.log(error);
       throw error;
     }
+  }
+
+  // METODOS GET PARA FILTROS POR COMUNIDAD, CATEGORIA Y ENTRE FECHAS
+  async function fitroComunidad (idComunidad) {
+    const query = {};
+    query.where = {};
+    query.where.idComunidad = idComunidad;
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'idComunidad','idCategoria',
+      'idPoa',
+      'idEmpresa',
+      [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
+      [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estado'
+    ]
+    query.include = [
+      {
+        model : comunidades,
+        as : 'comunidad',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : poas,
+        as : 'poa',
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
+      },
+      {
+        model : empresas,
+        as : 'empresa',
+        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit']
+      },
+      {
+        model : categorias,
+        as : 'categoria',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : cronogramas,
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
+      }
+    ]
+    query.where.estado = 'ACTIVO';
+    const result = await proyectos.findAndCountAll(query);
+    return toJSON(result);
   }
 
   async function findOne (id = null) {
@@ -144,8 +251,8 @@ module.exports = function proyectosRepository (models, Sequelize) {
       },
       {
         model : cronogramas,
-        as : 'cronograma',
-        attributes : ['id', 'nombre']
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
       }
     ]
     query.where.estado = 'ACTIVO'
@@ -160,6 +267,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
     deleteItem: (id, t) => Repository.deleteItem(id, proyectos, t),
     cantidadProyectos,
     cantidadProyectosCategorias,
-    findOne
+    findOne,
+    fitroComunidad
   };
 };

@@ -6,17 +6,25 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Vivienda y Urbanización',
-    descripcion: 'Proyectos de construcciones habitacionales y de urbanización en diferentes comunidades',
-  },
-  {
     nombre: 'Educación',
     descripcion: 'Proyectos de construcciones de aulas en diferentes comunidades',
   },
   {
     nombre: 'Salud',
     descripcion: 'Proyectos de construcciones de establecimientos de salud en diferentes comunidades',
-  }
+  },
+  {
+    nombre: 'Vivienda y Urbanización',
+    descripcion: 'Proyectos de construcciones habitacionales y de urbanización en diferentes comunidades',
+  },
+  {
+    nombre: 'Productivos',
+    descripcion: 'Proyectos productivos para diferentes comunidades',
+  },
+  {
+    nombre: 'Sociales-Comunitarios',
+    descripcion: 'Proyectos sociales comunitarios para diferentes comunidades',
+  },
 ];
 
 // Agregando datos aleatorios para desarrollo

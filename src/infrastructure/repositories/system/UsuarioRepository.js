@@ -19,7 +19,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
         as: 'rol'
       },
       {
-        attributes: [
+        /*attributes: [
           'nombres',
           'primer_apellido',
           'segundo_apellido',
@@ -34,12 +34,25 @@ module.exports = function usuariosRepository (models, Sequelize) {
           'pais_nacimiento',
           'genero',
           'estado'
+        ],*/
+        attributes: [
+          'id',
+          'nombres',
+          'primer_apellido',
+          'segundo_apellido',
+          'nro_documento',
+          'documento_expedido',
+          'fecha_nacimiento',
+          'genero',
+          'telefono',
+          'email',
+          'estado'
         ],
         model: personas,
         as: 'persona'
       }
     ];
-
+    /* Comentado por cambio de columnas
     if (params.nombre_completo) {
       query.where[Op.or] = [
         {
@@ -58,7 +71,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
           }
         }
       ];
-    }
+    } */
 
     if (params.usuario) {
       query.where.usuario = {
@@ -130,7 +143,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
           as: 'entidad'
         },
         {
-          attributes: [
+          /*attributes: [
             'nombres',
             'primer_apellido',
             'segundo_apellido',
@@ -144,6 +157,19 @@ module.exports = function usuariosRepository (models, Sequelize) {
             'nacionalidad',
             'pais_nacimiento',
             'genero',
+            'estado'
+          ],*/
+          attributes: [
+            'id',
+            'nombres',
+            'primer_apellido',
+            'segundo_apellido',
+            'nro_documento',
+            'documento_expedido',
+            'fecha_nacimiento',
+            'genero',
+            'telefono',
+            'email',
             'estado'
           ],
           model: personas,
@@ -173,7 +199,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
           as: 'rol'
         },
         {
-          attributes: [
+          /*attributes: [
             'nombres',
             'primer_apellido',
             'segundo_apellido',
@@ -187,6 +213,19 @@ module.exports = function usuariosRepository (models, Sequelize) {
             'nacionalidad',
             'pais_nacimiento',
             'genero',
+            'estado'
+          ],*/
+          attributes: [
+            'id',
+            'nombres',
+            'primer_apellido',
+            'segundo_apellido',
+            'nro_documento',
+            'documento_expedido',
+            'fecha_nacimiento',
+            'genero',
+            'telefono',
+            'email',
             'estado'
           ],
           model: personas,

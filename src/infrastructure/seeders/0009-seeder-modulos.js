@@ -5,33 +5,33 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   // USUARIOS
   {
-    label: 'Configuraciones',
+    label: 'Administración del Sistema',
     ruta: 'config',
     icono: 'settings',
     orden: 1,
     estado: 'ACTIVO',
     visible: true
   },
-  {
+  /*{
     label: 'Entidades',
     ruta: 'entidades',
     orden: 2,
     estado: 'ACTIVO',
     visible: false,
-    id_modulo: 1
-  },
+    id_modulo: 1    
+  },*/
   {
     label: 'Personas',
     ruta: 'personas',
-    orden: 3,
+    orden: 2,
     estado: 'ACTIVO',
-    visible: false,
+    visible: true,
     id_modulo: 1
   },
   {
     label: 'Usuarios',
     ruta: 'usuarios',
-    orden: 4,
+    orden: 3,
     estado: 'ACTIVO',
     visible: true,
     id_modulo: 1
@@ -39,7 +39,7 @@ let items = [
   {
     label: 'Módulos y permisos',
     ruta: 'modulos',
-    orden: 5,
+    orden: 4,
     estado: 'ACTIVO',
     visible: true,
     id_modulo: 1
@@ -47,7 +47,7 @@ let items = [
   {
     label: 'Preferencias',
     ruta: 'parametros',
-    orden: 6,
+    orden: 5,
     estado: 'ACTIVO',
     visible: false,
     id_modulo: 1
@@ -55,23 +55,23 @@ let items = [
   {
     label: 'Permisos',
     ruta: 'permisos',
-    orden: 7,
+    orden: 6,
     estado: 'ACTIVO',
-    visible: false,
+    visible: true,
     id_modulo: 1
   },
   {
     label: 'Roles',
     ruta: 'roles',
-    orden: 8,
+    orden: 7,
     estado: 'ACTIVO',
-    visible: false,
+    visible: true,
     id_modulo: 1
   },
   {
     label: 'Logs del sistema',
     ruta: 'logs',
-    orden: 9,
+    orden: 8,
     estado: 'ACTIVO',
     visible: false,
     id_modulo: 1
@@ -79,7 +79,7 @@ let items = [
   {
     label: 'Servicios Iop',
     ruta: 'serviciosIop',
-    orden: 10,
+    orden: 9,
     estado: 'ACTIVO',
     visible: false,
     id_modulo: 1
@@ -87,7 +87,7 @@ let items = [
   {
     label: 'Gestión de Proyectos',
     ruta: 'proyectos',
-    orden: 11,
+    orden: 10,
     estado: 'ACTIVO',
     visible: true,
     icono: 'assignment'
@@ -95,7 +95,7 @@ let items = [
   {
     label: 'Catálogo de Empresas',
     ruta: 'empresas',
-    orden: 12,
+    orden: 11,
     estado: 'ACTIVO',
     visible: true,
     icono: 'home_work'
@@ -103,7 +103,7 @@ let items = [
   {
     label: 'Gestión de Poas',
     ruta: 'poas',
-    orden: 13,
+    orden: 12,
     estado: 'ACTIVO',
     visible: true,
     icono: 'dns'
@@ -111,7 +111,7 @@ let items = [
   {
     label: 'Cronograma de Actividades',
     ruta: 'cronogramas',
-    orden: 14,
+    orden: 13,
     estado: 'ACTIVO',
     visible: true,
     icono: 'calendar_today'
@@ -119,10 +119,18 @@ let items = [
   {
     label: 'Dashboard',
     ruta: 'dashboard',
-    orden: 15,
+    orden: 14,
     estado: 'ACTIVO',
     visible: true,
     icono: 'ballot'
+  },
+  {    
+    label: 'Reportes',
+    ruta: 'reportes',
+    orden: 15,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'assignment'
   },
 ];
 

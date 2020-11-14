@@ -9,8 +9,8 @@ module.exports = function setupProyectosController (services) {
 
   //METODO GET PARA LISTAR PROYECTOS
   async function findAll (req, res, next){
-    const  respuestaProyectos = await ProyectosService.findAll(req.query);
     console.log('--->', req.params, req.query);
+    const  respuestaProyectos = await ProyectosService.findAll(req.query);
     return res.status(200).send ({
       finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaProyectos
     });
@@ -95,6 +95,23 @@ module.exports = function setupProyectosController (services) {
     }
   }
 
+  // METODOS PARA FILTROS POR COMUNIDAD, CATEGORIA Y ENTRE FECHAS
+  async function fitroComunidad (req, res, next){
+    console.log('--->', req.params, req.query);
+    try {
+      const {idComunidad} = req.params;
+      const  respuestaComunidad = await ProyectosService.fitroComunidad(idComunidad);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaComunidad
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+
+  // METODO PARA GENERAR REPORTES
   async function generarReporte (req, res) {
       try {
         const { id } = req.params;
@@ -117,6 +134,7 @@ module.exports = function setupProyectosController (services) {
     desactivarProyecto,
     cantidadProyectos,
     cantidadProyectosCategorias,
-    generarReporte // pdf
+    generarReporte, // pdf
+    fitroComunidad  // filtro por comunidad
   };
 };

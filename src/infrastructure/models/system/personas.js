@@ -19,53 +19,31 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       xlabel: lang.t('fields.segundo_apellido')
     },
-    nombre_completo: {
-      type: DataTypes.STRING(255),
-      xlabel: lang.t('fields.nombre_completo')
-    },
-    tipo_documento: {
-      type: DataTypes.ENUM,
-      values: ['CI', 'PASAPORTE', 'OTRO'],
-      defaultValue: 'CI',
-      allowNull: false,
-      xlabel: lang.t('fields.tipo_documento')
-    },
-    tipo_documento_otro: {
-      type: DataTypes.STRING(50),
-      xlabel: lang.t('fields.tipo_documento_otro')
-    },
     nro_documento: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.NUMERIC(20),
       xlabel: lang.t('fields.nro_documento')
+    },
+    documento_expedido: {
+      type: DataTypes.STRING(5),
+      allowNull: false,
+      xlabel: lang.t('fields.documento_expedido')
     },
     fecha_nacimiento: {
       type: DataTypes.DATEONLY,
       xlabel: lang.t('fields.fecha_nacimiento')
-    },
-    telefono: {
-      type: DataTypes.STRING(50),
-      xlabel: lang.t('fields.telefono')
-    },
-    movil: {
-      type: DataTypes.STRING(50),
-      xlabel: lang.t('fields.movil')
-    },
-    nacionalidad: {
-      type: DataTypes.STRING(100),
-      xlabel: lang.t('fields.nacionalidad')
-    },
-    pais_nacimiento: {
-      type: DataTypes.STRING(100),
-      xlabel: lang.t('fields.pais_nacimiento')
     },
     genero: {
       type: DataTypes.ENUM,
       values: ['M', 'F', 'OTRO'],
       xlabel: lang.t('fields.genero')
     },
-    observacion: {
-      type: DataTypes.TEXT,
-      xlabel: lang.t('fields.observacion')
+    telefono: {
+      type: DataTypes.STRING(50),
+      xlabel: lang.t('fields.telefono')
+    },
+    email: {
+      type: DataTypes.STRING(100),
+      xlabel: lang.t('fields.email')
     },
     estado: {
       type: DataTypes.ENUM,
@@ -74,21 +52,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.estado')
     },
-    estado_verificacion: {
-      type: DataTypes.ENUM,
-      values: ['VERIFICADO_SEGIP', 'OBSERVADO_SEGIP', 'NO_EXISTE_SEGIP', 'POR_VERIFICAR', 'VERIFICADO'],
-      defaultValue: 'POR_VERIFICAR',
-      xlabel: lang.t('fields.estado_verificacion')
-    }
   };
 
   // Agregando campos para el log
   fields = util.setTimestamps(fields);
 
-  let Users = sequelize.define('personas', fields, {
+  let Personas = sequelize.define('personas', fields, {
     timestamps: false,
     tableName: 'sys_personas'
   });
 
-  return Users;
+  return Personas;
 };

@@ -25,11 +25,18 @@ module.exports = function empresasRepository (models, Sequelize) {
     ]
     query.where = {};
 
+    //Querys para filtrar
     if (params.nombre){
       query.where.nombre = {
         [Op.iLike] : `%${params.nombre}%`
       };
     }
+    if (params.telefonos){
+      query.where.telefonos = {
+        [Op.iLike] : `%${params.telefonos}%`
+      };
+    }
+
     query.where.estado = 'ACTIVO'
 
     const result = await empresas.findAndCountAll(query);

@@ -13,10 +13,14 @@ module.exports = function cronogramasRepository (models, Sequelize) {
     let query = getQuery(params);
     query.attributes = [
       'id',
+      'idProyecto',
       'nombre',
       'actividad',
       [ Sequelize.literal('fec_ini_cronograma::date'), 'fecIniCronograma' ],
       [ Sequelize.literal('fec_fin_cronograma::date'), 'fecFinCronograma' ],
+      'estadoActividad',
+      'observacion',
+      'estado'
     ]
     query.where = {};
     query.include = [
@@ -26,6 +30,18 @@ module.exports = function cronogramasRepository (models, Sequelize) {
         attributes : ['id', 'nombre', 'descripcion', 'fechaInicio', 'fechaFinal']
       }
     ]
+    // Querys para filtros
+    if (params.nombre){
+      query.where.nombre = {
+        [Op.iLike] : `%${params.nombre}%`
+      };
+    }
+
+    // Filtro para buscar por proyecto
+    if (params.idProyecto && params.idProyecto != 'undefined'){
+      query.where.idProyecto = params.idProyecto;
+    }
+
     query.where.estado = 'ACTIVO'
 
     const result = await cronogramas.findAndCountAll(query);
