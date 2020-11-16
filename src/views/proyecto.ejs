@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../estilos.css">
+  <link rel="stylesheet" href="../views/estilos.css">
 </head>
 <body>
   <!-- TABLA PARA LA CONTENIDO-->
@@ -133,8 +133,11 @@
   </table>
   </div>
   <br>
-  <section style="text-align: center;">Catacora - La Paz - Bolivia <%= datos.now %></section>       
-
-
+  <section style="text-align: center;">Catacora - La Paz - Bolivia <%= datos.now %></section>
+  <div class="cabecera2">
+    <%- include('header') %>   
+    <%- include('footer') %>
+</div>     
 </body>
+  <div class= "cabecera2" style="text-align: center;" > <%- include('footer') %></div>
 </html>
