@@ -176,13 +176,27 @@ module.exports = function setupUsuarioController (services) {
       });
     }  
   };
-
+async function guardar (req, res, next){
+    try {
+      console.log('--->iaquiiiii', req.params, req.query);
+      const  respuestaUsuario = await UsuarioService.createOrUpate();
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaUsuario
+      });
+    } catch (error) {
+      console.error(error)
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
   return {
     personaSegip,
     cambiarPass,
     desactivarCuenta,
     obtenerMenu,
     regenerarPassword,
-    findAll
+    findAll,
+    guardar
   };
 };

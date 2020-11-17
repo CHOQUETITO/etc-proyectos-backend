@@ -59,25 +59,9 @@ module.exports = function userService (repositories, valueObjects) {
     debug('Crear o actualizar usuario', data);
 
     let user;
+    let { persona } = data;
     try {
-      let persona = {
-        id: data.id_persona,
-        nombres: data.nombres,
-        primer_apellido: data.primer_apellido,
-        segundo_apellido: data.segundo_apellido,
-        nombre_completo: data.nombre_completo,
-        tipo_documento: data.tipo_documento,
-        tipo_documento_otro: data.tipo_documento_otro,
-        nro_documento: data.nro_documento,
-        fecha_nacimiento: data.fecha_nacimiento,
-        movil: data.movil,
-        nacionalidad: data.nacionalidad,
-        pais_nacimiento: data.pais_nacimiento,
-        genero: data.genero,
-        telefono: data.telefono
-      };
 
-      validatePerson(persona);
 
       if (data.id_persona) { // Actualizando persona
         persona._user_updated = data._user_updated;
@@ -92,17 +76,17 @@ module.exports = function userService (repositories, valueObjects) {
 
       let usuario = {
         id: data.id,
-        id_entidad: data.id_entidad,
-        id_rol: data.id_rol,
-        id_persona: persona.id,
         usuario: data.usuario,
-        contrasena: data.contrasena,
-        email: data.email,
-        cargo: data.cargo,
-        estado: data.estado
-      };
+        // id_entidad: data.id_entidad,
+        id_rol: data.idRol,
+        id_persona: persona.id,
+        // usuario: data.usuario,
+        // contrasena: data.contrasena,
+        // email: data.email,
+        // cargo: data.cargo,
+        // estado: data.estado
 
-      validateUser(usuario);
+      };
 
       if (data.id) {
         usuario._user_updated = data._user_updated;

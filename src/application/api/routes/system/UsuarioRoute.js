@@ -12,5 +12,11 @@ module.exports = function setupUsuario (api, controllers) {
   api.get('/regenerar_password/:id', guard.check(['usuarios:read']), UsuarioController.regenerarPassword);
   api.get('/usuario', UsuarioController.findAll);
 
+ // api.get('', UsuarioController.findAll);
+  // api.get('/:id', UsuarioController.findById);
+  api.post('', UsuarioController.guardar);
+  // api.put('/:id', UsuarioController.actualizar);
+  // api.delete('/:id', UsuarioController.desactivar);
+
   return api;
 };
