@@ -12,10 +12,10 @@ module.exports = function usuariosRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
-
+    query.attributes = ['id', 'idRol', 'usuario', 'email', 'estado'];
     query.include = [
       {
-        attributes: ['nombre', 'path'],
+        attributes: ['id','nombre', 'path'],
         model: roles,
         as: 'rol'
       },

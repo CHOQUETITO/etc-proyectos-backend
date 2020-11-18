@@ -195,7 +195,24 @@ module.exports = function setupUsuarioController (services) {
   async function guardarUsuario (req, res, next){
     try {
       // console.log('--->iaquiiiii', req.params, req.query);
-      const  respuestaUsuario = await UsuarioService.createOrUpate();
+      const  respuestaUsuario = await UsuarioService.createOrUpdate(req.body);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuestaUsuario
+      });
+    } catch (error) {
+      console.error(error)
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+  async function actualizarUsuario (req, res, next){
+    const data = req.body;
+    const { id } = req.params;
+    data.id = id;
+    try {
+      // console.log('--->iaquiiiii', req.params, req.query);
+      const  respuestaUsuario = await UsuarioService.createOrUpdate(data);
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuestaUsuario
       });
@@ -215,6 +232,7 @@ module.exports = function setupUsuarioController (services) {
     regenerarPassword,
     findAll,
     guardarUsuario,
+    actualizarUsuario,
     findById
   };
 };

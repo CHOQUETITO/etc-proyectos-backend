@@ -5,89 +5,30 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   // USUARIOS
   {
-    label: 'Administración del Sistema',
-    ruta: 'config',
-    icono: 'settings',
-    orden: 1,
-    estado: 'ACTIVO',
-    visible: true
-  },
-  /*{
-    label: 'Entidades',
-    ruta: 'entidades',
-    orden: 2,
-    estado: 'ACTIVO',
-    visible: false,
-    id_modulo: 1    
-  },*/
-  {
-    label: 'Personas',
-    ruta: 'personas',
-    orden: 2,
-    estado: 'ACTIVO',
-    visible: true,
-    id_modulo: 1
-  },
-  {
     label: 'Usuarios',
     ruta: 'usuarios',
-    orden: 3,
+    orden: 1,
     estado: 'ACTIVO',
     visible: true,
-    id_modulo: 1
-  },
-  {
-    label: 'Módulos y permisos',
-    ruta: 'modulos',
-    orden: 4,
-    estado: 'ACTIVO',
-    visible: true,
-    id_modulo: 1
-  },
-  {
-    label: 'Preferencias',
-    ruta: 'parametros',
-    orden: 5,
-    estado: 'ACTIVO',
-    visible: false,
-    id_modulo: 1
-  },
-  {
-    label: 'Permisos',
-    ruta: 'permisos',
-    orden: 6,
-    estado: 'ACTIVO',
-    visible: true,
-    id_modulo: 1
   },
   {
     label: 'Roles',
     ruta: 'roles',
-    orden: 7,
+    orden: 2,
     estado: 'ACTIVO',
     visible: true,
-    id_modulo: 1
   },
   {
     label: 'Logs del sistema',
     ruta: 'logs',
-    orden: 8,
+    orden: 3,
     estado: 'ACTIVO',
     visible: false,
-    id_modulo: 1
-  },
-  {
-    label: 'Servicios Iop',
-    ruta: 'serviciosIop',
-    orden: 9,
-    estado: 'ACTIVO',
-    visible: false,
-    id_modulo: 1
   },
   {
     label: 'Gestión de Proyectos',
     ruta: 'proyectos',
-    orden: 10,
+    orden: 4,
     estado: 'ACTIVO',
     visible: true,
     icono: 'assignment'
@@ -95,7 +36,7 @@ let items = [
   {
     label: 'Catálogo de Empresas',
     ruta: 'empresas',
-    orden: 11,
+    orden: 5,
     estado: 'ACTIVO',
     visible: true,
     icono: 'home_work'
@@ -103,7 +44,7 @@ let items = [
   {
     label: 'Gestión de Poas',
     ruta: 'poas',
-    orden: 12,
+    orden: 6,
     estado: 'ACTIVO',
     visible: true,
     icono: 'dns'
@@ -111,7 +52,7 @@ let items = [
   {
     label: 'Cronograma de Actividades',
     ruta: 'cronogramas',
-    orden: 13,
+    orden: 7,
     estado: 'ACTIVO',
     visible: true,
     icono: 'calendar_today'
@@ -119,7 +60,7 @@ let items = [
   {
     label: 'Dashboard',
     ruta: 'dashboard',
-    orden: 14,
+    orden: 8,
     estado: 'ACTIVO',
     visible: true,
     icono: 'ballot'
@@ -127,7 +68,7 @@ let items = [
   {    
     label: 'Reportes',
     ruta: 'reportes',
-    orden: 15,
+    orden: 9,
     estado: 'ACTIVO',
     visible: true,
     icono: 'assignment'

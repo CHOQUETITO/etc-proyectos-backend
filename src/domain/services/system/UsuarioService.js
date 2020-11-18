@@ -3,14 +3,12 @@
 const debug = require('debug')('app:service:usuario');
 const moment = require('moment');
 const crypto = require('crypto');
-const { text } = require('../../../common');
 const { generateToken } = require('../../../application/lib/auth');
 const Service = require('../Service');
-
+const { text } = require('../../../common');
 module.exports = function userService (repositories, valueObjects) {
   const ModuloService = require('./ModuloService')(repositories, valueObjects);
-
-  const { transaction, Iop, UsuarioRepository, PersonaRepository, Parametro, Log } = repositories;
+  const { transaction, Iop, UsuarioRepository, PersonasRepository, Parametro, Log } = repositories;
   const {
     UsuarioUsuario,
     UsuarioContrasena,
@@ -77,48 +75,48 @@ module.exports = function userService (repositories, valueObjects) {
     let user;
     let { persona } = data;
     try {
-      if (data.id_persona) { // Actualizando persona
+      if (persona.id) { // Actualizando persona
         persona._user_updated = data._user_updated;
         persona._updated_at = data._updated_at;
         if (data.estado_persona !== undefined) persona.estado = new PersonaEstado(data.estado_persona).value;
       } else {
         persona.estado = 'ACTIVO';
-        persona._user_created = data._user_created;
+        persona._user_created = 1;
       }
-
-      persona = await PersonaRepository.createOrUpdate(persona);
-
+      persona = await PersonasRepository.createOrUpdate(persona);
       let usuario = {
         id: data.id,
-        usuario: data.usuario,
         // id_entidad: data.id_entidad,
         id_rol: data.idRol,
         id_persona: persona.id,
-        // usuario: data.usuario,
-        // contrasena: data.contrasena,
-        // email: data.email,
+        usuario: persona.nro_documento,
+        email: persona.email,
         // cargo: data.cargo,
         // estado: data.estado
 
       };
 
       if (data.id) {
+        delete usuario.contrasena;
+        delete usuario.usuario;
         usuario._user_updated = data._user_updated;
         usuario._updated_at = data._updated_at;
       } else {
-        usuario._user_created = data._user_created;
+        usuario._user_created = 1;
+        usuario.contrasena = persona.nro_documento;
       }
 
       user = await UsuarioRepository.createOrUpdate(usuario);
+      if (!user) {
+        throw new Error(`El usuario no pudo ser creado`);
+      }
     } catch (e) {
+      console.log(e)
       return e;
     }
 
-    if (!user) {
-      throw new Error(`El usuario no pudo ser creado`);
-    }
 
-    return res.success(user);
+    return user;
   }
 
   async function update (data) {
@@ -157,7 +155,7 @@ module.exports = function userService (repositories, valueObjects) {
     try {
       result = await UsuarioRepository.findByUsername(usuario);
       if (!result) {
-        return res.error(new Error(`No existe el usuario ${usuario}`));
+        return new Error(`No existe el usuario ${usuario}`);
       }
       if (result) {
         if (result.id_usuario) {
@@ -166,39 +164,9 @@ module.exports = function userService (repositories, valueObjects) {
           result = await UsuarioRepository.findByUsername(result.usuario);
         }
       }
-
-      // let minutos = await Parametro.getParam('TIEMPO_BLOQUEO');
-      // minutos = minutos.valor && !isNaN(minutos.valor) ? parseInt(minutos.valor) : 0;
-      //
-      // let nroMaxIntentos = await Parametro.getParam('NRO_MAX_INTENTOS');
-      // nroMaxIntentos = nroMaxIntentos.valor && !isNaN(nroMaxIntentos.valor) ? parseInt(nroMaxIntentos.valor) : 3;
-      //
-      // if (result.fecha_bloqueo) {
-      //   let tiempo = moment(result.fecha_bloqueo).valueOf();
-      //   let now = moment().valueOf();
-      //   debug('FECHA BLOQUEO', moment(tiempo).format('YYYY-MM-DD HH:mm:ss'), 'FECHA ACTUAL', moment(now).format('YYYY-MM-DD HH:mm:ss'));
-      //   if (now < tiempo) {
-      //     return res.error(new Error(`El usuario <strong>${usuario}</strong> se encuentra bloqueado por <strong>${minutos} minutos</strong> por demasiados intentos fallidos.`));
-      //   } else {
-      //     await update({ id: result.id, nro_intentos: 0, fecha_bloqueo: null });
-      //   }
-      // }
-
+      console.log('constrasennaaa', contrasena, text.encrypt(contrasena))
       if (result.contrasena !== text.encrypt(contrasena)) {
-        // if (result.nro_intentos !== undefined && !isNaN(result.nro_intentos)) {
-        //   let intentos = parseInt(result.nro_intentos) + 1;
-        //   debug('NRO. INTENTO', intentos, 'MAX. NRO. INTENTOS', nroMaxIntentos);
-        //   if (intentos >= nroMaxIntentos) {
-        //     await update({
-        //       id: result.id,
-        //       nro_intentos: intentos,
-        //       fecha_bloqueo: moment().add(minutos, 'minutes').format('YYYY-MM-DD HH:mm:ss')
-        //     });
-        //   } else {
-        //     await update({ id: result.id, nro_intentos: intentos });
-        //   }
-        // }
-        throw new Error(`La contraseña del usuario ${usuario} es incorrecta`);
+         throw new Error(`La contraseña del usuario ${usuario} es incorrecta`);
       }
 
       if (result.estado === 'INACTIVO') {

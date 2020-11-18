@@ -107,8 +107,11 @@ module.exports = function moduloService (repositories, valueObjects) {
             }
           }
         }
-        if (oPermisos['item-' + obj[i].id].read && obj[i].estado === 'ACTIVO' && obj[i].visible) {
-          menu.push(item);
+        if (oPermisos['item-' + obj[i].id]) {
+
+          if (oPermisos['item-' + obj[i].id].read && obj[i].estado === 'ACTIVO' && obj[i].visible) {
+            menu.push(item);
+          }
         }
       }
     } catch (e) {

@@ -15,7 +15,6 @@ let items = [
     cargo: 'Catacora comunidad x',
     id_persona: 1,
     id_rol: 1,
-    direccion:'saavedra'
   },
   {
     usuario: 'funcionario',
@@ -25,13 +24,12 @@ let items = [
     cargo: '',
     id_persona: 2,
     id_rol: 3,
-    direccion:'catacora'
   }
 ];
 
 // Agregando datos aleatorios para desarrollo
 if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let usuarios = Array(19).fill().map((_, i) => {
+  let usuarios = Array(5).fill().map((_, i) => {
     let item = {
       usuario: casual.username,
       contrasena,

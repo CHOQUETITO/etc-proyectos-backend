@@ -20,7 +20,7 @@ module.exports = function rolService (repositories, valueObjects, res) {
         break;
     }
 
-    return Service.findAll(params, RolRepository, res, 'Roles');
+    return RolRepository.findAll();
   }
 
   async function findById (id) {

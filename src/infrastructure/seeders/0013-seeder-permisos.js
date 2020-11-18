@@ -7,21 +7,39 @@ let items = [];
 // Este bloque se debe reemplazar cuando se tengan los permisos definidos para cada módulo por rol
 const iniModules = 1;
 const nroModules = 15;
-const nroRoles = 3;
+const rolAdmin = 1;
+const rolFuncionario = 3;
+const modulosAdmin = [1, 2, 3, 9];
+const modulosFuncionario = [4 ,5,6,7,8,9];
+for (let i = 0; i < modulosAdmin.length; i++ ) {
+  // para admin
+  items.push({
+    create: true,
+    read: true,
+    update: true,
+    delete: true,
+    firma: false,
+    csv: false,
+    id_modulo: modulosAdmin[i],
+    id_rol: rolAdmin
+  });
 
-for (let rol = 1; rol <= nroRoles; rol++) {
-  for (let modulo = iniModules; modulo <= nroModules; modulo++) {
-    items.push({
-      create: true,
-      read: true,
-      update: true,
-      delete: true,
-      firma: false,
-      csv: false,
-      id_modulo: modulo,
-      id_rol: rol
-    });
-  }
+}
+
+
+for (let i = 0; i < modulosFuncionario.length; i++ ) {
+  // para funcioanrio
+  items.push({
+    create: true,
+    read: true,
+    update: true,
+    delete: true,
+    firma: false,
+    csv: false,
+    id_modulo: modulosFuncionario[i],
+    id_rol: rolFuncionario
+  });
+
 }
 
 // Asignando datos de log y timestamps a los datos

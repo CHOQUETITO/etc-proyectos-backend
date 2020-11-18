@@ -7,7 +7,8 @@ module.exports = function setupUsuario (api, controllers) {
   
   api.get('/usuario', UsuarioController.findAll);
   api.get('/usuario/:id', UsuarioController.findById);
-  api.post('', UsuarioController.guardarUsuario);
+  api.post('/usuario', UsuarioController.guardarUsuario);
+  api.put('/usuario/:id', UsuarioController.actualizarUsuario);
   
   
   // api.put('/:id', UsuarioController.actualizar);

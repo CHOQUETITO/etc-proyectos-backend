@@ -54,6 +54,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.JSON,
       xlabel: lang.t('fields.tour')
     },
+    idRol: {
+      type: DataTypes.INTEGER,
+      xlabel: lang.t('fields.idRol'),
+      field: 'id_rol'
+    },
     estado: {
       type: DataTypes.ENUM,
       values: ['ACTIVO', 'INACTIVO', 'PENDIENTE', 'BLOQUEADO'],
