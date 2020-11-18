@@ -18,14 +18,14 @@ let items = [
     direccion:'saavedra'
   },
   {
-    usuario: 'ciudadano',
+    usuario: 'funcionario',
     contrasena,
     email: 'catacora@catacora.gob.bo',
     estado: 'ACTIVO',
     cargo: '',
     id_persona: 2,
     id_rol: 3,
-    direccion:'saavedra'
+    direccion:'catacora'
   }
 ];
 

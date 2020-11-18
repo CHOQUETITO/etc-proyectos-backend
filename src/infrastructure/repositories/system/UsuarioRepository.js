@@ -8,6 +8,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
   const { usuarios, roles, personas, entidades } = models;
   const Op = Sequelize.Op;
 
+  //Metodo para listar todos los Usuarios
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
@@ -137,11 +138,11 @@ module.exports = function usuariosRepository (models, Sequelize) {
           model: roles,
           as: 'rol'
         },
-        {
-          attributes: ['nombre'],
-          model: entidades,
-          as: 'entidad'
-        },
+        //{
+          //attributes: ['nombre'],
+          //model: entidades,
+          //as: 'entidad'
+        //},
         {
           /*attributes: [
             'nombres',

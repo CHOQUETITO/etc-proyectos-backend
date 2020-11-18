@@ -61,10 +61,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.estado')
     },
-    direccion: {
-      type: DataTypes.STRING(9),
-      xlabel: lang.t('fields.direccion')
-    }
+    //direccion: {
+      //type: DataTypes.STRING(9),
+      //xlabel: lang.t('fields.direccion')
+    //}
   };
 
   // Agregando campos para el log

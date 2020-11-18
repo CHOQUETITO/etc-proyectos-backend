@@ -162,24 +162,11 @@ module.exports = function setupUsuarioController (services) {
       return next(e);
     }
   }
+  // Metodo para listar USUARIOS
   async function findAll (req, res, next){
     try {
       console.log('--->', req.params, req.query);
-      const  respuestaPoa = await UsuarioService.findAll();
-      return res.status(200).send ({
-        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaPoa
-      });
-    } catch (error) {
-      console.error(error)
-      return res.status(400).send ({
-        finalizado : false, mensaje: error.message, datos: null
-      });
-    }  
-  };
-async function guardar (req, res, next){
-    try {
-      console.log('--->iaquiiiii', req.params, req.query);
-      const  respuestaUsuario = await UsuarioService.createOrUpate();
+      const  respuestaUsuario = await UsuarioService.findAll();
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaUsuario
       });
@@ -190,6 +177,36 @@ async function guardar (req, res, next){
       });
     }  
   };
+  //METODO GET PARA BUSCAR UN USUARIO POR ID
+  async function findById (req, res, next){
+    try {
+      const {id} = req.params;
+      const  respuestaUsuario = await UsuarioService.findById(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaUsuario
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+  //METODO POST PARA GUARDAR Y MODIFICAR UN USUARIO
+  async function guardarUsuario (req, res, next){
+    try {
+      // console.log('--->iaquiiiii', req.params, req.query);
+      const  respuestaUsuario = await UsuarioService.createOrUpate();
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuestaUsuario
+      });
+    } catch (error) {
+      console.error(error)
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+
   return {
     personaSegip,
     cambiarPass,
@@ -197,6 +214,7 @@ async function guardar (req, res, next){
     obtenerMenu,
     regenerarPassword,
     findAll,
-    guardar
+    guardarUsuario,
+    findById
   };
 };

@@ -33,6 +33,7 @@ module.exports = function userService (repositories, valueObjects) {
     PersonaEstado
   } = valueObjects;
 
+  //Metodo para listar todos los usuarios
   async function findAll (params = {}, rol, idEntidad) {
     debug('Lista de usuarios|filtros');
 
@@ -48,21 +49,34 @@ module.exports = function userService (repositories, valueObjects) {
     /* } */
     return UsuarioRepository.findAll();
   }
-
-  async function findById (id) {
-    debug('Buscando usuario por ID');
-
-    return Service.findById(id, UsuarioRepository, res, 'Usuario');
+  //METODO GET PARA BUSCAR UN USUARIO POR ID
+  async function findById (id = null) {
+    debug('Lista de Usuarios|filtros');
+    try {
+      let respuestaUsuario = await UsuarioRepository.findById(id);
+      if (!respuestaUsuario){
+        throw new Error ('No hay Valor');
+      }
+      if(respuestaUsuario.estado === 'INACTIVO') {
+        throw new Error('El Usuario ya fue desactivada');
+      }
+      return respuestaUsuario;
+    } catch (error) {
+      throw new Error (error.message);
+    }
   }
+  //async function findById (id) {
+    //debug('Buscando usuario por ID');
 
+    //return Service.findById(id, UsuarioRepository, res, 'Usuario');
+  //}
+  
   async function createOrUpdate (data, rol = null, idEntidad = null) {
     debug('Crear o actualizar usuario', data);
 
     let user;
     let { persona } = data;
     try {
-
-
       if (data.id_persona) { // Actualizando persona
         persona._user_updated = data._user_updated;
         persona._updated_at = data._updated_at;
