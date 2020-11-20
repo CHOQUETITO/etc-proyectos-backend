@@ -223,6 +223,40 @@ module.exports = function setupUsuarioController (services) {
       });
     }  
   };
+  
+  // METOD PARA CAMBIAR USUARIO Y CONTRASEÑA DE UN USUARIO
+  async function actualizarCuenta (req, res, next){
+    const data = req.body;
+    const { id } = req.params;
+    data.id = id;
+    try {
+      // console.log('--->iaquiiiii', req.params, req.query);
+      const  respuestaUsuario = await UsuarioService.createOrUpdateCuenta(data);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuestaUsuario
+      });
+    } catch (error) {
+      console.error(error)
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+
+  //METODO DELETE PARA DESACTIVAR UN USUARIO
+  async function desactivarUsuario (req, res, next) {
+    try {
+      const { id } = req.params;
+      const respuesta = await UsuarioService.desactivarUsuario(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se desactivo correctamente', datos: respuesta
+      });
+    } catch (err) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: err.message, datos: null
+      });
+    }
+  }
 
   return {
     personaSegip,
@@ -233,6 +267,8 @@ module.exports = function setupUsuarioController (services) {
     findAll,
     guardarUsuario,
     actualizarUsuario,
-    findById
+    findById,
+    desactivarUsuario,
+    actualizarCuenta
   };
 };

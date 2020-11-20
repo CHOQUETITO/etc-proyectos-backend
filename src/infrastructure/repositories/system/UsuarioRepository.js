@@ -12,7 +12,7 @@ module.exports = function usuariosRepository (models, Sequelize) {
   async function findAll (params = {}) {
     let query = getQuery(params);
     query.where = {};
-    query.attributes = ['id', 'idRol', 'usuario', 'email', 'estado'];
+    query.attributes = ['id', 'idRol', 'usuario', 'contrasena', 'email', 'estado'];
     query.include = [
       {
         attributes: ['id','nombre', 'path'],
@@ -125,7 +125,12 @@ module.exports = function usuariosRepository (models, Sequelize) {
         [Op.in]: params.roles
       };
     }
+    // Filtro para buscar por usuario
+    if (params.id){
+      query.where.id === params.id;
+    }
 
+    query.where.estado = 'ACTIVO'
     const result = await usuarios.findAndCountAll(query);
     return toJSON(result);
   }

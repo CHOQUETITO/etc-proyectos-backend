@@ -17,10 +17,21 @@ let items = [
     fecha_final: '2018-01-01'
   },
   {
+    nombre: 'Construccion de coliseo Canton Pairumani Grande',
+    descripcion: 'Apoyo Nacional a la Produccion y Empleo (hasta Bs. 200.000) - ANPE',
+    id_comunidad: 2,
+    id_poa: 2,
+    id_empresa: 1,
+    id_categoria: 1,
+    // id_cronograma: 1,
+    fecha_inicio: '2015-01-02',
+    fecha_final: '2018-01-01'
+  },
+  {
     nombre: 'Construccion casa cultural marka pajchiri',
     descripcion: 'Apoyo Nacional a la Produccion y Empleo (de Bs. 200.001 adelante) - ANPP',
     id_comunidad: 5,
-    id_poa: 2,
+    id_poa: 3,
     id_empresa: 2,
     id_categoria: 2,
     // id_cronograma: 2,

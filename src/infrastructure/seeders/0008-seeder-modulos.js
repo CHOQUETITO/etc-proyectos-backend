@@ -5,18 +5,20 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   // USUARIOS
   {
-    label: 'Usuarios',
+    label: 'Gestión de Usuarios',
     ruta: 'usuarios',
     orden: 1,
     estado: 'ACTIVO',
     visible: true,
+    icono: 'people'
   },
   {
-    label: 'Roles',
+    label: 'Gestion de Roles',
     ruta: 'roles',
     orden: 2,
     estado: 'ACTIVO',
-    visible: true,
+    visible: false, 
+    icono: 'transfer_within_a_station'
   },
   {
     label: 'Logs del sistema',

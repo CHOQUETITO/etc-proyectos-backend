@@ -8,28 +8,37 @@ const contrasena = text.encrypt('123456');
 // Datos de producción
 let items = [
   {
-    usuario: 'admin',
+    usuario: 'superadmin',
     contrasena,
-    email: 'admin@catacora.gob.bo',
+    email: 'superadmin@gmail.com',
     estado: 'ACTIVO',
-    cargo: 'Catacora comunidad x',
+    cargo: 'Catacora comunidad',
     id_persona: 1,
     id_rol: 1,
   },
   {
+    usuario: 'admin',
+    contrasena,
+    email: 'admin@gmail.com',
+    estado: 'ACTIVO',
+    cargo: 'Catacora comunidad x',
+    id_persona: 2,
+    id_rol: 2,
+  },
+  {
     usuario: 'funcionario',
     contrasena,
-    email: 'catacora@catacora.gob.bo',
+    email: 'funcionario@gmail.com',
     estado: 'ACTIVO',
-    cargo: '',
-    id_persona: 2,
+    cargo: 'funcionario',
+    id_persona: 3,
     id_rol: 3,
   }
 ];
 
 // Agregando datos aleatorios para desarrollo
 if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let usuarios = Array(5).fill().map((_, i) => {
+  let usuarios = Array(2).fill().map((_, i) => {
     let item = {
       usuario: casual.username,
       contrasena,

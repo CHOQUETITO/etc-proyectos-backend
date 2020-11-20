@@ -6,34 +6,46 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombres: 'Administrador',
-    primer_apellido: 'Ingeniería',
-    segundo_apellido: 'Sistemas',
-    nro_documento: '123456',
+    nombres: 'Absalon',
+    primer_apellido: 'Conurana',
+    segundo_apellido: 'Surco',
+    nro_documento: '4023456',
     documento_expedido: 'LP',
-    fecha_nacimiento: new Date(1990, 0, 1),
+    fecha_nacimiento: new Date(1982, 8, 1),
     genero: 'M',
-    telefono: '123456',
-    email: 'administrador@gmail.com',
+    telefono: '7623456',
+    //email: 'administrador@gmail.com',
     estado: 'ACTIVO'
   },
   {
-    nombres: 'KATHYUSKA',
-    primer_apellido: 'PEREDO',
-    segundo_apellido: 'DURAN',
-    nro_documento: '154321',
+    nombres: 'Russell',
+    primer_apellido: 'Choque',
+    segundo_apellido: 'Mamani',
+    nro_documento: '10154321',
     documento_expedido: 'LP',
-    fecha_nacimiento: new Date(1990, 0, 1),
+    fecha_nacimiento: new Date(1990, 1, 29),
+    genero: 'M',
+    telefono: '6123456',
+    //email: 'russell@gmail.com',
+    estado: 'ACTIVO'
+  },
+  {
+    nombres: 'Sharon',
+    primer_apellido: 'Choque',
+    segundo_apellido: 'Mamani',
+    nro_documento: '11054321',
+    documento_expedido: 'LP',
+    fecha_nacimiento: new Date(1992, 11, 24),
     genero: 'F',
-    telefono: '123456',
-    email: 'prueba@gmail.com',
+    telefono: '7203456',
+    //email: 'sharon@gmail.com',
     estado: 'ACTIVO'
   }
 ];
 
 // Agregando datos aleatorios para desarrollo
 if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let personas = Array(9).fill().map((_, i) => {
+  let personas = Array(2).fill().map((_, i) => {
     let item = {
       nombres: casual.first_name,
       primer_apellido: casual.last_name,

@@ -74,6 +74,7 @@ module.exports = function userService (repositories, valueObjects) {
 
     let user;
     let { persona } = data;
+    console.log('dataaaaaa', data);
     try {
       if (persona.id) { // Actualizando persona
         persona._user_updated = data._user_updated;
@@ -84,21 +85,23 @@ module.exports = function userService (repositories, valueObjects) {
         persona._user_created = 1;
       }
       persona = await PersonasRepository.createOrUpdate(persona);
+      console.log('----persona-----', persona);
       let usuario = {
         id: data.id,
-        // id_entidad: data.id_entidad,
+        // Armando Usuario ---------tito-------
         id_rol: data.idRol,
         id_persona: persona.id,
         usuario: persona.nro_documento,
-        email: persona.email,
+        contrasena: persona.nro_documento,
+        email: data.email, 
         // cargo: data.cargo,
-        // estado: data.estado
+        estado: data.estado
 
       };
-
+      console.log('----usuario-----', usuario);
       if (data.id) {
-        delete usuario.contrasena;
-        delete usuario.usuario;
+        // delete usuario.contrasena;
+        // delete usuario.usuario;
         usuario._user_updated = data._user_updated;
         usuario._updated_at = data._updated_at;
       } else {
@@ -118,6 +121,61 @@ module.exports = function userService (repositories, valueObjects) {
 
     return user;
   }
+
+  // METODO PARA CAMBIAR USUARIO Y CONTRASEÑA DE UN USUARIO
+  async function createOrUpdateCuenta (data, rol = null, idEntidad = null) {
+    debug('Crear o actualizar usuario', data);
+
+    let user;
+    let { persona } = data;
+    console.log('dataaaaaa', data);
+    try {
+      if (persona.id) { // Actualizando persona
+        persona._user_updated = data._user_updated;
+        persona._updated_at = data._updated_at;
+        if (data.estado_persona !== undefined) persona.estado = new PersonaEstado(data.estado_persona).value;
+      } else {
+        persona.estado = 'ACTIVO';
+        persona._user_created = 1;
+      }
+      persona = await PersonasRepository.createOrUpdate(persona);
+      console.log('----persona-----', persona);
+      let usuario = {
+        id: data.id,
+        // Armando Usuario ---------tito-------
+        id_rol: data.idRol,
+        id_persona: persona.id,
+        usuario: data.usuario,
+        contrasena: data.contrasena,
+        email: data.email, 
+        // cargo: data.cargo,
+        estado: data.estado
+
+      };
+      console.log('----usuario-----', usuario);
+      if (data.id) {
+        // delete usuario.contrasena;
+        // delete usuario.usuario;
+        usuario._user_updated = data._user_updated;
+        usuario._updated_at = data._updated_at;
+      } else {
+        usuario._user_created = 1;
+        usuario.contrasena = persona.nro_documento;
+      }
+
+      user = await UsuarioRepository.createOrUpdate(usuario);
+      if (!user) {
+        throw new Error(`El usuario no pudo ser creado`);
+      }
+    } catch (e) {
+      console.log(e)
+      return e;
+    }
+
+
+    return user;
+  }
+  // FIN DEL METODO
 
   async function update (data) {
     debug('Actualizar usuario');
@@ -329,15 +387,31 @@ module.exports = function userService (repositories, valueObjects) {
     });
   }
 
+  //METODO DELETE PARA DESACTIVAR UN USUARIO
+  async function desactivarUsuario (id) {
+    try {
+      const respuesta = await UsuarioRepository.deleteItem(id);
+      if (!respuesta) {
+        throw new Error('No se desactivo exitosamente en la base de datos.');
+      }
+      return respuesta;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   return {
     findAll,
     findById,
     createOrUpdate,
+    createOrUpdateCuenta,
     deleteItem,
     userExist,
     getUser,
     update,
     getResponse,
-    regenerar
+    regenerar,
+    desactivarUsuario
   };
 };

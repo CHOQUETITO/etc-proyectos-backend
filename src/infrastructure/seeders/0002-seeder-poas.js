@@ -6,20 +6,26 @@ const { setTimestampsSeeder } = require('../lib/util');
 // Datos de producción
 let items = [
   {
-    nombre: 'Poa 1',
-    descripcion: 'Recursos propios municipales',
-    gestion:'2019',
-    monto:'80000'
-  },
-  {
-    nombre: 'Poa 2',
+    nombre: 'Poa Canton Catacora 2019',
     descripcion: 'Recursos de Coparticipación tributaria - Participación popular',
     gestion:'2019',
     monto:'31926'
   },
   {
-    nombre: 'Poa 3',
+    nombre: 'Poa Canton Pairumani Grande 2019',
+    descripcion: 'Recursos propios municipales',
+    gestion:'2019',
+    monto:'800000'
+  },
+  {
+    nombre: 'Poa Canton Parachi 2019',
     descripcion: 'Recursos regalia minera',
+    gestion:'2019',
+    monto:'105897'
+  },
+  {
+    nombre: 'Poa Canton Tolacollo 2019',
+    descripcion: 'Recursos propios de la comunidad fucionado con poa de la gestión 2018',
     gestion:'2019',
     monto:'105897'
   }
