@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%- include('header') %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <table border:"1">
+    <thead>
+      <colgroup>
+        <col style = "width: 15%"/>
+        <col style = "width: 70%"/>
+        <col style = "width: 15%"/>
+        <col style = "width: 100%"/>
+      </colgroup>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+    
+</body>
+</html>
+
+<!-- Ejemplo de tabla anterior-->
+<table border="1" class="table  table-striped">
+  <tr>
+    <th>LOGO</th>
+    <th>GOBIERNO AUTÓNOMO MUNICIPAL DE CATACORA</th>
+    <th>LOGO</th>
+  </tr>
+</table>
+<h3>DATOS TÉCNICOS DEL PROYECTO</h3>
+<div class="container">
+  <table border="1" class="table table-bordered table-hover">
+    <tr>
+      <td>
+        <section><strong>Nombre del Proyecto:</strong> <%= datos.nombre %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section><strong>Empresa Ejecutora:</strong> <%= datos.empresa.nombre %> </section>
+      </td>
+      <td>
+        <section><strong>Comunidad Beneficiada:</strong> <%= datos.comunidad.nombre %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section><strong>Poa:</strong> <%= datos.poa.nombre %> </section>
+      </td>
+      <td>
+        <section><strong>Bs:</strong> <%= datos.poa.monto %> </section>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <section><strong>Inicio del Proyecto:</strong> <%= datos.fechaInicio %> </section>
+      </td>
+      <td>
+        <section><strong>Fin del Proyecto:</strong> <%= datos.fechaFinal %> </section>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- fin del ejemplo-->

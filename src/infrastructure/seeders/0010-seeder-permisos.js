@@ -11,7 +11,7 @@ const rolSuperAdmin = 1;
 const rolAdmin = 2;
 const rolFuncionario = 3;
 const modulosSuperAdmin = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const modulosAdmin = [1, 2, 3, 9];
+const modulosAdmin = [1, 2, 3, 8, 9];
 const modulosFuncionario = [4 ,5, 6, 7, 8, 9];
 
 for (let i = 0; i < modulosSuperAdmin.length; i++ ) {

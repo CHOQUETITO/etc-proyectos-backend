@@ -5,7 +5,7 @@ const { setTimestampsSeeder } = require('../lib/util');
 let items = [
   // USUARIOS
   {
-    label: 'Gestión de Usuarios',
+    label: 'Administración de Usuarios',
     ruta: 'usuarios',
     orden: 1,
     estado: 'ACTIVO',
@@ -59,21 +59,21 @@ let items = [
     visible: true,
     icono: 'calendar_today'
   },
-  {
-    label: 'Dashboard',
-    ruta: 'dashboard',
-    orden: 8,
-    estado: 'ACTIVO',
-    visible: true,
-    icono: 'ballot'
-  },
   {    
     label: 'Reportes',
     ruta: 'reportes',
-    orden: 9,
+    orden: 8,
     estado: 'ACTIVO',
     visible: true,
     icono: 'assignment'
+  },
+  {
+    label: 'Dashboard',
+    ruta: 'dashboard',
+    orden: 9,
+    estado: 'ACTIVO',
+    visible: true,
+    icono: 'ballot'
   },
 ];
 

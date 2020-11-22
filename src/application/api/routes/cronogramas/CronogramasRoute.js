@@ -5,6 +5,9 @@ const guard = require('express-jwt-permissions')();
 module.exports = function setupCronogramas (api, controllers) {
   const { CronogramasController } = controllers;
 
+  //PARA REPORTES
+  api.post('/reporteCronogramas/:id', CronogramasController.generarReporteCronogramas);
+  //API CRUD
   api.get('', CronogramasController.findAll);
   api.get('/:id', CronogramasController.findById);
   api.post('', CronogramasController.guardarCronograma);

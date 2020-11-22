@@ -73,22 +73,20 @@ module.exports = function usuariosRepository (models, Sequelize) {
         }
       ];
     } */
-
+    if (params.telefonos){
+      query.where.telefonos = {
+        [Op.iLike] : `%${params.telefonos}%`
+      };
+    }
     if (params.usuario) {
       query.where.usuario = {
         [Op.iLike]: `%${params.usuario}%`
       };
     }
 
-    if (params.email) {
-      query.where.email = {
-        [Op.iLike]: `%${params.email}%`
-      };
-    }
-
-    if (params.cargo) {
-      query.where.cargo = {
-        [Op.iLike]: `%${params.cargo}%`
+    if (params.nombres) {
+      query.where.nombres = {
+        [Op.iLike]: `%${params.nombres}%`
       };
     }
 

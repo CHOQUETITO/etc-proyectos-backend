@@ -25,6 +25,8 @@ app.use(cors());
 app.use(fileUpload());
 app.use(express.static('public'));
 app.use(ip().getIpInfoMiddleware);
+// AGREGADO POR EDDY
+app.use(express.static('views'));
 
 (async function (app) {
   // Cargando servicios

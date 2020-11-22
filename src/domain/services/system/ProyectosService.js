@@ -114,7 +114,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     }
   }
 
-
+  // METODO PARA GENERAR REPORTES PROYECTO
   async function generarReporte (id) {
     try {
       const datosProyecto = await ProyectosRepository.findOne(id);

@@ -65,10 +65,27 @@ module.exports = function setupCronogramasController (services) {
     }
   }
 
+  // METODO PARA GENERAR REPORTES DE CRONOGRAMAS
+  async function generarReporteCronogramas (req, res) {
+    try {
+      const { id } = req.params;
+      const respuesta = await CronogramasService.generarReporteCronogramas(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+
+    }
+}
+
   return {
     findAll,
     findById,
     guardarCronograma,
-    desactivarCronograma
+    desactivarCronograma,
+    generarReporteCronogramas
   };
 };

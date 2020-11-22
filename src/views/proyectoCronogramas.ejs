@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./estilos.css">
+  <div style="text-align: center; text-align: center;"> <%- include('header') %></div>
+</head>
+<div class="container">
+  <!-- TABLA PARA LA CONTENIDO-->
+  <body>
+    <div style="contain: content;">
+      <div style="font-size:15px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;"> <strong>CRONOGRAMA DEL PROYECTO</strong> </div>
+      <br>
+      <div style="text-align: left;"> <strong> Nombre del Proyecto: </strong> <%= datos.proyecto.nombre %> </div>
+      <br>
+      <table style="grid-template-rows: auto;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Actividad</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Final</th>
+                <th>Estado</th>
+                <th>Obs.</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <% for( i=0; i < 25; i++){ %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= datos.nombre[i] %></td>
+                <td><%= datos.actividad[i] %></td>
+                <td><%= datos.fecIniCronograma[i] %></td>
+                <td><%= datos.fecFinCronograma[i] %></td>
+                <td><%= datos.estadoActividad[i] %></td>
+                <td><%= datos.observacion[i] %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+      
+      <h1 style="font-size: 15px; text-align: left; background-color:#004D40; color: lemonchiffon;">II.OBSERVACIONES: </h1>
+      <div style="font-size: 16px; text-align: left; background-color:#004D40; color: lemonchiffon;">I. DATOS GENERALES: </div>
+    </div>  
+  </body>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <div style="text-align: center; text-align: center;"> <%- include('footer') %></div>
+</div> 
+</html>

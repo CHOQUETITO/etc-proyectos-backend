@@ -18,7 +18,7 @@ let items = [
     estado: 'ACTIVO'
   },
   {
-    nombres: 'Russell',
+    nombres: 'Alvaro',
     primer_apellido: 'Choque',
     segundo_apellido: 'Mamani',
     nro_documento: '10154321',
@@ -30,7 +30,7 @@ let items = [
     estado: 'ACTIVO'
   },
   {
-    nombres: 'Sharon',
+    nombres: 'Evana',
     primer_apellido: 'Choque',
     segundo_apellido: 'Mamani',
     nro_documento: '11054321',
@@ -44,26 +44,26 @@ let items = [
 ];
 
 // Agregando datos aleatorios para desarrollo
-if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let personas = Array(2).fill().map((_, i) => {
-    let item = {
-      nombres: casual.first_name,
-      primer_apellido: casual.last_name,
-      segundo_apellido: casual.last_name,
-      nro_documento: casual.integer(1, 20),
-      documento_expedido: casual.random_element(['LP', 'CB', 'TR']),
-      fecha_nacimiento: casual.date('YYYY-MM-DD'),
-      genero: casual.random_element(['F', 'F', 'OTRO']),
-      telefono: casual.phone,
-      email: casual.email,
-      estado: casual.random_element(['ACTIVO', 'INACTIVO'])
-    };
+// if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
+  // let personas = Array(2).fill().map((_, i) => {
+    // let item = {
+      // nombres: casual.first_name,
+      // primer_apellido: casual.last_name,
+      // segundo_apellido: casual.last_name,
+      // nro_documento: casual.integer(1, 20),
+      // documento_expedido: casual.random_element(['LP', 'CB', 'TR']),
+      // fecha_nacimiento: casual.date('YYYY-MM-DD'),
+      // genero: casual.random_element(['F', 'F', 'OTRO']),
+      // telefono: casual.phone,
+      // email: casual.email,
+      // estado: casual.random_element(['ACTIVO', 'INACTIVO'])
+    // };
 
-    return item;
-  });
+    // return item;
+  // });
 
-  items = items.concat(personas);
-}
+  // items = items.concat(personas);
+// }
 
 // Asignando datos de log y timestamps a los datos
 items = setTimestampsSeeder(items);

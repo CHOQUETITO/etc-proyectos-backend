@@ -6,11 +6,16 @@ const crypto = require('crypto');
 const { text } = require('../../../common');
 const { generateToken } = require('../../../application/lib/auth');
 const Service = require('../Service');
+const path = require('path');
+const ejs = require('ejs');
+const pdf = require('html-pdf');
+const fs = require('fs');
+const { config } = require('../../../common');
 
 module.exports = function cronogramasService (repositories, valueObjects, res) {
 
   const {CronogramasRepository} = repositories;
-  
+  const { app } = config;
   //METODO GET PARA LISTAR CRONOGRAMAS
   async function findAll (params = {}) {
     debug('Lista de Cronogramas|filtros');
@@ -65,10 +70,49 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
     }
   }
 
+  // METODO PARA GENERAR REPORTES DE CRONOGRAMAS
+  async function generarReporteCronogramas (id) {
+    try {
+      const datosCronograma = await CronogramasRepository.findOne(id);
+      console.log('----------', datosCronograma);
+      const rootPath = app.host.path;
+      console.log('root path', rootPath);
+      const params = {
+        host: app.host.server,
+        datos: datosCronograma
+      };
+      const html = await ejs.renderFile(`${rootPath}../../views/proyectoCronogramas.ejs`, params);
+      const pathFile = `${rootPath}reportes/reporte-proyecto-${datosCronograma.id}.pdf`;
+      await generatePDF(html, pathFile);
+      const response = fs.readFileSync(pathFile, { encoding: 'base64' });
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+  async function generatePDF (html, pathFile) {
+    return new Promise((resolve, reject) => {
+      try {
+        const options = {
+          format: 'Letter',
+          margin: { top: "5px", bottom: "5px", left: "5px", right: "55px" }
+        };
+        pdf.create(html, options).toFile(pathFile, (err, res) => {
+          if (err) reject(err);
+          resolve(res);
+        });
+      } catch (error) {
+        reject(error.message);
+      }
+    });
+  }
+
   return {
     findAll,
     findById,
     guardarCronograma,
-    desactivarCronograma
+    desactivarCronograma,
+    generarReporteCronogramas
   };
 };

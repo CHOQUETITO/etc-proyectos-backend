@@ -37,22 +37,22 @@ let items = [
 ];
 
 // Agregando datos aleatorios para desarrollo
-if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
-  let usuarios = Array(2).fill().map((_, i) => {
-    let item = {
-      usuario: casual.username,
-      contrasena,
-      email: casual.email,
-      estado: casual.random_element(['ACTIVO', 'INACTIVO']),
-      id_persona: casual.integer(3, 10),
-      id_rol: casual.integer(2, 3),
-    };
+// if (typeof process.env.NODE_ENV === 'undefined' || process.env.NODE_ENV !== 'production') {
+  // let usuarios = Array(2).fill().map((_, i) => {
+    // let item = {
+     //  usuario: casual.username,
+      // contrasena,
+      // email: casual.email,
+      // estado: casual.random_element(['ACTIVO', 'INACTIVO']),
+      // id_persona: casual.integer(3, 10),
+      // id_rol: casual.integer(2, 3),
+    // };
 
-    return item;
-  });
+    // return item;
+  // });
 
-  items = items.concat(usuarios);
-}
+  // items = items.concat(usuarios);
+// }
 
 // Asignando datos de log y timestamps a los datos
 items = setTimestampsSeeder(items);
