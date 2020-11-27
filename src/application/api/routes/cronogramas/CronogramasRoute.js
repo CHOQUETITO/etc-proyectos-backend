@@ -7,6 +7,7 @@ module.exports = function setupCronogramas (api, controllers) {
 
   //PARA REPORTES
   api.post('/reporteCronogramas/:id', CronogramasController.generarReporteCronogramas);
+  api.get('/prueba/:id', CronogramasController.generarPrueba);
   //API CRUD
   api.get('', CronogramasController.findAll);
   api.get('/:id', CronogramasController.findById);

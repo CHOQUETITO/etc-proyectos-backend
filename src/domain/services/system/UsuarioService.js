@@ -305,6 +305,7 @@ module.exports = function userService (repositories, valueObjects) {
         token,
         permisos,
         usuario: {
+          'id': user.id,
           'usuario': user.usuario,
           'nombres': user.persona.nombres,
           'primer_apellido': user.persona.primer_apellido,

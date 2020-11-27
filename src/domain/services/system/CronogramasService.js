@@ -73,13 +73,13 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
   // METODO PARA GENERAR REPORTES DE CRONOGRAMAS
   async function generarReporteCronogramas (id) {
     try {
-      const datosCronograma = await CronogramasRepository.findOne(id);
-      console.log('----------', datosCronograma);
+      const datosCronograma = await CronogramasRepository.generarReporteCronogramas(id);
+      console.log('----------', datosCronograma.rows);
       const rootPath = app.host.path;
-      console.log('root path', rootPath);
+       console.log('root path', rootPath);
       const params = {
         host: app.host.server,
-        datos: datosCronograma
+        datos: datosCronograma.rows
       };
       const html = await ejs.renderFile(`${rootPath}../../views/proyectoCronogramas.ejs`, params);
       const pathFile = `${rootPath}reportes/reporte-proyecto-${datosCronograma.id}.pdf`;
@@ -96,7 +96,22 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
       try {
         const options = {
           format: 'Letter',
-          margin: { top: "5px", bottom: "5px", left: "5px", right: "55px" }
+          orientation: "Landscape",
+          border: {
+            top: "10mm", // por defecto es 0, unidades: mm, cm, in, px
+            right: "10mm",
+            bottom: "10mm",
+            left: "10mm"
+            },
+          header: { "height": "10mm" },
+          footer: { "height": "10mm" },
+          paginationOffset: 1, // Sobreescribe el número de paginación inicial
+            footer: {
+            height: "10mm",
+            contents: {
+            default: '<span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span>',
+            },
+          },
         };
         pdf.create(html, options).toFile(pathFile, (err, res) => {
           if (err) reject(err);

@@ -242,7 +242,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
       {
         model : empresas,
         as : 'empresa',
-        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit']
+        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit', 'direccion', 'telefonos']
       },
       {
         model : categorias,

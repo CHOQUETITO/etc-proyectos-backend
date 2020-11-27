@@ -81,11 +81,28 @@ module.exports = function setupCronogramasController (services) {
     }
 }
 
+  //METODO GET PARA BUSCAR POR ID
+  async function generarPrueba (req, res, next){
+    try {
+      console.log('--->', req.params, req.query);
+      const {id} = req.params;
+      const  respuestaCronograma = await CronogramasService.generarReporteCronogramas(id);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Se recupero correctamente', datos: respuestaCronograma
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+    }  
+  };
+
   return {
     findAll,
     findById,
     guardarCronograma,
     desactivarCronograma,
-    generarReporteCronogramas
+    generarReporteCronogramas,
+    generarPrueba
   };
 };

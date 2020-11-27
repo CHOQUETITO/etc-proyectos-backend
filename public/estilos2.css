@@ -1,22 +1,62 @@
-body{
-    background: yellowgreen;
-    font-family: monospace;
-}
-.table-container{
-    width: 85%;
-    background: white;
-    margin: 50px auto;
-    padding: 2cm;
-    display: grid;
-    grid-template-columns: 12% 38% 12% 38%;
-    grid-auto-rows: 45px;
-    grid-column-gap: 2px;
-    grid-row-gap: 2px;  
-}
-.logo-derecha{
+
+.app-login__header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 80%;
+    z-index: 1;
     display: flex;
-    justify-content: right;
+    flex-direction: row;
+    align-items: center;
     justify-items: center;
+    background: white;
+}
+.logo-derecha {
+    flex-grow: 1;
+    height: 40px;
+    width: 40;
+    alt: 40;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.text-central {
+    flex-grow: 1;
+    height: 90px;
+    color: #004D40;
+    background: white;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: fontFamilySansation;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.logo-izquierda {
+    flex-grow: 1;
+    height: 90px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.table-container{
+    border-style: double;
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-style: outset;
+    font-size: 10px;
+    padding: 0.5cm;
+    padding-bottom: 1cm;
+    padding-left: 1cm;
+    padding-right: 1cm;
+    align-items: left;
+    grid-template-columns: 10% 40% 10% 10% 30%;
+     
 }
 .logo-izquierda{
     display: flex;
@@ -64,19 +104,9 @@ body{
     grid-column-start: 1;
     grid-column-end: 5;
 }
-hr {
-    border-color: green;
+.ficha {
     width: 100%;
-    height: 0;
+    background: white;
+    padding: 0.5cm;
   }
-.tito{
-    color: brown;
-    border-color: green;
-    width: 100%;
-    height: 0;
-    justify-content: right;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.2em;
-    border-style: ridge;
-}
+  

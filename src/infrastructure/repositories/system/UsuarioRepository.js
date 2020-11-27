@@ -73,9 +73,9 @@ module.exports = function usuariosRepository (models, Sequelize) {
         }
       ];
     } */
-    if (params.telefonos){
-      query.where.telefonos = {
-        [Op.iLike] : `%${params.telefonos}%`
+    if (params.telefono){
+      query.where.telefono = {
+        [Op.iLike] : `%${params.telefono}%`
       };
     }
     if (params.usuario) {

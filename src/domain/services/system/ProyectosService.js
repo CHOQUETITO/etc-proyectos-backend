@@ -138,7 +138,22 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     return new Promise((resolve, reject) => {
       try {
         const options = {
-          format: 'Letter'
+          format: 'Letter',
+          border: {
+            top: "0mm", // por defecto es 0, unidades: mm, cm, in, px
+            right: "10mm",
+            bottom: "10mm",
+            left: "10mm"
+            },
+          header: { "height": "10mm" },
+          footer: { "height": "10mm" },
+          paginationOffset: 1, // Sobreescribe el número de paginación inicial
+            footer: {
+            height: "10mm",
+            contents: {
+            default: '<span style="align-items: center; font-size:12px">&copy; Catacora - La Paz - Bolivia</span>',
+            },
+          },
         };
         pdf.create(html, options).toFile(pathFile, (err, res) => {
           if (err) reject(err);

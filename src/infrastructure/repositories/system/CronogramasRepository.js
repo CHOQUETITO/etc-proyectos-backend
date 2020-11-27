@@ -55,7 +55,7 @@ module.exports = function cronogramasRepository (models, Sequelize) {
   }
 
   //METODO FINDONE
-  async function findOne (id = null) {
+  async function generarReporteCronogramas (id = null) {
     const query = {};
     query.where = {};
     query.where.id_proyecto = id;
@@ -84,14 +84,14 @@ module.exports = function cronogramasRepository (models, Sequelize) {
     //}
 
     query.where.estado = 'ACTIVO'
-    const result = await cronogramas.findOne(query);
+    const result = await cronogramas.findAndCountAll(query);
     return result;
   }
   
   return {
     findAll,
     findById,
-    findOne,
+    generarReporteCronogramas,
     createOrUpdate: (item, t) => Repository.createOrUpdate(item, cronogramas, t),
     deleteItem: (id, t) => Repository.deleteItem(id, cronogramas, t)
   };
