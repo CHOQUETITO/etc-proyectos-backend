@@ -14,16 +14,20 @@ let items = [
     descripcion: 'Proyectos de construcciones de establecimientos de salud en diferentes comunidades',
   },
   {
-    nombre: 'Vivienda y Urbanización',
-    descripcion: 'Proyectos de construcciones habitacionales y de urbanización en diferentes comunidades',
+    nombre: 'Vivienda',
+    descripcion: 'Proyectos de construcciones habitacionales en diferentes comunidades',
   },
   {
     nombre: 'Productivos',
     descripcion: 'Proyectos productivos para diferentes comunidades',
   },
   {
-    nombre: 'Sociales-Comunitarios',
-    descripcion: 'Proyectos sociales comunitarios para diferentes comunidades',
+    nombre: 'Sociales',
+    descripcion: 'Proyectos sociales para diferentes comunidades',
+  },
+  {
+    nombre: 'Comunitarios',
+    descripcion: 'Proyectos comunitarios para diferentes comunidades',
   },
 ];
 

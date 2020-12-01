@@ -12,6 +12,7 @@ module.exports = function setupProyectos (api, controllers) {
   api.get('/filtro-comunidad/:idComunidad', ProyectosController.fitroComunidad);
   //PARA REPORTES
   api.post('/reporte/:id', ProyectosController.generarReporte);
+  api.post('/reporteEstadoProyecto', ProyectosController.generarReporteEstadoProyecto);
     //PARA FORMULARIOS
   api.get('', ProyectosController.findAll);
   api.get('/:id', ProyectosController.findById);

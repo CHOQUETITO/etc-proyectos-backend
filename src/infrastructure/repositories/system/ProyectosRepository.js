@@ -21,6 +21,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
       'idEmpresa',
       [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
       [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
       'estado'
     ]
     query.where = {};
@@ -88,6 +89,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
       'idEmpresa',
       [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
       [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
       'estado'
     ]
     query.where = {};
@@ -179,6 +181,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
       'idEmpresa',
       [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
       [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
       'estado'
     ]
     query.include = [
@@ -221,11 +224,13 @@ module.exports = function proyectosRepository (models, Sequelize) {
       'id',
       'nombre',
       'descripcion',
-      'idComunidad','idCategoria',
+      'idComunidad',
+      'idCategoria',
       'idPoa',
       'idEmpresa',
       [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
       [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
       'estado'
     ]
     query.include = [
@@ -260,6 +265,66 @@ module.exports = function proyectosRepository (models, Sequelize) {
     return result;
   }
 
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR ESTADO
+  async function generarReporteEstadoProyecto (dataProyecto) {
+    const fechaDesde = dataProyecto.fechaDesde;
+    const fechaHasta = dataProyecto.fechaHasta;
+    const estadoProyecto = dataProyecto.estadoProyecto;
+    //console.log('1', fechaDesde);
+    //console.log('2', fechaHasta);
+    //console.log('3', estadoProyecto);
+    const query = {};
+    query.where = {};
+    query.where.fecha_inicio = {
+      [Op.between] : [fechaDesde, fechaHasta]
+    };
+    query.where.estado_proyecto = estadoProyecto;
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'idComunidad',
+      'idCategoria',
+      'idPoa',
+      'idEmpresa',
+      [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
+      [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
+      'estado'
+    ]
+    query.include = [
+      {
+        model : comunidades,
+        as : 'comunidad',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : poas,
+        as : 'poa',
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
+      },
+      {
+        model : empresas,
+        as : 'empresa',
+        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit', 'direccion', 'telefonos']
+      },
+      {
+        model : categorias,
+        as : 'categoria',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : cronogramas,
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
+      }
+    ]
+
+    query.where.estado = 'ACTIVO'
+    const result = await proyectos.findAndCountAll(query);
+    return result;
+  }
+
   return {
     findAll,
     findById,
@@ -267,6 +332,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
     deleteItem: (id, t) => Repository.deleteItem(id, proyectos, t),
     cantidadProyectos,
     cantidadProyectosCategorias,
+    generarReporteEstadoProyecto, // pdf Proyecto Estado
     findOne,
     fitroComunidad
   };

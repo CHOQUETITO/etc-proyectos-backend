@@ -134,6 +134,31 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
       throw err;
     }
   }
+
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR ESTADO
+  async function generarReporteEstadoProyecto (dataProyecto) {
+    console.log('dataProyectoTito', dataProyecto);
+    try {
+      const datosProyecto = await ProyectosRepository.generarReporteEstadoProyecto(dataProyecto);
+      // console.log('----------', datosProyecto.rows);
+      const rootPath = app.host.path;
+       console.log('root path', rootPath);
+      const params = {
+        host: app.host.server,
+        datos: datosProyecto.rows
+      };
+      const html = await ejs.renderFile(`${rootPath}../../views/proyectoEstado.ejs`, params);
+      const pathFile = `${rootPath}reportes/reporte-proyecto-${datosProyecto}.pdf`;
+      await generatePDF2(html, pathFile);
+      const response = fs.readFileSync(pathFile, { encoding: 'base64' });
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  // GENERAR PDF PARA FICHA DE PROYECTO VERTICAL
   async function generatePDF (html, pathFile) {
     return new Promise((resolve, reject) => {
       try {
@@ -165,6 +190,39 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     });
   }
 
+  // GENERAR PDF PARA PROYECTO POR ESTADO HORIZONTAL
+  async function generatePDF2 (html, pathFile) {
+    return new Promise((resolve, reject) => {
+      try {
+        const options = {
+          format: 'Letter',
+          orientation: "Landscape",
+          border: {
+            top: "10mm", // por defecto es 0, unidades: mm, cm, in, px
+            right: "10mm",
+            bottom: "10mm",
+            left: "10mm"
+            },
+          header: { "height": "10mm" },
+          footer: { "height": "10mm" },
+          paginationOffset: 1, // Sobreescribe el número de paginación inicial
+            footer: {
+            height: "10mm",
+            contents: {
+            default: '<span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span>',
+            },
+          },
+        };
+        pdf.create(html, options).toFile(pathFile, (err, res) => {
+          if (err) reject(err);
+          resolve(res);
+        });
+      } catch (error) {
+        reject(error.message);
+      }
+    });
+  }
+
   return {
     findAll,
     findById,
@@ -173,6 +231,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     cantidadProyectos,
     cantidadProyectosCategorias,
     generarReporte,
+    generarReporteEstadoProyecto, // pdf proyectos por estado
     fitroComunidad
   };
 };

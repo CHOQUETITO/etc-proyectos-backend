@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   let fields = {
     id: util.pk,
     nombre: {
-      type: DataTypes.STRING(150),
+      type: DataTypes.STRING(250),
       allowNull: false,
       xlabel: lang.t('fields.nombre')
     },
@@ -46,6 +46,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       xlabel: lang.t('fields.fechaFinal'),
       field: 'fecha_final'
+    },
+    estadoProyecto: {
+      type: DataTypes.ENUM,
+      values: ['EJECUCION', 'CONCLUIDO'],
+      defaultValue: 'EJECUCION',
+      allowNull: false,
+      xlabel: lang.t('fields.estadoProyecto'),
+      field: 'estado_proyecto'
     },
     estado: {
       type: DataTypes.ENUM,

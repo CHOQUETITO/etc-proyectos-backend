@@ -64,7 +64,7 @@ let items = [
     ruta: 'reportes',
     orden: 8,
     estado: 'ACTIVO',
-    visible: false,
+    visible: true,
     icono: 'assignment'
   },
   {

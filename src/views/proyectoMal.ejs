@@ -92,3 +92,34 @@
 <!-- fin del ejemplo-->
 
 <!-- <div style="text-align: left;"> <strong> Nombre del Proyecto: </strong> <%= datos.proyecto.nombre %> </div> -->
+
+<div>
+  <div style="text-align: left; font-size: 12px;"> <strong> Nombre del Proyecto: </strong> <%= datos[0].proyecto.nombre %> </div> <br>
+  <div style="font-size: 16px; text-align: center; background-color:#004D40; color: lemonchiffon;">CRONOGRAMA DEL PROYECTO </div>
+  <table class="table-container" border="1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Actividad</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Estado</th>
+            <th>Obs.</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <% for( i=0; i < datos.length; i++){ %>
+        <tr>
+            <td><%= i+1 %></td>
+            <td><%= datos[i].nombre %></td>
+            <td><%= datos[i].actividad %></td>
+            <td><%= datos[i].fecIniCronograma %></td>
+            <td><%= datos[i].fecFinCronograma %></td>
+            <td><%= datos[i].estadoActividad %></td>
+            <td><%= datos[i].observacion %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+</div>  

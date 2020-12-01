@@ -127,6 +127,24 @@ module.exports = function setupProyectosController (services) {
       }
   }
 
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR ESTADO
+  async function generarReporteEstadoProyecto (req, res) {
+    try {
+      //const { fechaDesde } = req.params;
+      console.log('Fecha desde%%%', req.body);
+      const respuesta = await ProyectosService.generarReporteEstadoProyecto(req.body);
+      //console.log('-------', respuesta);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+
+    }
+  }
+
   return {
     findAll,
     findById,
@@ -135,6 +153,7 @@ module.exports = function setupProyectosController (services) {
     cantidadProyectos,
     cantidadProyectosCategorias,
     generarReporte, // pdf
+    generarReporteEstadoProyecto, // pdf Proyectos por estado
     fitroComunidad  // filtro por comunidad
   };
 };

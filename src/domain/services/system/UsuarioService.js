@@ -307,10 +307,17 @@ module.exports = function userService (repositories, valueObjects) {
         usuario: {
           'id': user.id,
           'usuario': user.usuario,
+          'contrasena': user.contrasena,
+          // 'id_persona': user.id_persona,  // aumentado
           'nombres': user.persona.nombres,
           'primer_apellido': user.persona.primer_apellido,
           'segundo_apellido': user.persona.segundo_apellido,
+          'fecha_nacimiento': user.persona.fecha_nacimiento,
+          'nro_documento': user.persona.nro_documento,
+          'documento_expedido': user.persona.documento_expedido,
           'email': user.email,
+          'telefono': user.persona.telefono,
+          'genero': user.persona.genero,
           'rol': user.rol.nombre,
           'lang': 'es'
         },

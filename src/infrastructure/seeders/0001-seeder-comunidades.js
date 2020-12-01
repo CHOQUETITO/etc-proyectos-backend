@@ -26,7 +26,7 @@ let items = [
     descripcion: 'Comunidad Fronteriza 5',
   },
   {
-    nombre: 'Llalagua',
+    nombre: 'Llallagua',
     descripcion: 'Comunidad Fronteriza 6',
   }
 ];
