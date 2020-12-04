@@ -1,16 +1,17 @@
 'use strict';
 
 const guard = require('express-jwt-permissions')();
+const middleware = require('../../../lib/middleware');
 
 module.exports = function setupUsuario (api, controllers) {
   const { UsuarioController } = controllers;
   
   api.get('/usuario', UsuarioController.findAll);
   api.get('/usuario/:id', UsuarioController.findById);
-  api.post('/usuario', UsuarioController.guardarUsuario);
-  api.put('/usuario/:id', UsuarioController.actualizarUsuario);
-  api.put('/usuario-actualizar/:id', UsuarioController.actualizarCuenta);
-  api.delete('/usuario/:id', UsuarioController.desactivarUsuario);
+  api.post('/usuario', middleware(), UsuarioController.guardarUsuario);
+  api.put('/usuario/:id', middleware(), UsuarioController.actualizarUsuario);
+  api.put('/usuario-actualizar/:id', middleware(), UsuarioController.actualizarCuenta);
+  api.delete('/usuario/:id', middleware(), UsuarioController.desactivarUsuario);
   
   
   // api.put('/:id', UsuarioController.actualizar);

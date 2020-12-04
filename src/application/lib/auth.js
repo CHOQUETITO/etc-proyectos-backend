@@ -29,7 +29,8 @@ function permissions (context, permission) {
   }
 }
 
-async function generateToken (Parametro, usuario, permissions) {
+//FUNCION PARA GENERA TOKEN
+async function generateToken (Parametro, usuario, permissions, idUsuario) {
   // Generando token
   let token;
   let exp = await Parametro.getParam('JWT_TOKEN_EXPIRATION');
@@ -39,6 +40,7 @@ async function generateToken (Parametro, usuario, permissions) {
     token = await sign({
       usuario,
       permissions,
+      idUsuario,
       exp
     }, config.auth.secret);
   } else {

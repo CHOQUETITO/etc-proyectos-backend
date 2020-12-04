@@ -45,7 +45,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
   async function guardarProyecto (dataProyecto) {
     console.log('dataProyecto-->', dataProyecto);
     try {
-      dataProyecto._user_created = 1;
+      // dataProyecto._user_created = 1;
       const respuesta = await ProyectosRepository.createOrUpdate(dataProyecto);
       if (!respuesta) {
         throw new Error('No se guardo exitosamente en la base de datos.');
@@ -149,7 +149,30 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
       };
       const html = await ejs.renderFile(`${rootPath}../../views/proyectoEstado.ejs`, params);
       const pathFile = `${rootPath}reportes/reporte-proyecto-${datosProyecto}.pdf`;
-      await generatePDF2(html, pathFile);
+      await generatePDF2(html, pathFile, dataProyecto);
+      const response = fs.readFileSync(pathFile, { encoding: 'base64' });
+      return response;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR COMUNIDAD
+  async function generarReporteComunidadProyecto (dataProyecto) {
+    console.log('dataProyectoTito', dataProyecto);
+    try {
+      const datosProyecto = await ProyectosRepository.generarReporteComunidadProyecto(dataProyecto);
+      // console.log('----------', datosProyecto.rows);
+      const rootPath = app.host.path;
+       console.log('root path', rootPath);
+      const params = {
+        host: app.host.server,
+        datos: datosProyecto.rows
+      };
+      const html = await ejs.renderFile(`${rootPath}../../views/proyectoComunidad.ejs`, params);
+      const pathFile = `${rootPath}reportes/reporte-proyecto-${datosProyecto}.pdf`;
+      await generatePDF2(html, pathFile, dataProyecto);
       const response = fs.readFileSync(pathFile, { encoding: 'base64' });
       return response;
     } catch (err) {
@@ -176,7 +199,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
             footer: {
             height: "10mm",
             contents: {
-            default: '<span style="align-items: center; font-size:12px">&copy; Catacora - La Paz - Bolivia</span>',
+            default: '<div style="text-align: right;"> <span style="align-items: center; font-size:12px"> &copy; Catacora - La Paz - Bolivia </span> </div>'
             },
           },
         };
@@ -191,7 +214,8 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
   }
 
   // GENERAR PDF PARA PROYECTO POR ESTADO HORIZONTAL
-  async function generatePDF2 (html, pathFile) {
+  async function generatePDF2 (html, pathFile, dataProyecto) {
+    console.log('daaatttt', dataProyecto);
     return new Promise((resolve, reject) => {
       try {
         const options = {
@@ -206,10 +230,16 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
           header: { "height": "10mm" },
           footer: { "height": "10mm" },
           paginationOffset: 1, // Sobreescribe el número de paginación inicial
+            header: {
+              height: "10mm",
+              contents: {             
+              default: '<div style="text-align: right; font-size:10px;">'+'<br><br><br><br><span style="font-size:10px;">Desde:</span>' + dataProyecto.fechaDesde + '<br><span style="font-size:10px;">Hasta:</span>' + dataProyecto.fechaHasta+'</div>'
+              },
+            },
             footer: {
             height: "10mm",
             contents: {
-            default: '<span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span>',
+            default: '<div style="text-align: right;"> <span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span> </div>',
             },
           },
         };
@@ -232,6 +262,7 @@ module.exports = function proyectosService (repositories, valueObjects, res) {
     cantidadProyectosCategorias,
     generarReporte,
     generarReporteEstadoProyecto, // pdf proyectos por estado
+    generarReporteComunidadProyecto, // pdf proyectos por Comunidad
     fitroComunidad
   };
 };

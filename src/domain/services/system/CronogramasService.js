@@ -44,7 +44,7 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN CRONOGRAMA
   async function guardarCronograma (dataCronograma) {
     try {
-      dataCronograma._user_created = 1;
+      //dataCronograma._user_created = 1;
       const respuesta = await CronogramasRepository.createOrUpdate(dataCronograma);
       if (!respuesta) {
         throw new Error('No se guardo exitosamente en la base de datos.');
@@ -109,7 +109,7 @@ module.exports = function cronogramasService (repositories, valueObjects, res) {
             footer: {
             height: "10mm",
             contents: {
-            default: '<span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span>',
+              default: '<div style="text-align: right;"> <span style="font-size:10px;">{{page}}</span><span style="font-size:10px;">/</span><span style="font-size:10px;">{{pages}}</span> </div>',
             },
           },
         };

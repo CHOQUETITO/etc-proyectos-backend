@@ -38,6 +38,9 @@ module.exports = function setupProyectosController (services) {
     try { 
       if (req.params && req.params.id){
         req.body.id = req.params.id;
+        req.body._user_updated = req.idUsuario;
+      }else {
+      req.body._user_created = req.idUsuario;
       }
       const respuesta = await ProyectosService.guardarProyecto(req.body);
       return res.status(200).send ({
@@ -54,6 +57,7 @@ module.exports = function setupProyectosController (services) {
   async function desactivarProyecto (req, res, next) {
     try {
       const { id } = req.params;
+      console.log('ff', id);
       const respuesta = await ProyectosService.desactivarProyecto(id);
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se Elimino en la vista Correctamente', datos: respuesta
@@ -145,6 +149,24 @@ module.exports = function setupProyectosController (services) {
     }
   }
 
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR COMUNIDAD
+  async function generarReporteComunidadProyecto (req, res) {
+    try {
+      //const { fechaDesde } = req.params;
+      console.log('Fecha desde%%%', req.body);
+      const respuesta = await ProyectosService.generarReporteComunidadProyecto(req.body);
+      //console.log('-------', respuesta);
+      return res.status(200).send ({
+        finalizado : true, mensaje: 'Reporte recuperando correctamente', datos: respuesta
+      });
+    } catch (error) {
+      return res.status(400).send ({
+        finalizado : false, mensaje: error.message, datos: null
+      });
+
+    }
+  }
+
   return {
     findAll,
     findById,
@@ -154,6 +176,7 @@ module.exports = function setupProyectosController (services) {
     cantidadProyectosCategorias,
     generarReporte, // pdf
     generarReporteEstadoProyecto, // pdf Proyectos por estado
+    generarReporteComunidadProyecto, // pdf Proyectos por comunidad
     fitroComunidad  // filtro por comunidad
   };
 };

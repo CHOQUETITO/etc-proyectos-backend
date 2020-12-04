@@ -11,6 +11,7 @@ let items = [
     actividad: 'Señalizacion y seguridad vial',
     fec_ini_cronograma: '2020-01-20',
     fec_fin_cronograma: '2020-01-30',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -19,6 +20,7 @@ let items = [
     actividad: 'Visita y levantamiento tipografico',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -27,6 +29,7 @@ let items = [
     actividad: 'Elaboración de bases para la ejecución de la obra de infraestructura',
     fec_ini_cronograma: '2020-01-01',
     fec_fin_cronograma: '2020-01-10',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -35,6 +38,7 @@ let items = [
     actividad: 'Obras provisionales',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -43,6 +47,7 @@ let items = [
     actividad: 'Instalación de faenas',
     fec_ini_cronograma: '2019-01-01',
     fec_fin_cronograma: '2019-01-10',
+    estado_actividad: 'CONCLUIDO',
     observacion: ''
   },
   {
@@ -51,6 +56,7 @@ let items = [
     actividad: 'Trazado del proyecto',
     fec_ini_cronograma: '2019-01-10',
     fec_fin_cronograma: '2019-01-20',
+    estado_actividad: 'CONCLUIDO',
     observacion: ''
   },
   {
@@ -59,6 +65,7 @@ let items = [
     actividad: 'Letrero de obras',
     fec_ini_cronograma: '2019-01-20',
     fec_fin_cronograma: '2019-01-22',
+    estado_actividad: 'CONCLUIDO',
     observacion: ''
   },
   {
@@ -67,6 +74,7 @@ let items = [
     actividad: 'Limpieza general de la obra',
     fec_ini_cronograma: '2020-01-22',
     fec_fin_cronograma: '2020-01-25',
+    estado_actividad: 'CONCLUIDO',
     observacion: ''
   },
   {
@@ -75,6 +83,7 @@ let items = [
     actividad: 'Excavación (0-2 M) S. semiduro',
     fec_ini_cronograma: '2020-01-30',
     fec_fin_cronograma: '2020-02-10',
+    estado_actividad: 'CONCLUIDO',
     observacion: ''
   },
   {
@@ -83,6 +92,7 @@ let items = [
     actividad: 'Relleno y compactado con material comun',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'DESARROLLO',
     observacion: ''
   },
   {
@@ -91,6 +101,7 @@ let items = [
     actividad: 'Base de hormigon pobre',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'DESARROLLO',
     observacion: ''
   },
   {
@@ -99,6 +110,7 @@ let items = [
     actividad: 'Hormigon armado de zapatas',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'DESARROLLO',
     observacion: ''
   },
   {
@@ -107,6 +119,7 @@ let items = [
     actividad: 'Hormigon Armado de columnas',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'DESARROLLO',
     observacion: ''
   },
   {
@@ -115,6 +128,7 @@ let items = [
     actividad: 'Hormigon Armado de vigas',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'DESARROLLO',
     observacion: ''
   },
   {
@@ -123,6 +137,7 @@ let items = [
     actividad: 'Impermeabilizacion de sobrecimientos',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -131,6 +146,7 @@ let items = [
     actividad: 'Muro de ladrillo visto 18H (2CARA)',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -139,6 +155,7 @@ let items = [
     actividad: 'Dintel de ladrillo de 6 huecos armando',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -147,6 +164,7 @@ let items = [
     actividad: 'Bota aguas de H "A" (25X25CM)',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -155,6 +173,7 @@ let items = [
     actividad: 'Contrapiso de piedra cemento H 1:2:4',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -163,6 +182,7 @@ let items = [
     actividad: 'Enlucido de cemento E=1 CM',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -171,6 +191,7 @@ let items = [
     actividad: 'Replanteo y trazado de eje',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -179,6 +200,7 @@ let items = [
     actividad: 'Excavación de 0 A 1 M S/agotamiento terrenal',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -187,6 +209,7 @@ let items = [
     actividad: 'Material de apoyo para tuberias',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -195,6 +218,7 @@ let items = [
     actividad: 'Provisión y tendido de tuberias de desague PVC',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -203,6 +227,7 @@ let items = [
     actividad: 'Picado muro de ladrillo para colocado de tuberias',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -211,6 +236,7 @@ let items = [
     actividad: 'Ducto conduit antiflama 3/4',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -219,6 +245,7 @@ let items = [
     actividad: 'Luminaria Fluorecente 2X20 W',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -227,6 +254,7 @@ let items = [
     actividad: 'Viga de arrioste de HºAº',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -235,6 +263,7 @@ let items = [
     actividad: 'Acera perimetral + cuneta de HºCº',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -243,6 +272,7 @@ let items = [
     actividad: 'Poste metalico de voleibol + encamisado',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   {
@@ -251,6 +281,7 @@ let items = [
     actividad: 'Inicio de ejución de la obra',
     fec_ini_cronograma: '2020-01-10',
     fec_fin_cronograma: '2020-01-20',
+    estado_actividad: 'PENDIENTE',
     observacion: ''
   },
   

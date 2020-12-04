@@ -37,6 +37,9 @@ module.exports = function setupCronogramasController (services) {
   async function guardarCronograma (req, res, next){
     if (req.params && req.params.id){
       req.body.id = req.params.id;
+      req.body._user_updated = req.idUsuario;
+    }else {
+    req.body._user_created = req.idUsuario;
     }
     try {
       const respuesta = await CronogramasService.guardarCronograma(req.body);

@@ -1,6 +1,7 @@
 'use strict';
 
 const guard = require('express-jwt-permissions')();
+const middleware = require('../../../lib/middleware');
 
 module.exports = function setupCronogramas (api, controllers) {
   const { CronogramasController } = controllers;
@@ -11,9 +12,9 @@ module.exports = function setupCronogramas (api, controllers) {
   //API CRUD
   api.get('', CronogramasController.findAll);
   api.get('/:id', CronogramasController.findById);
-  api.post('', CronogramasController.guardarCronograma);
-  api.put('/:id', CronogramasController.guardarCronograma);
-  api.delete('/:id', CronogramasController.desactivarCronograma);
+  api.post('', middleware(), CronogramasController.guardarCronograma);
+  api.put('/:id', middleware(), CronogramasController.guardarCronograma);
+  api.delete('/:id', middleware(), CronogramasController.desactivarCronograma);
 
   return api;
 };

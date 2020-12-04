@@ -325,6 +325,66 @@ module.exports = function proyectosRepository (models, Sequelize) {
     return result;
   }
 
+  // METODO PARA GENERAR REPORTES DE PROYECTOS POR COMUNIDAD
+  async function generarReporteComunidadProyecto (dataProyecto) {
+    const fechaDesde = dataProyecto.fechaDesde;
+    const fechaHasta = dataProyecto.fechaHasta;
+    const idComunidad = dataProyecto.idComunidad;
+    console.log('1', fechaDesde);
+    console.log('2', fechaHasta);
+    console.log('3', idComunidad);
+    const query = {};
+    query.where = {};
+    query.where.fecha_inicio = {
+      [Op.between] : [fechaDesde, fechaHasta]
+    };
+    query.where.id_comunidad = idComunidad;
+    query.attributes = [
+      'id',
+      'nombre',
+      'descripcion',
+      'idComunidad',
+      'idCategoria',
+      'idPoa',
+      'idEmpresa',
+      [ Sequelize.literal('fecha_inicio::date'), 'fechaInicio' ],
+      [ Sequelize.literal('fecha_final::date'), 'fechaFinal' ],
+      'estadoProyecto',
+      'estado'
+    ]
+    query.include = [
+      {
+        model : comunidades,
+        as : 'comunidad',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : poas,
+        as : 'poa',
+        attributes : ['id', 'nombre', 'descripcion', 'monto']
+      },
+      {
+        model : empresas,
+        as : 'empresa',
+        attributes : ['id', 'nombre', 'descripcion', 'sigla', 'nit', 'direccion', 'telefonos']
+      },
+      {
+        model : categorias,
+        as : 'categoria',
+        attributes : ['id', 'nombre']
+      },
+      {
+        model : cronogramas,
+        as : 'cronogramas',
+        attributes : ['id', 'nombre', 'actividad', 'fecIniCronograma', 'fecFinCronograma', 'estadoActividad', 'observacion']
+      }
+    ]
+
+    query.where.estado = 'ACTIVO'
+    const result = await proyectos.findAndCountAll(query);
+    return result;
+  }
+
   return {
     findAll,
     findById,
@@ -333,6 +393,7 @@ module.exports = function proyectosRepository (models, Sequelize) {
     cantidadProyectos,
     cantidadProyectosCategorias,
     generarReporteEstadoProyecto, // pdf Proyecto Estado
+    generarReporteComunidadProyecto, // pdf Proyecto Comunidad
     findOne,
     fitroComunidad
   };

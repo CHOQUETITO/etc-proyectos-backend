@@ -38,7 +38,7 @@ module.exports = function empresasService (repositories, valueObjects, res) {
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UNA EMPRESA
   async function guardarEmpresa (dataEmpresa) {
     try {
-      dataEmpresa._user_created = 1;
+      // dataEmpresa._user_created = 1;
       const respuesta = await EmpresasRepository.createOrUpdate(dataEmpresa);
       if (!respuesta) {
         throw new Error('No se guardo exitosamente en la base de datos.');

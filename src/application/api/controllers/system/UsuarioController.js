@@ -195,6 +195,7 @@ module.exports = function setupUsuarioController (services) {
   async function guardarUsuario (req, res, next){
     try {
       // console.log('--->iaquiiiii', req.params, req.query);
+      // req.body._user_created = req.idUsuario;
       const  respuestaUsuario = await UsuarioService.createOrUpdate(req.body);
       return res.status(200).send ({
         finalizado : true, mensaje: 'Se guardo correctamente los datos:', datos: respuestaUsuario

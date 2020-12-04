@@ -17,8 +17,9 @@ async function createOrUpdate (object, model, t) {
       if (t) {
         cond.transaction = t;
       }
+      object._updated_at = new Date();
       updated = await model.update(object, cond);
-    } catch (e) { 4
+    } catch (e) {
       if (t) {
         await t.rollback();
       }
@@ -69,6 +70,7 @@ async function deleteItem (id, model, t) {
     const item = await model.findOne(cond);
     if (item) {
       // const deleted = await model.destroy(cond);
+      // object._updated_at = new Date();
       const deleted = await model.update({ estado : 'INACTIVO' }, cond);
       return +!!deleted; //  Devuelve 1 si se eliminó correctamente y 0 si no se pudo eliminar
     }

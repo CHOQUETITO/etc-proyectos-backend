@@ -37,6 +37,9 @@ module.exports = function setupPoasController (services) {
   async function guardarPoa (req, res, next){
     if (req.params && req.params.id){
       req.body.id = req.params.id;
+      req.body._user_updated = req.idUsuario;
+    }else {
+    req.body._user_created = req.idUsuario;
     }
     try {
       const respuesta = await PoasService.guardarPoa(req.body);

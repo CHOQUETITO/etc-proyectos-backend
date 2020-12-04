@@ -40,7 +40,7 @@ module.exports = function poasService (repositories, valueObjects, res) {
   //METODO POST-PUT PARA GUARDAR Y MODIFICAR UN POA
   async function guardarPoa (dataPoa) {
     try {
-      dataPoa._user_created = 1;
+      // dataPoa._user_created = 1;
       const respuesta = await PoasRepository.createOrUpdate(dataPoa);
       if (!respuesta) {
         throw new Error('No se guardo exitosamente en la base de datos.');

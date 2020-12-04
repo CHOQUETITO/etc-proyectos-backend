@@ -294,7 +294,7 @@ module.exports = function userService (repositories, valueObjects) {
       menu = menu.menu;
 
       // Generando token
-      let token = await generateToken(Parametro, usuario, permissions);
+      let token = await generateToken(Parametro, usuario, permissions, user.id);
 
       // Formateando permisos
       let permisos = {};
